@@ -1,7 +1,20 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
+$pesquisaLoja = isset($_GET['pesquisaLoja']) ? $_GET['pesquisaLoja'] : '';
+
+if ($pesquisaLoja) {
+    $sql = "SELECT * FROM loja WHERE nomeLoja LIKE '%$pesquisaLoja%'
+    ORDER BY nomeLoja ASC";
+} else {
+    $sql = "SELECT * FROM loja";
+}
+
 $resultado = mysqli_query($conexao, $sql);
+
+if (!$resultado) {
+    die("Erro ao buscar a loja: " . mysqli_error($conexao));
+}
 ?>
 
 <!doctype html>
@@ -16,7 +29,7 @@ $resultado = mysqli_query($conexao, $sql);
 
     <form method="GET">
     <input
-        type="text"
+        type="search"
         name="pesquisaLoja"
         placeholder="Pesquisar loja..."
         value="<?php echo htmlspecialchars($pesquisaLoja); ?>">
@@ -44,8 +57,9 @@ while ($dados = mysqli_fetch_assoc($resultado)) { ?>
     <td><?php
         $sqlLogo = "SELECT logoLoja FROM loja WHERE idLoja = " . $dados['idLoja'];
         $resultLogo = mysqli_query($conexao, $sqlLogo);
-        $dadosLogo = mysqli_fetch_assoc($resultCategoria);
-        echo $dadosCategoria['logoLoja'];
+        $dadosLogo = mysqli_fetch_assoc($resultLogo);
+        // Requer atenção
+        echo $dadosLogo['logoLoja'];
         ?></td>
     <td><a href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>">Alterar</a></td>
     <td>

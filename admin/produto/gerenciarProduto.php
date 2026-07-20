@@ -40,12 +40,6 @@ if (!$resultado) {
 </form>
 
 <table>
-  <tr>
-    <th>Nome</th>
-    <th>Categoria</th>
-    <th>Loja</th>
-    <th colspan="2">Atualizar</th>
-  </tr>
 <?php
 while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   <tr>

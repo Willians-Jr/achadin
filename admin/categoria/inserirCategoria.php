@@ -58,6 +58,8 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
         <label for="nomeCategoria">Nome da Categoria:</label>
         <input type="text" name="nomeCategoria" id="nomeCategoria">
 
+         <button type="submit">Cadastrar Categoria</button>
+
      
     </form>
 </body>

@@ -20,14 +20,15 @@ $dadosLoja = mysqli_fetch_assoc($resultado);
   <body>
     <h1>Editar Loja</h1>
     <form action="atualizarLoja.php" method="POST">
-      <input type="hidden" name="idLoja" value="<?php echo $dadosLoja['idLoja']; ?>" />
+      <input type="hidden" id="idLoja" name="idLoja" value="<?php echo $dadosLoja['idLoja']; ?>" />
 
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="<?php echo $dadosLoja['nome']; ?>" required />
+      <label for="nomeLoja">Nome:</label>
+      <input type="text" id="nomeLoja" name="nomeLoja" value="<?php echo $dadosLoja['nomeLoja']; ?>" required />
       <br />
 
-      <label for="endereco">Logo:</label>
-      <input type="file" id="logo" name="logo" value="" required />
+      <label for="logoLoja">Logo:</label>
+      <!-- Requer atenção -->
+      <input type="file" id="logoLoja" name="logoLoja" value="<?php echo $dadosLoja['']; ?>" required />
       <br />
 
       <button type="submit">Atualizar Loja</button>

@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idLoja = $_POST['idLoja'] ?? '';
     $idUsuario = $_POST['idUsuario'] ?? '';
 
-    $sqlInsert = "INSERT INTO produto (nome, idCategoria, idLoja, idUsuario) VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario')";
+    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario) VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario')";
 
     if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
@@ -27,31 +27,6 @@ $sql = "SELECT c.idCategoria, l.idLoja, u.idUsuario, n.nomeProduto
         ORDER BY p.dataCadastro DESC, p.idProduto DESC";
 
 $resultado = mysqli_query($conexao, $sql);
-
-if ($resultado && mysqli_num_rows($resultado) > 0) {
-    echo "<h2>Produtos cadastrados</h2>";
-    echo "<table border='1'>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Loja</th>
-                <th>Usuário</th>
-            </tr>";
-
-    while ($dados = mysqli_fetch_assoc($resultado)) {
-        echo "<tr>";
-        echo "<td>" . $dados['idCategoria'] . "</td>";
-        echo "<td>" . $dados['idLoja'] . "</td>";
-        echo "<td>" . $dados['nomeProduto'] . "</td>";
-        echo "<td>" . $dados['idUsuario'] . "</td>";
-        echo "</tr>";
-    }
-
-    echo "</table>";
-} else {
-    echo "<p>Nenhuma consulta cadastrada.</p>";
-}
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +41,9 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
     <br>
     <form action="inserirProduto.php" method="post">
         <label for="nomeProduto">Nome do Produto</label>
-        <input type="text" id="nomeProduto" name="nomeProduto" required><br><br>
+        <input type="text" id="nomeProduto" name="nomeProduto" required>
+            
+        <br><br>
 
         <label for="idCategoria">Categoria</label>
         <select id="idCategoria" name="idCategoria" required>
@@ -101,7 +78,20 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
             ?>
         </select><br><br>
 
+        <label>
+            Foto do Produto
+        </label>
+    
+        <input
+            type="file"
+            id="fotoProduto"
+            name="fotoProduto"
+            accept=".jpg,.jpeg,.png,.gif,image/*">
+
+        <br><br>
+
         <input type="submit" value="Registrar Produto">
+
     </form>
 </body>
 </html>

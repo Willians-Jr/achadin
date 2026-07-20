@@ -32,11 +32,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
             die("O arquivo enviado não é uma imagem.");
 
         }
-
     }
 
-  $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES
-  ('$nomeLoja', '$logoLoja')";
+  $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES (?, ?)";
+
+  if (!empty($nomeLoja)&& !empty($logoLoja)){
+
+    $resultado = mysqli_prepare($conexao, $sql);
+
+    if (mysqli_num_rows($resultado) > 0) {
+        echo "<script>
+                alert('Loja já cadastrada!');
+                window.location='inserirLoja.php';
+              </script>";
+    }
+
+    mysqli_stmt_bind_param($resultado,"ss",$nomeLoja,$logoLoja);
+  }
 
   if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
@@ -44,33 +56,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.location='inserirLoja.php';
               </script>";
     } else {
-        echo "Erro ao cadastrar Loja: " . mysqli_error($conexao) . "<br><br>";
+        echo "Erro ao cadastrar Loja: " . mysqli_error($conexao) .
+        "<br><br>";
     }
-}
-
-$sql = "SELECT idLoja, nomeLoja, logoLoja FROM loja";
-
-$resultado = mysqli_query($conexao, $sql);
-
-if ($resultado && mysqli_num_rows($resultado) > 0) {
-    echo "<h2>Lojas cadastradas</h2>";
-    echo "<table border='1'>
-            <tr>
-                <th>ID Loja</th>
-                <th>Nome Loja</th>
-            </tr>";
-
-    while ($dados = mysqli_fetch_assoc($resultado)) {
-        echo "<tr>";
-        echo "<td>" . $dados['idLoja'] . "</td>";
-        echo "<td>" . $dados['nomeLoja'] . "</td>";
-        echo "<td>" . $dados['logoLoja'] . "</td>";
-        echo "</tr>";
-    }
-
-    echo "</table>";
-} else {
-    echo "<p>Nenhuma loja cadastrada.</p>";
 }
 ?>
 
