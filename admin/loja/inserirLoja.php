@@ -94,11 +94,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Loja</title>
+    <title>Lojas - Cadastrar</title>
 </head>
 <body>
 
-<h1>Registro de Loja</h1>
+<h1>Formulário de Cadastro de Loja</h1>
 
 <form action="inserirLoja.php" method="post" enctype="multipart/form-data">
 

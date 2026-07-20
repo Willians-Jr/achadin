@@ -25,7 +25,7 @@ if (!$resultado) {
     <title>Lojas - Gerenciar</title>
   </head>
   <body>
-    <h1>Lojas</h1>
+    <h1>Tabela de Gerenciamento de Lojas</h1>
 
     <form method="GET">
     <input
