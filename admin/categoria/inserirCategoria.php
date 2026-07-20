@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
                 window.location='inserirCategoria.php';
               </script>";
     } else {
-        echo "Erro ao cadastrar Loja: " . mysqli_error($conexao) . "<br><br>";
+        echo "Erro ao cadastrar categoria" . mysqli_error($conexao) . "<br><br>";
     }
 }
 
