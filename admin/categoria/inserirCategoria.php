@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
   if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
                 alert('Categoria cadastrada com sucesso!');
-                window.location='inserirLoja.php';
+                window.location='inserirCategoria.php';
               </script>";
     } else {
         echo "Erro ao cadastrar Loja: " . mysqli_error($conexao) . "<br><br>";
