@@ -9,7 +9,7 @@ $sql = "UPDATE categoria SET nomeCategoria = '$nomeCategoria',  WHERE idCategori
 
 if(mysqli_query($conexao,$sql)){
   echo "Alteração realizada com sucesso!";
-    header("refresh:2;url=gerenciarLoja.php");
+    header("refresh:2;url=gerenciarCategoria.php");
 }
 else{
   echo "Não foi possivel realizar a alteração.";
