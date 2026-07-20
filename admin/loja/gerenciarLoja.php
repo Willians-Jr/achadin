@@ -22,7 +22,7 @@ if (!$resultado) {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lojas</title>
+    <title>Lojas - Gerenciar</title>
   </head>
   <body>
     <h1>Lojas</h1>
@@ -36,9 +36,8 @@ if (!$resultado) {
     <button type="submit">
         Pesquisar
     </button>
-</form>
 
-<table border="1">
+    <table border="1">
   <tr>
     <th>Nome</th>
     <th>Logo</th>
@@ -62,5 +61,6 @@ while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   </tr>
 <?php } ?>
 </table>
+</form>
   </body>
 </html>
