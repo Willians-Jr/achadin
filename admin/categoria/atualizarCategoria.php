@@ -1,17 +1,17 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
-$idCategoria = $_GET['idCategoria'];
-$nomeCategoria = $_POST['nomeCategoria'];
+$idCategoria = (int) $_GET['idCategoria'];
+$nomeCategoria = mysqli_real_escape_string($conexao, $_POST['nomeCategoria']);
 
+$sql = "UPDATE categoria
+        SET nomeCategoria = '$nomeCategoria'
+        WHERE idCategoria = $idCategoria";
 
-$sql = "UPDATE categoria SET nomeCategoria = '$nomeCategoria',  WHERE idCategoria = $idCategoria";
-
-if(mysqli_query($conexao,$sql)){
-  echo "Alteração realizada com sucesso!";
-    header("refresh:2;url=gerenciarCategoria.php");
-}
-else{
-  echo "Não foi possivel realizar a alteração.";
+if (mysqli_query($conexao, $sql)) {
+    header("Refresh: 2; URL=gerenciarCategoria.php");
+    echo "Alteração realizada com sucesso!";
+} else {
+    echo "Não foi possível realizar a alteração: " . mysqli_error($conexao);
 }
 ?>

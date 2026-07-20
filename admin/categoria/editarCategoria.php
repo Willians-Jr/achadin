@@ -2,13 +2,18 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
-$idCategoria = $_GET['idCategoria'];
+
+
+$dadosCategoria = mysqli_fetch_assoc($resultado);
+
+
+$idCategoria = (int) $_GET['idCategoria'];
 
 $sql = "SELECT * FROM categoria WHERE idCategoria = $idCategoria";
 
 $resultado = mysqli_query($conexao, $sql);
+$dadosCategoria = mysqli_fetch_assoc($resultado);
 
-$dadosLoja = mysqli_fetch_assoc($resultado);
 ?>
 
 <!doctype html>
