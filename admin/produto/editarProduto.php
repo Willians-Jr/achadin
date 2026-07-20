@@ -35,9 +35,11 @@ if (isset($_GET['id'])) {
 </head>
 <body>
 
-<form action="atualizarProduto.php" method="POST">
+<form action="atualizarProduto.php" method="POST" enctype="multipart/form-data">
     
     <input type="hidden" name="idProduto" value="<?php echo $dados['idProduto']; ?>">
+    
+    <input type="hidden" name="fotoAtual" value="<?php echo $dados['fotoProduto']; ?>">
 
     <label for="nomeProduto">Produto</label>
     <input type="text" name="nomeProduto" id="nomeProduto" value="<?php echo htmlspecialchars($dados['nomeProduto']); ?>" required>
