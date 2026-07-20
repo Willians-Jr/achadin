@@ -43,13 +43,20 @@ if (!$resultado) {
 <?php
 while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   <tr>
-    <td><?php echo $dados['nomeProduto']; ?></td>
     <td><?php
         $sqlProduto = "SELECT nomeProduto FROM produto WHERE idProduto = " . $dados['idProduto'];
         $resultProduto = mysqli_query($conexao, $sqlProduto);
         $dadosProduto = mysqli_fetch_assoc($resultProduto);
         echo $dadosProduto['nomeProduto'];
         ?></td>
+
+    <td><?php
+    $sqlLoja = "SELECT nomeLoja FROM loja WHERE idLoja = " . $dados['idLoja'];
+    $resultLoja = mysqli_query($conexao, $sqlLoja);
+    $dadosLoja = mysqli_fetch_assoc($resultLoja);
+    echo $dadosLoja['nomeLoja'];
+    ?> </td>   
+
     <td><?php
         $sqlCategoria = "SELECT nomeCategoria FROM categoria WHERE idCategoria = " . $dados['idCategoria'];
         $resultCategoria = mysqli_query($conexao, $sqlCategoria);
