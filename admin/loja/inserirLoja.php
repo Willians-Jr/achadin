@@ -1,64 +1,91 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nomeLoja = $_POST['nomeLoja'];
-  $logoLoja = $_FILES['logoLoja'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  if(isset($_FILES["logoLoja"])){
+    $nomeLoja = trim($_POST['nomeLoja']);
 
-        // Recebe a imagem enviada
+    // Verifica se foi enviada uma imagem
+    if (isset($_FILES["logoLoja"]) && $_FILES["logoLoja"]["error"] == 0) {
+
         $imagem = $_FILES["logoLoja"];
 
-        // Verifica se o arquivo é realmente uma imagem
+        // Verifica se é uma imagem
         $dadosImagem = getimagesize($imagem["tmp_name"]);
 
-        if($dadosImagem != false){
+        if ($dadosImagem != false) {
 
-            // Obtém a extensão da imagem jpg / .png
-            $extensao = pathinfo($imagem["name"], PATHINFO_EXTENSION);
+            // Obtém a extensão
+            $extensao = strtolower(pathinfo($imagem["name"], PATHINFO_EXTENSION));
 
-            // Gera um nome único para a imagem
+            // Gera um nome único
             $nomeImagem = uniqid() . "." . $extensao;
 
-            // Caminho onde a imagem será salva
-            $caminho = "../assets/IMG/" . $nomeImagem;
+            // Caminho da imagem
+            $caminho = "../../assets/UPLOAD/" . $nomeImagem;
 
-            // Move a imagem para a pasta
-            move_uploaded_file($imagem["tmp_name"], $caminho);
+            // Move a imagem
+            if (!move_uploaded_file($imagem["tmp_name"], $caminho)) {
+                die("Erro ao salvar a imagem.");
+            }
 
-        }else{
+            // Nome que será salvo no banco
+            $logoLoja = $nomeImagem;
 
+        } else {
             die("O arquivo enviado não é uma imagem.");
-
         }
+
+    } else {
+        die("Selecione uma imagem.");
     }
 
-  $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES (?, ?)";
+    // Verifica se a loja já existe
+    $sql = "SELECT * FROM loja WHERE nomeLoja = ?";
 
-  if (!empty($nomeLoja)&& !empty($logoLoja)){
+    $consulta = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($consulta, "s", $nomeLoja);
+    mysqli_stmt_execute($consulta);
 
-    $resultado = mysqli_prepare($conexao, $sql);
+    $resultado = mysqli_stmt_get_result($consulta);
 
     if (mysqli_num_rows($resultado) > 0) {
+
         echo "<script>
                 alert('Loja já cadastrada!');
                 window.location='inserirLoja.php';
               </script>";
+        exit;
     }
 
-    mysqli_stmt_bind_param($resultado,"ss",$nomeLoja,$logoLoja);
-  }
+    // Insere a loja
+    $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES (?, ?)";
 
-  if (mysqli_query($conexao, $sqlInsert)) {
+    $stmt = mysqli_prepare($conexao, $sqlInsert);
+
+    mysqli_stmt_bind_param(
+        $stmt,
+        "ss",
+        $nomeLoja,
+        $logoLoja
+    );
+
+    if (mysqli_stmt_execute($stmt)) {
+
         echo "<script>
                 alert('Loja cadastrada com sucesso!');
                 window.location='inserirLoja.php';
               </script>";
+
     } else {
-        echo "Erro ao cadastrar Loja: " . mysqli_error($conexao) .
-        "<br><br>";
+
+        echo "Erro ao cadastrar loja: " . mysqli_error($conexao);
+
     }
+
+    mysqli_stmt_close($consulta);
+    mysqli_stmt_close($stmt);
+    mysqli_close($conexao);
 }
 ?>
 
@@ -70,19 +97,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Nova Loja</title>
 </head>
 <body>
-    <h1>Registro de Loja</h1>
-    <br>
 
-    <form action="inserirLoja.php" method="post" enctype="multipart/form-data">
-        <label for="nomeLoja">Nome da Loja:</label>
-        <input type="text" name="nomeLoja" id="nomeLoja">
-        <br>
+<h1>Registro de Loja</h1>
 
-        <label for="logoLoja">Logo da loja:</label>
-        <input type="file" name="logoLoja" id="logoLoja">
-        <br>
+<form action="inserirLoja.php" method="post" enctype="multipart/form-data">
 
-        <button type="submit">Cadastrar Loja</button>
-    </form>
+    <label for="nomeLoja">Nome da Loja:</label>
+    <input type="text" name="nomeLoja" id="nomeLoja" required>
+    <br><br>
+
+    <label for="logoLoja">Logo da Loja:</label>
+    <input type="file" name="logoLoja" id="logoLoja" accept="image/*" required>
+    <br><br>
+
+    <button type="submit">Cadastrar Loja</button>
+
+</form>
+
 </body>
 </html>

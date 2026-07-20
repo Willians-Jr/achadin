@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
-$idLoja = $_GET['idLoja'];
+$idLoja = $_GET['id'] ?? null;
 
 $sql = "SELECT * FROM loja WHERE idLoja = $idLoja";
 
@@ -19,17 +19,29 @@ $dadosLoja = mysqli_fetch_assoc($resultado);
   </head>
   <body>
     <h1>Editar Loja</h1>
-    <form action="atualizarLoja.php" method="POST">
+    <form action="atualizarLoja.php" method="POST" enctype="multipart/form-data">
       <input type="hidden" id="idLoja" name="idLoja" value="<?php echo $dadosLoja['idLoja']; ?>" />
 
       <label for="nomeLoja">Nome:</label>
       <input type="text" id="nomeLoja" name="nomeLoja" value="<?php echo $dadosLoja['nomeLoja']; ?>" required />
-      <br />
+      <br /><br>
 
-      <label for="logoLoja">Logo:</label>
-      <!-- Requer atenção -->
-      <input type="file" id="logoLoja" name="logoLoja" value="<?php echo $dadosLoja['']; ?>" required />
-      <br />
+      <label for="logoLoja">Logo atual:</label><br>
+
+      <img
+        src="../../assets/UPLOAD/<?php echo htmlspecialchars($dadosLoja['logoLoja']); ?>"
+        alt="Logo da Loja"
+        width="100">
+       <br><br>
+
+      <label for="logoLoja">Nova logo (opcional):</label>
+      <input type="file" id="logoLoja" name="logoLoja" accept="image/*">
+      <br><br>
+
+      <input
+        type="hidden"
+        name="logoAtual"
+        value="<?php echo htmlspecialchars($dadosLoja['logoLoja']); ?>">
 
       <button type="submit">Atualizar Loja</button>
     </form>

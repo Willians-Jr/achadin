@@ -38,29 +38,20 @@ if (!$resultado) {
     </button>
 </form>
 
-<table>
+<table border="1">
   <tr>
     <th>Nome</th>
     <th>Logo</th>
-    <th colspan="2">Atualizar</th>
+    <th colspan="2">Ações</th>
   </tr>
 <?php
 while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   <tr>
     <td><?php echo $dados['nomeLoja']; ?></td>
-    <td><?php
-        $sqlNome = "SELECT nomeLoja FROM loja WHERE idLoja = " . $dados['idLoja'];
-        $resultNome = mysqli_query($conexao, $sqlnome);
-        $dadosNome = mysqli_fetch_assoc($resultNome);
-        echo $dadosNome['nomeLoja'];
-        ?></td>
-    <td><?php
-        $sqlLogo = "SELECT logoLoja FROM loja WHERE idLoja = " . $dados['idLoja'];
-        $resultLogo = mysqli_query($conexao, $sqlLogo);
-        $dadosLogo = mysqli_fetch_assoc($resultLogo);
-        // Requer atenção
-        echo $dadosLogo['logoLoja'];
-        ?></td>
+
+    <td><img src="../../assets/UPLOAD/<?php echo $dados['logoLoja']; ?>" alt="Logo da Loja" width="100" /></td>
+    <br><br>
+    
     <td><a href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>">Alterar</a></td>
     <td>
       <a href="excluirLoja.php?id=<?php echo $dados['idLoja']; ?>"

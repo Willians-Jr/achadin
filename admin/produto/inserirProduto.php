@@ -19,12 +19,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT c.idCategoria, l.idLoja, u.idUsuario, n.nomeProduto
+$sql = "SELECT c.idCategoria, l.idLoja, u.idUsuario, p.nomeProduto
         FROM produto p
         INNER JOIN categoria c ON p.idCategoria = c.idCategoria
         INNER JOIN loja l ON p.idLoja = l.idLoja
         INNER JOIN usuario u ON p.idUsuario = u.idUsuario
-        ORDER BY p.dataCadastro DESC, p.idProduto DESC";
+        ORDER BY p.idProduto DESC";
 
 $resultado = mysqli_query($conexao, $sql);
 ?>
