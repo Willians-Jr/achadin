@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto
+$sql = "SELECT c.idCategoria, l.idLoja, u.idUsuario, p.nomeProduto
         FROM produto p
         INNER JOIN categoria c ON p.idCategoria = c.idCategoria
         INNER JOIN loja l ON p.idLoja = l.idLoja
