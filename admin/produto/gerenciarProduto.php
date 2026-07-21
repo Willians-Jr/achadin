@@ -45,7 +45,7 @@ if (!$resultado) {
 </form>
 
 <br>
-<table>
+<table border=1>
     <body>
     <?php
     while ($dados = mysqli_fetch_assoc($resultado)) { 
