@@ -1,8 +1,5 @@
 <?php
 include_once __DIR__ . '/includes/conexao.php';
-
-$sql = "SELECT * FROM loja";
-$resultado = mysqli_query($conexao, $sql);
 ?>
 
 <!DOCTYPE html>
