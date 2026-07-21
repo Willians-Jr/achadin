@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idUsuario = $_POST['idUsuario'] ?? '';
 
     $fotoProduto = "";
+
     
     if (isset($_FILES["fotoProduto"]) && $_FILES["fotoProduto"]["error"] == 0) {
         $pastaDestino = "../assets/UPLOAD/";

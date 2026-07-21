@@ -15,6 +15,7 @@
     <form action="inserirProduto.php" method="post" enctype="multipart/form-data">
         <label for="nomeProduto">Nome do Produto</label>
         <input type="text" id="nomeProduto" name="nomeProduto" required>
+
             
         <br><br>
 
