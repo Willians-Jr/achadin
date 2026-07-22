@@ -23,7 +23,6 @@ require_once ROOT_PATH . '/includes/header.php';
         <label for="nomeProduto">Nome do Produto</label>
         <input type="text" id="nomeProduto" name="nomeProduto" required>
 
-            
         <br><br>
 
         <label for="idCategoria">Categoria</label>
