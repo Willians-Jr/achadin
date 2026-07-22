@@ -64,13 +64,52 @@ $saida = shell_exec($comandoCompleto);
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Loja Virtual - Detalhes do Produto</title>
+    <title>Vitrine de Produtos</title>
+    <style>
+        .vitrine { display: flex; gap: 20px; flex-wrap: wrap; padding: 20px; }
+        .card-produto { border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: 200px; text-align: center; }
+        .link-produto { text-decoration: none; color: #333; display: block; }
+        .link-produto:hover { color: #007bff; }
+        .card-produto img { max-width: 100%; height: auto; border-radius: 4px; }
+    </style>
 </head>
 <body>
-    <h1>Página do Produto (ID Atual: <?php echo $idProdutoAtual; ?>)</h1>
+
+    <h1>Nossos Produtos</h1>
+
+    <div class="vitrine">
+        <?php
+        // CORREÇÃO: Fazemos uma nova consulta focada em trazer a lista de produtos da loja
+        // ⚠️ Verifique se o nome da sua tabela de produtos é realmente 'produtos'
+        $sqlProdutos = "SELECT idProduto, nomeProduto, fotoProduto FROM produto";
+        $resultadoProdutos = $conexao->query($sqlProdutos);
+
+        // Usamos a nova variável $resultadoProdutos para o laço da vitrine
+        if ($resultadoProdutos && $resultadoProdutos->num_rows > 0) {
+            while ($produto = $resultadoProdutos->fetch_assoc()) {
+                ?>
+                <div class="card-produto">
+                    
+                    <a href="verProduto.php?id=<?php echo $produto['idProduto']; ?>" class="link-produto">
+                        
+                        <img src="../../<?php echo $produto['fotoProduto']; ?>" alt="<?php echo $produto['nomeProduto']; ?>">
+                        
+                        <h3><?php echo $produto['nomeProduto']; ?></h3>
+                        
+                    </a>
+                    
+                </div>
+                <?php
+            }
+        } else {
+            echo "<p>Nenhum produto cadastrado no banco ainda ou erro na tabela 'produtos'.</p>";
+        }
+        ?>
+    </div>
+
     <hr>
-    
-    <h2>Recomendações da nossa IA:</h2>
+    <h2>Recomendações em tempo real:</h2>
     <pre><?php echo utf8_encode($saida); ?></pre>
+
 </body>
 </html>
