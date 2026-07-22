@@ -6,7 +6,7 @@ include_once __DIR__ . '/includes/conexao.php';
 <br>
 <a href="admin/produto/inserirProduto.php">Cadastrar Produto</a>
 <a href="admin/usuario/inserirUsuarioForm.php">Cadastrar Usuario</a>
-<a href="admin/loja/inserirLoja.php">Cadastrar loja</a>
+<a href="admin/loja/inserirLojaForm.php">Cadastrar loja</a>
 <a href="admin/categoria/inserirCategoria.php">Cadastrar Categoria</a>
 
 <!DOCTYPE html>
