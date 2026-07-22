@@ -1,26 +1,40 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
-  $nomeCategoria = $_POST['nomeCategoria'];
-  
 
-  $sqlInsert = "INSERT INTO categoria (nomeCategoria) VALUES
-  ('$nomeCategoria' )";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-  if (mysqli_query($conexao, $sqlInsert)) {
-        echo "<script>
-                alert('Categoria cadastrada com sucesso!');
-                window.location='inserirCategoria.php';
-              </script>";
-    } else {
-        echo "Erro ao cadastrar categoria" . mysqli_error($conexao) . "<br><br>";
+    $nomeCategoria = trim($_POST['nomeCategoria']);
+
+    if (empty($nomeCategoria)) {
+        die("Informe o nome da categoria.");
     }
+
+    $nomeCategoria = mysqli_real_escape_string($conexao, $nomeCategoria);
+
+    $sqlInsert = "INSERT INTO categoria (nomeCategoria)
+                  VALUES ('$nomeCategoria')";
+
+    if (mysqli_query($conexao, $sqlInsert)) {
+
+        header("Location: inserirCategoria.php");
+        exit;
+
+    } else {
+
+        echo "Erro ao cadastrar categoria: " . mysqli_error($conexao);
+
+    }
+
 }
 
-$sql = "SELECT idCategoria, nomeCategoria FROM categoria";
+$sql = "SELECT idCategoria, nomeCategoria
+        FROM categoria";
 
 $resultado = mysqli_query($conexao, $sql);
+
+
+
 
 if ($resultado && mysqli_num_rows($resultado) > 0) {
     echo "<h2>Categorias cadastradas</h2>";
@@ -32,8 +46,7 @@ if ($resultado && mysqli_num_rows($resultado) > 0) {
 
     while ($dados = mysqli_fetch_assoc($resultado)) {
         echo "<tr>";
-        echo "<td>" . $dados['idCategoria'] . "</td>";
-        echo "<td>" . $dados['nomeCategoria'] . "</td>";
+        echo "<td>" . $dados['idCategoria'] . "</td>";        echo "<td>" . $dados['nomeCategoria'] . "</td>";
         echo "</tr>";
     }
 
