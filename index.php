@@ -9,10 +9,8 @@ if (isset($_GET['nomeProduto'])){
   
 }
 $sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE  '%$pesquisa%' ORDER BY nomeProduto";
-$sqlLoja = "SELECT * FROM loja ORDER BY nomeLoja";
 
 $resultadoProduto = mysqli_query($conexao,$sqlProduto);
-$resultadoLoja = mysqli_query($conexao,$sqlLoja);
 ?>
 
 
@@ -124,7 +122,9 @@ $resultadoLoja = mysqli_query($conexao,$sqlLoja);
             <div class="col">
                 <div class="card h-100">
 
-                    <img src="assets/UPLOAD/<?= $produto['fotoProduto'] ?>" class="card-img-top">
+                    <img src="<?= BASE_URL ?>assets/UPLOAD/<?= !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png' ?>" class="card-img-top" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
+
+                    <?= $produto['fotoProduto'] ?>
 
                     <div class="card-body">
 
@@ -140,10 +140,6 @@ $resultadoLoja = mysqli_query($conexao,$sqlLoja);
             </div>
 
         <?php } ?>
-
-    </div>
-
-        <!-- outros cards -->
 
     </div>
 
