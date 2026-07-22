@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Produto</title>
+    <title>Top Achados - Novo Produto</title>
 </head>
 <body>
     <h1>Registro de Produto</h1>
@@ -16,7 +16,6 @@
         <label for="nomeProduto">Nome do Produto</label>
         <input type="text" id="nomeProduto" name="nomeProduto" required>
 
-            
         <br><br>
 
         <label for="idCategoria">Categoria</label>
