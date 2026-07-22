@@ -1,0 +1,186 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Cores Principais */
+  --azul-principal: #2563eb;
+
+  --laranja-cta: #ff6b00;
+  --verde-economia: #22c55e;
+  --amarelo-oferta: #fbbf24;
+
+  /* Textos */
+  --texto-escuro: #1e293b;
+  --texto-secundario: #64748b;
+
+  /* Fundos */
+  --fundo: #f8fafc;
+  --branco: #ffffff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+main {
+  flex: 1;
+}
+
+.imgLogo {
+  width: 80px;
+}
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  display: block;
+  color: var(--branco);
+}
+
+.logoA {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoTexto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.favoritosIcon a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.menuPrincipal {
+  background-color: var(--azul-principal);
+  color: var(--branco);
+}
+
+#menuPrincipalLinks {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 5px !important;
+}
+
+.hero {
+  height: 320px;
+}
+
+.card {
+  border-radius: 18px;
+}
+
+.form-select {
+  border-radius: 30px;
+}
+
+.btn {
+  border-radius: 30px;
+}
+
+.shadow-lg {
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12) !important;
+}
+
+/* MENU FIN */
+
+/* INDEX INICIO */
+
+.bannerIndex {
+  border-radius: 0 0 122px 122px;
+  background-image:
+    linear-gradient(90deg, #0245b8 0%, #0369f5 100%), url(img/fundo.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
+}
+
+/* INDEX FIM */
+
+/* FOOTER INICIO */
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  background-color: hsl(221, 70%, 82%);
+
+  box-shadow: 0 -4px 20px rgba(87, 104, 133, 0.08);
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.footer .logoA {
+  text-decoration: none;
+}
+
+.footer .imgLogo {
+  width: 50px;
+
+  height: 50px;
+
+  object-fit: contain;
+}
+
+.footer .logoTexto {
+  display: flex;
+
+  flex-direction: column;
+
+  line-height: 1;
+}
+
+.footer .logo {
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: var(--azul-principal);
+}
+
+/* =========================================
+   SLOGAN
+========================================= */
+
+.footer-slogan {
+  color: var(--texto-secundario);
+}
+
+/* =========================================
+   TÍTULOS
+========================================= */
+
+.footer-column h3 {
+  color: var(--texto-escuro);
+}
+
+/* =========================================
+   NOMES
+========================================= */
+
+.footer-column p {
+  color: var(--texto-secundario);
+}
+
+/* FOOTER FIM */
+
+/* MEDIA QUERY */
+@media screen and (max-width: 992px) {
+  .formularioBusca {
+    width: 100% !important;
+  }
+  #menuPrincipalLinks {
+    align-items: flex-start !important;
+  }
+}

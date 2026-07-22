@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
       $_SESSION['nomeUsuario']= $dados['nomeUsuario'];
       $_SESSION['loginUsuario']= $dados['loginUsuario'];
 
-      header('location: principal.php');
+      header('location: /../../index.php');
       }else {
       echo "Usuário ou senha incorretos!";
       }
@@ -29,3 +29,32 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     }
   }
 ?>
+ <form action="" method="post">
+          <label for="loginUsuario">Usuario:</label>
+          <input
+            type="text"
+            
+            id="loginUsuario"
+            name="loginUsuario"
+            
+          />
+          <br /><br />
+          <label for="senhaUsuario">Senha:</label>
+          <input
+            type="password"
+            
+            id="senhaUsuario"
+            name="senhaUsuario"
+            
+          />
+          <span id="erroSenha" ></span>
+           <div >
+              <input class="form-check-input" type="checkbox" value="" id="checkDefault" onclick="mostrarSenha()">
+              <label class="form-check-label" for="checkDefault">
+                Mostrar senha
+              </label>
+            </div>
+            <button type="submit" value="login" >
+              Login
+            </button>
+            <script src="../../assets/JS/validacoes.js"></script>
