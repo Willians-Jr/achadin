@@ -1,13 +1,19 @@
 <?php
 session_start();
-include_once __DIR__ . '/includes/conexao.php';
+require_once __DIR__ . '/includes/config.php';
+require_once ROOT_PATH . '/includes/conexao.php';
+$pesquisa="";
 
+if (isset($_GET['nomeProduto'])){
+  $pesquisa=trim($_GET['nomeProduto']);
+  
+}
+$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE  '%$pesquisa%' ORDER BY nomeProduto";
+$sqlLoja = "SELECT * FROM loja ORDER BY nomeLoja";
+
+$resultadoProduto = mysqli_query($conexao,$sqlProduto);
+$resultadoLoja = mysqli_query($conexao,$sqlLoja);
 ?>
-<br>
-<a href="admin/produto/inserirProduto.php">Cadastrar Produto</a>
-<a href="admin/usuario/inserirUsuarioForm.php">Cadastrar Usuario</a>
-<a href="admin/loja/inserirLoja.php">Cadastrar loja</a>
-<a href="admin/categoria/inserirCategoria.php">Cadastrar Categoria</a>
 
 
 <!DOCTYPE html>
@@ -19,11 +25,11 @@ include_once __DIR__ . '/includes/conexao.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="assets/CSS/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
 </head>
 <body>
     <main>
-   <?php include __DIR__ . '/includes/header.php'?> 
+   <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 <!-- HEADER -->
 <header class="bannerIndex text-center text-light py-5">
     <div class="container">
@@ -113,31 +119,29 @@ include_once __DIR__ . '/includes/conexao.php';
 
     <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
 
-        <div class="col">
+        <?php while($produto = mysqli_fetch_assoc($resultadoProduto)) { ?>
 
-            <div class="card h-100">
+            <div class="col">
+                <div class="card h-100">
 
-                <img src="#" class="card-img-top">
+                    <img src="assets/UPLOAD/<?= $produto['fotoProduto'] ?>" class="card-img-top">
 
-                <div class="card-body">
+                    <div class="card-body">
 
-                    <h6 class="card-title">
-                        Computador Completo
-                    </h6>
+                        <h6><?= htmlspecialchars($produto['nomeProduto']) ?></h6>
 
-                    <h4 class="text-danger">
-                        R$ 731,45
-                    </h4>
+                        <!-- <h4 class="text-danger">
+                            R$ < ?= number_format($produto['precoProduto'],2,',','.') ?>
+                        </h4> -->
 
-                    <small class="text-muted">
-                        Via Amazon
-                    </small>
+                    </div>
 
                 </div>
-
             </div>
 
-        </div>
+        <?php } ?>
+
+    </div>
 
         <!-- outros cards -->
 
@@ -148,7 +152,7 @@ include_once __DIR__ . '/includes/conexao.php';
 <!-- FIM PRODUTOS -->
 </main>
 
-<?php include __DIR__ . '/includes/footer.php'?>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 
 </body>
 </html>

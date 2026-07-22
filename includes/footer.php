@@ -44,7 +44,7 @@
                     <!-- LOGO -->
 
                     <a class="navbar-brand logoA d-flex align-items-center gap-2"
-                       href="index.html">
+                       href="<?= BASE_URL?>index.php">
 
 
                         <img src="<?= BASE_URL ?>assets/IMG/Catavento.png"
