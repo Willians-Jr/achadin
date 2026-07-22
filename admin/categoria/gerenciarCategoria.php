@@ -8,13 +8,13 @@ if ($pesquisaCategoria) {
  LIKE '%$pesquisaCategoria%'
     ORDER BY nomeCategoria ASC";
 } else {
-    $sql = "SELECT * FROM categoria";
+       $sql = "SELECT * FROM categoria ORDER BY nomeCategoria ASC";
 }
 
 $resultado = mysqli_query($conexao, $sql);
 
 if (!$resultado) {
-    die("Erro ao buscar a loja: " . mysqli_error($conexao));
+    die("Erro ao buscar categoria" . mysqli_error($conexao));
 }
 ?>
 
@@ -39,34 +39,34 @@ if (!$resultado) {
     </button>
 </form>
 
-<table>
-  <tr>
+<table border="1">
+<tr>
     <th>Nome</th>
-    <th>Logo</th>
-    <th colspan="2">Atualizar</th>
-  </tr>
-<?php
-while ($dados = mysqli_fetch_assoc($resultado)) { ?>
-  <tr>
+    <th>Alterar</th>
+    <th>Excluir</th>
+</tr>
+
+<?php while ($dados = mysqli_fetch_assoc($resultado)) { ?>
+
+<tr>
     <td><?php echo $dados['nomeCategoria']; ?></td>
-    <td><?php
-        $sqlNome = "SELECT nomeCategoria FROM categoria WHERE
- idCategoria = " . $dados['idCategoria'];
-        $resultNome = mysqli_query($conexao, $sqlnome);
-        $dadosNome = mysqli_fetch_assoc($resultNome);
-        echo $dadosNome['nomeCategoria'];
-        ?></td>
-    <td><?php
-    <td><a href="editarCategoria.php?id=<?php echo $dados['idCategoria']; ?>">Alterar</a></td>
+
     <td>
-      <a href="excluirCategoria.php?id=<?php echo $dados['idCategoria'];
- ?>"
-         onclick="return confirm('Deseja realmente excluir esta Categoria?')">
-        Excluir
-      </a>
+        <a href="editarCategoria.php?id=<?php echo $dados['idCategoria']; ?>">
+            Alterar
+        </a>
     </td>
-  </tr>
+
+    <td>
+        <a href="excluirCategoria.php?id=<?php echo $dados['idCategoria']; ?>"
+           onclick="return confirm('Deseja realmente excluir esta categoria?')">
+            Excluir
+        </a>
+    </td>
+</tr>
+
 <?php } ?>
+
 </table>
   </body>
 </html>

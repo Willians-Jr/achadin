@@ -7,7 +7,7 @@
     
   </head>
   <body>
-    
+    <?include_once __DIR__ . '/../../includes/header.php';?>
     <main >
       <div >
         <h1 >Cadastro de Usuário</h1>
