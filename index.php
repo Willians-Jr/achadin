@@ -1,7 +1,6 @@
 <?php
 include_once __DIR__ . '/includes/conexao.php';
 
-echo "Eu sou demais"
 ?>
 <br>
 <a href="admin/produto/inserirProduto.php">Cadastrar Produto</a>
