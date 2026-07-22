@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de Usuário</title>
+    
   </head>
   <body>
     
@@ -31,13 +32,11 @@
             
           />
           <br /><br />
-          <label for="loginUsuario">Telefone:</label>
+          <label for="telefoneUsuario">Telefone:</label>
           <input
             type="text"
-           
-            id="telefoneUsuario"
+            id="tel"
             name="telefoneUsuario"
-            
           />
           <br /><br />
           <label for="senhaUsuario">Senha:</label>
@@ -64,12 +63,16 @@
             <button type="submit" value="Cadastrar" >
               Cadastrar
             </button>
+            <a href="perfilUsuario.php">Tabela</a>
+            <a href="loginUsuario.php">Login</a>
           </div>
         </form>
       </div>
     </main>
   </body>
-
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 <script src="../../assets/JS/validacoes.js"></script>
+<script src="../../assets/JS/mascara.js"></script>
   
 </html>
