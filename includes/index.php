@@ -1,18 +1,13 @@
 <?php
 session_start();
 include_once __DIR__ . '/includes/conexao.php';
-$pesquisa="";
 
-if (isset($_GET['nomeProduto'])){
-  $pesquisa=trim($_GET['nomeProduto']);
-  
-}
-$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE  '%$pesquisa%' ORDER BY nomeProduto";
-$sqlLoja = "SELECT * FROM loja ORDER BY nomeLoja";
-
-$resultadoProduto = mysqli_query($conexao,$sqlProduto);
-$resultadoLoja = mysqli_query($conexao,$sqlLoja);
 ?>
+<br>
+<a href="admin/produto/inserirProduto.php">Cadastrar Produto</a>
+<a href="admin/usuario/inserirUsuarioForm.php">Cadastrar Usuario</a>
+<a href="admin/loja/inserirLoja.php">Cadastrar loja</a>
+<a href="admin/categoria/inserirCategoria.php">Cadastrar Categoria</a>
 
 
 <!DOCTYPE html>
