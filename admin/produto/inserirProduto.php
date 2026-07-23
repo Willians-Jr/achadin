@@ -6,12 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $idCategoria = $_POST['idCategoria'] ?? '';
     $idLoja = $_POST['idLoja'] ?? '';
     $idUsuario = $_POST['idUsuario'] ?? '';
+    $descricaoProduto = $_POST['descricaoProduto'] ?? '';
+    $linkAfiliado = $_POST['linkAfiliado'] ?? '';
 
     $fotoProduto = "";
 
     
     if (isset($_FILES["fotoProduto"]) && $_FILES["fotoProduto"]["error"] == 0) {
-        $pastaDestino = "../assets/UPLOAD/";
+        $pastaDestino = "../../assets/UPLOAD/";
         if (!is_dir($pastaDestino)) {
             mkdir($pastaDestino, 0777, true);
         }
@@ -28,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto) 
-                  VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario', '$fotoProduto')";
+    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto, descricaoProduto, linkAfiliado) 
+                  VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario', '$fotoProduto', '$descricaoProduto', '$linkAfiliado')";
 
     if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto
+$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto, p.descricaoProduto, p.linkAfiliado
         FROM produto p
         INNER JOIN categoria c ON p.idCategoria = c.idCategoria
         INNER JOIN loja l ON p.idLoja = l.idLoja
