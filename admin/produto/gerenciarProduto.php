@@ -52,8 +52,8 @@ if (!$resultado) {
     ?>
       <tr>
         <td>
-            <?php if (!empty($dados['fotoProduto']) && file_exists("../" . $dados['fotoProduto'])): ?>
-                <img src="../<?php echo $dados['fotoProduto']; ?>" alt="Foto do produto" width="50" height="50" style="object-fit: cover;">
+            <?php if (!empty($dados['fotoProduto']) && file_exists("../../" . $dados['fotoProduto'])): ?>
+                <img src="../../<?php echo $dados['fotoProduto']; ?>" alt="Foto do produto" width="50" height="50" style="object-fit: cover;">
             <?php else: ?>
                 <span>Sem foto</span>
             <?php endif; ?>
