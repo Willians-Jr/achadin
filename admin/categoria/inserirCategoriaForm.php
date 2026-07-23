@@ -49,7 +49,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Cadastro de Categoria
+                Formulário de Cadastro de Categoria
             </h1>
  
               <form action="inserirCategoria.php" method="post">
@@ -63,7 +63,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="form-control"
                         id="nomeCategoria"
                         name="nomeCategoria"
-                        required>
+                        required
+                        placeholder="Ex.: Tecnologia">
                 </div>
  
                 <div class="text-center">

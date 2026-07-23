@@ -48,14 +48,14 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Cadastro de Produto
+                Formulário de Cadastro de Produto
             </h1>
  
             <form action="inserirProduto.php" method="post" enctype="multipart/form-data">
  
                 <div class="mb-3">
                     <label for="nomeProduto" class="form-label">
-                        Nome do Produto
+                        Nome do Produto:
                     </label>
  
                     <input
@@ -63,12 +63,13 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="form-control"
                         id="nomeProduto"
                         name="nomeProduto"
-                        required>
+                        required
+                        placeholder='Ex.: Monitor Gamer 27"'>
                 </div>
  
                 <div class="mb-3">
                     <label for="idCategoria" class="form-label">
-                        Categoria
+                        Categoria:
                     </label>
  
                     <select
@@ -91,7 +92,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                     <label for="idLoja" class="form-label">
-                        Loja
+                        Loja:
                     </label>
  
                     <select
@@ -114,7 +115,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                     <label for="idUsuario" class="form-label">
-                        Usuário
+                        Usuário:
                     </label>
  
                     <select
@@ -137,7 +138,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-5">
                     <label for="fotoProduto" class="form-label">
-                        Foto do Produto
+                        Foto do Produto:
                     </label>
  
                     <input

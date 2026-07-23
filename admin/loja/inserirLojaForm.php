@@ -55,7 +55,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                    <label class="form-label" for="nomeLoja">Nome da Loja:</label>
-        <input class="form-control" type="text" name="nomeLoja" id="nomeLoja" required>
+        <input class="form-control" type="text" name="nomeLoja" id="nomeLoja" required placeholder="Ex.: Shopee">
                 </div>
  
                  <div class="mb-3">

@@ -15,6 +15,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   </head>
   <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
@@ -46,7 +48,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Cadastro de Usuário
+                Formulário de cadastro de Usuário
             </h1>
  
               <form action="inserirUsuario.php" method="post"  enctype="multipart/form-data">
@@ -61,7 +63,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
            
             id="nomeUsuario"
             name="nomeUsuario"
-           
+            placeholder="Ex.: Francisco da Silva"
           />
                 </div>
  
@@ -71,7 +73,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
            
             id="loginUsuario"
             name="loginUsuario"
-           
+            placeholder="Ex.: Usu@rio122"
           />
            
        
@@ -82,6 +84,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <input class="form-control"   type="text"
             id="tel"
             name="telefoneUsuario"
+            data-mask="(00)00000-0000"
+            placeholder="Ex.: (00)00000-0000"
           />
            
      
@@ -93,13 +97,14 @@ require_once ROOT_PATH . '/includes/conexao.php';
             id="senhaUsuario"
             name="senhaUsuario"
             onkeyup="verificarSenha()"
+            placeholder="Ex.: Senh@122"
           />
            
               <span id="erroSenha" ></span>
                 </div>
    <div class="mb-3">
-      <input class="form-control" type="checkbox" value="" id="checkDefault" onclick="mostrarSenha()">
-      <label class="form-label"for="checkDefault">
+      <input class="form-check-input" type="checkbox" value="" id="checkDefault" onclick="mostrarSenha()">
+      <label class="form-check-label"for="checkDefault">
         Mostrar senha
       </label>
   </div>
@@ -128,6 +133,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
       </div>
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
+      <script src="<?= BASE_URL ?>assets/JS/mascara.js"></script>
 
     </main>
   </body>  

@@ -94,7 +94,7 @@
 
                     <p class="mb-0">
 
-                        Nome dos responsáveis
+                        Nomes dos responsáveis
 
                     </p>
 
@@ -117,7 +117,7 @@
 
                     <p class="mb-0">
 
-                        Nome dos responsáveis
+                        Nomes dos responsáveis
 
                     </p>
 
