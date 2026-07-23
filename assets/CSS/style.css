@@ -184,3 +184,64 @@ main {
     align-items: flex-start !important;
   }
 }
+
+/* ADMIN INICIO */
+
+* {
+  box-sizing: border-box;
+}
+:root {
+  /* Cores Principais */
+  --azul-principal: #2563eb;
+
+  --laranja-cta: #ff6b00;
+  --verde-economia: #22c55e;
+  --amarelo-oferta: #fbbf24;
+
+  /* Textos */
+  --texto-escuro: #1e293b;
+  --texto-secundario: #64748b;
+
+  /* Fundos */
+  --fundo: #f8fafc;
+  --branco: #ffffff;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+main {
+  flex: 1;
+}
+
+.imgLogo {
+  width: 80px;
+}
+.logo {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  display: block;
+  color: var(--branco);
+}
+
+.logoA {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.logoTexto {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.ladoEsquerdoAdmin {
+  background-color: var(--azul-principal) !important;
+}
+/* ADMIN FIM */
