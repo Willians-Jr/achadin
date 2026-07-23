@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/../../includes/conexao.php';
 
+
 $idCategoria = isset($_GET['idCategoria']) ? (int) $_GET['idCategoria'] : 0;
 
 if ($idCategoria <= 0) {
@@ -32,7 +33,7 @@ if (!$dadosCategoria) {
 
 <h1>Editar Categoria</h1>
 
-<form action="alterarCategoria.php" method="POST">
+<form action="atualizarCategoria.php" method="POST">
 
     <input
         type="hidden"
