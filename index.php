@@ -59,21 +59,18 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
 
                 <div class="col">
                     <div class="card p-3 text-center">
-                        Shopee
+                        <?php
+                            $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja";
+                            $resultado = mysqli_query($conexao, $sql);
+
+                            while($dados = mysqli_fetch_assoc($resultado)){
+                                echo " {$dados['nomeLoja']}";
+                            }
+                        ?>
                     </div>
                 </div>
 
-                <div class="col">
-                    <div class="card p-3 text-center">
-                        Mercado Livre
-                    </div>
-                </div>
-
-                <div class="col">
-                    <div class="card p-3 text-center">
-                        Amazon
-                    </div>
-                </div>
+                
 
             </div>
 
@@ -104,7 +101,17 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
         </select>
 
         <select name="categoriaProduto" id="categoriaProduto" class="form-select w-auto">
-            <option>Categorias</option>
+            <?php
+                $sql = "SELECT idCategoria, nomeCategoria FROM categoria ORDER BY nomeCategoria";
+                $resultado = mysqli_query($conexao, $sql);
+        
+                echo "<option value='' disabled selected>Categorias</option>";
+
+                while($dados = mysqli_fetch_assoc($resultado)){
+                    echo "<option value={$dados['idCategoria']}> 
+                    {$dados['nomeCategoria']}</option>";
+                }
+            ?>
         </select>
 
     </div>
@@ -123,8 +130,6 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
                 <div class="card h-100">
 
                     <img src="<?= BASE_URL ?>assets/UPLOAD/<?= !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png' ?>" class="card-img-top" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
-
-                    <?= $produto['fotoProduto'] ?>
 
                     <div class="card-body">
 
