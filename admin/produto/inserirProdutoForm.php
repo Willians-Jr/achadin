@@ -135,6 +135,34 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                     </select>
                 </div>
+
+                <div class="mb-3">
+                    <label for="descricaoProduto" class="form-label">
+                        Descrição:
+                    </label>
+ 
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="descricaoProduto"
+                        name="descricaoProduto"
+                        required
+                        placeholder='Ex.: dispositivo periférico de entrada...'>
+                </div>
+
+                <div class="mb-3">
+                    <label for="linkAfiliado" class="form-label">
+                        Seu link:
+                    </label>
+ 
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="linkAfiliado"
+                        name="linkAfiliado"
+                        required
+                        placeholder='Seu link aqui'>
+                </div>
  
                 <div class="mb-5">
                     <label for="fotoProduto" class="form-label">
