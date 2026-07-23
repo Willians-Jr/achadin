@@ -11,7 +11,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-    <title>Cadastro de Produto</title>
+    <title>Produtos - Cadastro</title>
  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -80,6 +80,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlCategoria = "SELECT idCategoria, nomeCategoria FROM categoria ORDER BY nomeCategoria";
                             $resultCategoria = mysqli_query($conexao, $sqlCategoria);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosCategoria = mysqli_fetch_assoc($resultCategoria)) {
                                 echo "<option value='" . $dadosCategoria['idCategoria'] . "'>" . $dadosCategoria['nomeCategoria'] . "</option>";
                             }
@@ -102,6 +103,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlLoja = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja";
                             $resultLoja = mysqli_query($conexao, $sqlLoja);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosLoja = mysqli_fetch_assoc($resultLoja)) {
                                 echo "<option value='" . $dadosLoja['idLoja'] . "'>" . $dadosLoja['nomeLoja'] . "</option>";
                             }
@@ -124,6 +126,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlUsuario = "SELECT idUsuario, nomeUsuario FROM usuario ORDER BY nomeUsuario";
                             $resultUsuario = mysqli_query($conexao, $sqlUsuario);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosUsuario = mysqli_fetch_assoc($resultUsuario)) {
                                 echo "<option value='" . $dadosUsuario['idUsuario'] . "'>" . $dadosUsuario['nomeUsuario'] . "</option>";
                             }
