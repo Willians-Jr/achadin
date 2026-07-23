@@ -11,7 +11,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-    <title>Cadastro de Categoria</title>
+    <title>Categorias - Cadastro</title>
  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
             <!-- LOGO -->
             <a class="navbar-brand logoA" href="index.html">
-            <img src="/topAchados/img/Catavento.png.png" class="imgLogo" alt="LOGO">
+            <img src="../../assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
  
             <div class="logoTexto">
                 <span class="logo">Top</span>
@@ -49,7 +49,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Cadastro de Categoria
+                Formulário de Cadastro de Categoria
             </h1>
  
               <form action="inserirCategoria.php" method="post">
@@ -63,7 +63,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="form-control"
                         id="nomeCategoria"
                         name="nomeCategoria"
-                        required>
+                        required
+                        placeholder="Ex.: Tecnologia">
                 </div>
  
                 <div class="text-center">

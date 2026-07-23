@@ -11,7 +11,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-    <title>Cadastro de Produto</title>
+    <title>Produtos - Cadastro</title>
  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -48,14 +48,14 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Cadastro de Produto
+                Formulário de Cadastro de Produto
             </h1>
  
             <form action="inserirProduto.php" method="post" enctype="multipart/form-data">
  
                 <div class="mb-3">
                     <label for="nomeProduto" class="form-label">
-                        Nome do Produto
+                        Nome do Produto:
                     </label>
  
                     <input
@@ -63,12 +63,13 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="form-control"
                         id="nomeProduto"
                         name="nomeProduto"
-                        required>
+                        required
+                        placeholder='Ex.: Monitor Gamer 27"'>
                 </div>
  
                 <div class="mb-3">
                     <label for="idCategoria" class="form-label">
-                        Categoria
+                        Categoria:
                     </label>
  
                     <select
@@ -80,6 +81,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlCategoria = "SELECT idCategoria, nomeCategoria FROM categoria ORDER BY nomeCategoria";
                             $resultCategoria = mysqli_query($conexao, $sqlCategoria);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosCategoria = mysqli_fetch_assoc($resultCategoria)) {
                                 echo "<option value='" . $dadosCategoria['idCategoria'] . "'>" . $dadosCategoria['nomeCategoria'] . "</option>";
                             }
@@ -90,7 +92,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                     <label for="idLoja" class="form-label">
-                        Loja
+                        Loja:
                     </label>
  
                     <select
@@ -102,6 +104,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlLoja = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja";
                             $resultLoja = mysqli_query($conexao, $sqlLoja);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosLoja = mysqli_fetch_assoc($resultLoja)) {
                                 echo "<option value='" . $dadosLoja['idLoja'] . "'>" . $dadosLoja['nomeLoja'] . "</option>";
                             }
@@ -112,7 +115,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                     <label for="idUsuario" class="form-label">
-                        Usuário
+                        Usuário:
                     </label>
  
                     <select
@@ -124,6 +127,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         <?php
                             $sqlUsuario = "SELECT idUsuario, nomeUsuario FROM usuario ORDER BY nomeUsuario";
                             $resultUsuario = mysqli_query($conexao, $sqlUsuario);
+                            echo "<option value='' disabled selected>Selecione...</option>";
                             while ($dadosUsuario = mysqli_fetch_assoc($resultUsuario)) {
                                 echo "<option value='" . $dadosUsuario['idUsuario'] . "'>" . $dadosUsuario['nomeUsuario'] . "</option>";
                             }
@@ -134,7 +138,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-5">
                     <label for="fotoProduto" class="form-label">
-                        Foto do Produto
+                        Foto do Produto:
                     </label>
  
                     <input
