@@ -27,12 +27,3 @@ if (mysqli_query($conexao, $sql)) {
 
 }
 ?>
-
-
-$nomeCategoria = trim($_POST['nomeCategoria']);
-
-if ($nomeCategoria == "") {
-    die("Informe o nome da categoria.");
-}
-
-$nomeCategoria = mysqli_real_escape_string($conexao, $nomeCategoria);
