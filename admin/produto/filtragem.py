@@ -3,10 +3,10 @@ import sys
 
 # 1. Nosso banco de dados simulado em uma tabela
 dados_dos_produtos = {
-    'ID': [1, 2, 3, 4],
-    'Nome': ['Mouse Gamer Transparente', 'Teclado Mecânico RGB', 'Mouse Pad Extra Grande', 'Cadeira Gamer Ergonômica'],
-    'Descricao': ['Mouse para jogos com led e alta precisão', 'Teclado mecânico para jogos switch azul', 'Mousepad grande para teclado e mouse', 'Cadeira confortável para jogar e trabalhar'],
-    'Link_Afiliado': ['https://amazon.com.br/mouse', 'https://amazon.com.br/teclado', 'https://amazon.com.br/mousepad', 'https://amazon.com.br/cadeira']
+    'ID': [1, 2, 3, 4, 5, 6],
+    'Nome': ['Shampoo CR7', 'Batom', 'Clear Man Dictator', 'Papel Higiênico Panda', 'Papel Higiênico Neve', 'Papel Higiênico Dollar'],
+    'Descricao': ['Shampoo para cabelo oleoso e com caspa', 'Bastão de chocolate ao leite, doce', 'Shampoo de qualidade duvidosa', 'Leve 12 rolos de papel higiênico folha dupla e aproveite mais produto por embalagem', 'Papel higiênico de folha tripla, macio e resistente', 'Papel higiênico de folha dupla, macio e resistente', 'Papel macio e suave para sua bunda', 'Papel higiênico que lembra dinheiro, que você não tem'],
+    'Link_Afiliado': ['https://www.amazon.com.br/Shampoo-Anticaspa-Clear-Limpeza-Profunda/dp/B07LFDHL8H', 'https://www.casteloforte.com.br/produto/123476-baton-bastao-chocolate-leite-16g?srsltid=AfmBOor2_cPSwTBhBM9rJ0XldYPzqb2gcmAKquEpr9-DBzRCbbADTiSg', 'https://www.drogaraia.com.br/clear-shampoo-anti-caspa-limpeza-profunda-400ml.html', 'https://www.magazineluiza.com.br/papel-higienico-familiar-folha-dupla-30m-24-rolos/p/dd4a0g9cdc/me/pahi/?ads=patrocinado&seller_id=bracell', 'https://www.magazineluiza.com.br/papel-higienico-neve-supreme-folha-tripla-leve-12-pague-11/p/ja0eafd36k/me/pahi/?ads=patrocinado&seller_id=lojasages', 'https://www.amazon.com.br/higiênico-Pattern-Tissue-camadas-banheiro/dp/B0H7BGKTNN/ref=sr_1_21_sspa?__mk_pt_BR=ÅMÅŽÕÑ&crid=1F2C2WA35IE2&dib=eyJ2IjoiMSJ9.1wDRxrtPM91w09zsxVWm0TlBAP_euXzNetLgthqsY7bv23-6bo-E0NTbfQiLmYYNpIHJv07MIEyoWuxAByVDF-ji0OUeRviSaqhzmLKq-W4pfRz63k9fOtFjTPUKSTwln47PW_AZ7XgRbTIVUUJSsJ3ohNkBTQSducqTKnl2mzDjzG1e8EpZB0tB1TZVjqcugdNBn8uwm3UGi05PIGwODEFDHocih9bEN4Y0KxR05fcKbJcMokDChGEymSNdIbku57tMM5ffeTKGagw8QsMeQuaIrRHq-1qU3QudknUHrAQ.jPoxt3ey3p-BRDvmzXujM7oQuxywIzseG3Kxtf54ypI&dib_tag=se&keywords=papel+higienico+rosa&qid=1784748471&sprefix=papel+higienico+rosa%2Caps%2C204&sr=8-21-spons&ufe=app_do%3Aamzn1.fos.6121c6c4-c969-43ae-92f7-cc248fc6181d&sp_csd=d2lkZ2V0TmFtZT1zcF9tdGY&psc=1']
 }
 
 df = pd.DataFrame(dados_dos_produtos)

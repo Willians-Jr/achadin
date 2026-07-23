@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     
     if (isset($_FILES["fotoProduto"]) && $_FILES["fotoProduto"]["error"] == 0) {
-        $pastaDestino = "../assets/UPLOAD/";
+        $pastaDestino = "../../assets/UPLOAD/";
         if (!is_dir($pastaDestino)) {
             mkdir($pastaDestino, 0777, true);
         }
