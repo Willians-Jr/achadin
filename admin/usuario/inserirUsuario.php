@@ -41,7 +41,7 @@ if ($_POST['senhaForte'] !== 'true') {
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         
-        echo "Novo usuário adicionado com sucesso!";
+        echo "Novo usuário cadastrado com sucesso!";
         header("location: perfilUsuario.php");
         
       } else {
