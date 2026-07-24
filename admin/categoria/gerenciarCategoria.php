@@ -52,14 +52,14 @@ if (!$resultado) {
     <td><?php echo $dados['nomeCategoria']; ?></td>
 
     <td>
-        <a href="editarCategoria.php?id=<?php echo $dados['idCategoria']; ?>">
+        <a href="editarCategoria.php?idCategoria=<?php echo $dados['idCategoria']; ?>">
             Alterar
         </a>
     </td>
 
     <td>
-        <a href="excluirCategoria.php?id=<?php echo $dados['idCategoria']; ?>"
-           onclick="return confirm('Deseja realmente excluir esta categoria?')">
+        <a href="excluirCategoria.php?idCategoria=<?php echo $dados['idCategoria']; ?>"
+        onclick="return confirm('Deseja realmente excluir esta categoria?')">
             Excluir
         </a>
     </td>
