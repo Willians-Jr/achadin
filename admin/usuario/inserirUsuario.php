@@ -1,6 +1,8 @@
 <?php
 
-include_once __DIR__ . '/../../includes/conexao.php';
+ require_once dirname(__DIR__, 2) . '/includes/config.php';
+
+require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
@@ -9,21 +11,37 @@ $nomeUsuario = $_POST['nomeUsuario'];
 $loginUsuario = $_POST['loginUsuario'];
 $telefoneUsuario = $_POST['telefoneUsuario'];
 $senhaUsuario = $_POST['senhaUsuario'];
-$senhacripto=password_hash($senhaUsuario, PASSWORD_DEFAULT);
+$senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
 $senhaForte = $_POST['senhaForte'];
 
 
-if(isset($_FILES["imgUsuario"])){
-  $imagem = $_FILES['imgUsuario'];
-  
-  $nomeImagem = $imagem['name'];
 
-  $caminho = "../../assets/UPLOAD/".$nomeImagem;
+if (isset($_FILES["imgUsuario"]) && $_FILES["imgUsuario"]["error"] == UPLOAD_ERR_OK) {
 
-  move_uploaded_file($imagem['tmp_name'],$caminho);
+    $imagem = $_FILES["imgUsuario"];
+
+    $tiposPermitidos = ['image/jpeg', 'image/png', 'image/webp'];
+    
+    if (!in_array($imagem['type'], $tiposPermitidos)) {
+    die("Formato de imagem inválido.");
 }
 
-if ($_POST['senhaForte'] !== 'true') {
+    // Obtém a extensão do arquivo (.jpg, .png, etc.)
+    $extensao = pathinfo($imagem['name'], PATHINFO_EXTENSION);
+
+    // Gera um nome único para evitar arquivos com o mesmo nome
+    $nomeImagem = uniqid() . "." . $extensao;
+
+    $caminho = ROOT_PATH . "/assets/UPLOAD/" . $nomeImagem;
+
+    if (!move_uploaded_file($imagem['tmp_name'], $caminho)) {
+        die("Erro ao enviar a imagem.");
+    }
+
+} else {
+    $nomeImagem = "";
+}
+if ($senhaForte !== 'true') {
     echo "Erro: A senha não atende aos critérios de segurança.";
     exit;
 }
@@ -37,11 +55,10 @@ if ($_POST['senhaForte'] !== 'true') {
       //isso impede SQL injection - usuario mal intencionado invadir o sistema
       $resultado = mysqli_prepare($conexao,$sql);
       // liga as variaveis aos espaços reservados
-      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario, $telefoneUsuario, $senhacripto,$nomeImagem);
+      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario, $telefoneUsuario, $senhacripto, $nomeImagem);
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         
-        echo "Novo usuário cadastrado com sucesso!";
         header("location: perfilUsuario.php");
         
       } else {
@@ -54,8 +71,17 @@ if ($_POST['senhaForte'] !== 'true') {
 } else {
     echo "Acesso negado: Este arquivo deve ser chamado via formulário.";
 }
+if (
+    empty($nomeUsuario) ||
+    empty($loginUsuario) ||
+    empty($senhaUsuario) ||
+    empty($telefoneUsuario)
+) {
+    die("Todos os campos são obrigatórios.");
+}
 if(isset($resultado)){
 mysqli_stmt_close($resultado);
+mysqli_close($conexao);
 }
 
 // fecha stmt
