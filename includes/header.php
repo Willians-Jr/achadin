@@ -15,19 +15,19 @@ include_once __DIR__ . '/config.php';
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
-  
+ 
     <div class="container-fluid">
-
+ 
         <!-- LOGO -->
         <a class="navbar-brand logoA" href="<?= BASE_URL ?>index.php">
     <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
-
+ 
     <div class="logoTexto">
-        <span class="logo text-light">Top</span>
-        <span class="logo text-light">Achados</span>
+        <span class="logo">Top</span>
+        <span class="logo">Achados</span>
     </div>
 </a>
-
+ 
         <!-- TELEFONE ICONE-->
         <button
             class="navbar-toggler"
@@ -39,70 +39,65 @@ include_once __DIR__ . '/config.php';
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
+ 
         <div class="collapse navbar-collapse" id="navbarColor03">
-
+ 
             <!-- BARRA DE BUSCA -->
-    
-<form class="d-flex mx-auto w-50 form formularioBusca" action="pesquisarProduto.php"role="search">
-
+   
+<form class="d-flex mx-auto w-50 form formularioBusca" role="search">
+ 
     <div class="position-relative flex-grow-1 me-2">
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
             search
         </span>
-
+ 
         <input
             class="form-control pe-5"
             type="search"
-            name="pesquisa"
-            placeholder="Buscar por palavra-chave..."
+            placeholder="Busca por palavra-chave..."
             aria-label="Busca">
-
-            
+ 
+           
     </div>
-
+ 
     <button class="btn btn-primary" type="submit">
         Buscar
     </button>
-
+ 
 </form>
-
+ 
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
                 <li class="nav-item">
                     <a class="active nav-link link-light" href="#">Categorias</a>
                 </li>
-
+ 
                 <li class="nav-item">
                     <a class="nav-link link-light" href="#">Produtos</a>
                 </li>
-
+ 
                 <li class="nav-item">
                     <a class="nav-link link-light" href="#">Lojas</a>
                 </li>
-
+ 
                 <li class="nav-item">
                     <a class="nav-link link-light" href="#">Como Funciona</a>
                 </li>
-            
-
-
-
+           
+ 
+ 
+ 
                   <li class="favoritosIcon">
-    <a href="#" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">
-        <span class="material-symbols-outlined">
-            favorite
-        </span>
-
-        <span>Meus Achadinhos</span>
+    <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">
+       <span class="material-symbols-outlined">
+login
+</span>
+ 
+        <span>Login</span>
     </a>
   </li>
             </ul>
-
+ 
         </div>
     </div>
 </nav>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-
-</body>

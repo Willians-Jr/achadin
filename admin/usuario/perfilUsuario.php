@@ -76,7 +76,6 @@ mysqli_stmt_bind_param(
   header("Location: perfilUsuario.php");
   exit;
 }
-
 ?>
 
 <!DOCTYPE html>
