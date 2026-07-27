@@ -21,8 +21,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
   <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
   <body class="bg-light">
-    <main>
- 
+
+<main> 
 <div class="container py-4">
  
     <div class="row shadow rounded-4 overflow-hidden bg-white">
@@ -137,7 +137,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
       <script src="<?= BASE_URL ?>assets/JS/mascara.js"></script>
 
     </main>
+
+    <?php require_once ROOT_PATH . '/includes/footer.php';?>
   </body>  
 </html>
-
-<?php require_once ROOT_PATH . '/includes/footer.php';?>
