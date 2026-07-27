@@ -54,10 +54,8 @@ include_once __DIR__ . '/config.php';
         <input
             class="form-control pe-5"
             type="search"
-            name="pesquisa"
             placeholder="Busca por palavra-chave..."
-            aria-label="Busca"
-            value="<?= isset($_GET['pesquisa']) ? htmlspecialchars($_GET['pesquisa']) : '' ?>">
+            aria-label="Busca">
 
             
     </div>

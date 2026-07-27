@@ -21,8 +21,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
   <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
   <body class="bg-light">
-    <main>
- 
+
+<main> 
 <div class="container py-4">
  
     <div class="row shadow rounded-4 overflow-hidden bg-white">
@@ -48,7 +48,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Formulário de cadastro de Usuário
+                Formulário de Cadastro de Usuário
             </h1>
  
               <form action="inserirUsuario.php" method="post"  enctype="multipart/form-data">
@@ -124,10 +124,10 @@ require_once ROOT_PATH . '/includes/conexao.php';
  <div class="text-center">
             <button type="submit"  class="btn btn-primary rounded-pill px-5 py-2"
                         style="min-width:200px;">
-              Cadastrar
+              Cadastrar Usuário
             </button>
-            <a href="perfilUsuario.php">Tabela</a>
-            <a href="loginUsuario.php">Login</a>
+            <!-- <a href="perfilUsuario.php">Tabela</a>
+            <a href="loginUsuario.php">Login</a> -->
           </div>
         </form>
       </div>
@@ -137,7 +137,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
       <script src="<?= BASE_URL ?>assets/JS/mascara.js"></script>
 
     </main>
+
+    <?php require_once ROOT_PATH . '/includes/footer.php';?>
   </body>  
 </html>
-
-<?php require_once ROOT_PATH . '/includes/footer.php';?>
