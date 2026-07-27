@@ -23,7 +23,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
  
 <body class="bg-light">
- 
+<main>
 <div class="container py-4">
  
     <div class="row shadow rounded-4 overflow-hidden bg-white">
@@ -87,10 +87,11 @@ require_once ROOT_PATH . '/includes/conexao.php';
     </div>
  
 </div>
- 
+</main>
+ <?php require_once ROOT_PATH . '/includes/footer.php';?>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
  
 </body>
 </html>
 
-<?php require_once ROOT_PATH . '/includes/footer.php';?>
