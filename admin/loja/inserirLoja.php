@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<script>
                 alert('Loja cadastrada com sucesso!');
-                window.location='inserirLoja.php';
+                window.location='inserirLojaForm.php';
               </script>";
 
     } else {

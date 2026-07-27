@@ -24,6 +24,6 @@ $resultado = mysqli_stmt_get_result($stmt);
 <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
 
     <p><?= $produto['nomeProduto'] ?></p>
-    <p><?= $produto['fotoProduto'] ?></p>
+    <img src="<?= $produto['fotoProduto'] ?>"style="width: 50px"></img>
 
 <?php } ?>
