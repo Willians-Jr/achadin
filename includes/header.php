@@ -54,7 +54,7 @@ include_once __DIR__ . '/config.php';
         <input
             class="form-control pe-5"
             type="search"
-            placeholder="Busca por palavra-chave..."
+            placeholder="Buscar por palavra-chave..."
             aria-label="Busca">
 
             
