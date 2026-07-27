@@ -1,9 +1,10 @@
 <?php
     session_start();
+    require_once dirname(__DIR__, 2) . '/includes/config.php';
 
     // destruir a sessão
     session_destroy();
 
-    header("location: index.php");
+   header("Location: " . BASE_URL . "index.php");
 
 ?>
