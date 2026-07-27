@@ -64,4 +64,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <button type="submit" value="login" >
               Login
             </button>
-            <script src="../../assets/JS/validacoes.js"></script>
+           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
