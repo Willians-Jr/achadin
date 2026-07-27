@@ -7,7 +7,7 @@ session_start();
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['idUsuario'])) {
-  header("Location: ../../index.php");
+  header("Location:" . BASE_URL . "index.php");
   exit;
 }
 
@@ -78,4 +78,98 @@ mysqli_stmt_bind_param(
 }
 
 ?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Perfil</title>
+       
+
+    
+    
+  </head>
+
+  <body>
+   <?php require_once ROOT_PATH . '/includes/header.php';
+?>
+    <main class="container mt-4">
+      <h1 class="text-center mb-4">Meu Perfil</h1>
+
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card shadow p-3">
+            <div class="text-center">
+              <img
+                src="<?php echo !empty($imgUsuario) ? 'imagens/' . $imgUsuario : 'BASE_URL img/download.png'; ?>"
+                alt="Foto do usuário"
+              />
+            </div>
+
+            <div class="mt-3">
+              <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
+              <p class="mb-1"><strong>Login:</strong> <?php echo htmlspecialchars($loginUsuario); ?></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card shadow p-4">
+            <h2 class="mb-3">Editar perfil</h2>
+
+            <form method="POST" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="nomeUsuario" class="form-label">Nome:</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nomeUsuario"
+                  name="nomeUsuario"
+                  value="<?php echo htmlspecialchars($nomeUsuario); ?>"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label for="loginUsuario" class="form-label">login</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="loginUsuario"
+                  name="loginUsuario"
+                  value="<?php echo htmlspecialchars($loginUsuario); ?>"
+                  required
+                />
+              </div>
+              
+            <div class="mb-3">
+    <label for="imgUsuario" class="form-label">Foto do Usuário</label>
+
+    <input
+        type="file"
+        class="form-control"
+        id="imgUsuario"
+        name="imgUsuario"
+        accept="image/*">
+</div>
+
+              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+              <a href="<?= BASE_URL ?>index.php" class="btn btn-secondary ms-2">Voltar</a>
+            </form>
+
+            <?php if (isset($_SESSION['mensagemPerfil'])): ?>
+              <div class="alert alert-info mt-3 mb-0">
+                <?php echo $_SESSION['mensagemPerfil']; ?>
+              </div>
+              <?php unset($_SESSION['mensagemPerfil']); ?>
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
+    </main>
+
+   
+  </body>
+</html>
 

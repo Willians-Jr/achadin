@@ -51,7 +51,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                 Formulário de Cadastro de Loja
             </h1>
  
-              <form action="inserirLoja.php" method="post">
+              <form action="inserirLoja.php" method="post" enctype="multipart/form-data">
  
                 <div class="mb-3">
                    <label class="form-label" for="nomeLoja">Nome da Loja:</label>
