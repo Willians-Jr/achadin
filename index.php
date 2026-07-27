@@ -129,7 +129,7 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
             <div class="col">
                 <div class="card h-100">
 
-                    <img src="<?= BASE_URL ?>assets/UPLOAD/<?= !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png' ?>" class="card-img-top" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
+                    <img src="<?= BASE_URL ?><?= !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png' ?>" width="500px" height="200px" class="card-img-top" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
 
                     <div class="card-body">
 
