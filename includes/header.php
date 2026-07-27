@@ -43,9 +43,9 @@ include_once __DIR__ . '/config.php';
         <div class="collapse navbar-collapse" id="navbarColor03">
  
             <!-- BARRA DE BUSCA -->
-   
-<form class="d-flex mx-auto w-50 form formularioBusca" role="search">
- 
+    
+<form class="d-flex mx-auto w-50 form formularioBusca" action="<?= BASE_URL ?>pesquisarProduto.php" role="search">
+
     <div class="position-relative flex-grow-1 me-2">
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
             search
