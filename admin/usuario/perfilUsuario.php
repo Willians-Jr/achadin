@@ -7,7 +7,7 @@ session_start();
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['idUsuario'])) {
-  header("Location: <?= BASE_URL ?>index.php");
+  header("Location: " . BASE_URL . "index.php");
   exit;
 }
 
