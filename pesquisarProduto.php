@@ -22,8 +22,6 @@ $resultado = mysqli_stmt_get_result($stmt);
 <h2>Resultado da pesquisa: <?= htmlspecialchars($pesquisa) ?></h2>
 
 <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
-
-    <p><?= $produto['nomeProduto'] ?></p>
-    <img src="<?= $produto['fotoProduto'] ?>"></img>
-
-<?php } ?>
+  <p><?= $produto['nomeProduto'] ?></p>
+    <img src= "<?= $produto['fotoProduto'] ?>" style="width: 50px"></img>
+  <?php } ?>
