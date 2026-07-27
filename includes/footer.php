@@ -19,7 +19,7 @@
     <!-- CSS do Footer -->
 
     <link rel="stylesheet"
-          href="topAchados/Rodapé/style.css">
+          href="<?= BASE_URL ?>assets/CSS/style.css">
 
 </head>
 
