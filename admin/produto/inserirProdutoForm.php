@@ -153,7 +153,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
                 <div class="mb-3">
                     <label for="linkAfiliado" class="form-label">
-                        Seu link:
+                        Link de Afiliado:
                     </label>
  
                     <input
@@ -162,7 +162,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         id="linkAfiliado"
                         name="linkAfiliado"
                         required
-                        placeholder='Seu link aqui'>
+                        placeholder='Seu link de afiliado aqui...'>
                 </div>
  
                 <div class="mb-5">
@@ -185,7 +185,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="btn btn-primary rounded-pill px-5 py-2"
                         style="min-width:200px;">
  
-                        Salvar
+                        Cadastrar Produto
  
                     </button>
  
