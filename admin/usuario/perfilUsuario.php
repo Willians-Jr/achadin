@@ -7,7 +7,7 @@ session_start();
 
 // Verifica se o usuário está logado
 if (!isset($_SESSION['idUsuario'])) {
-  header("Location: <?= BASE_URL ?>index.php");
+  header("Location:" . BASE_URL . "index.php");
   exit;
 }
 
@@ -76,7 +76,6 @@ mysqli_stmt_bind_param(
   header("Location: perfilUsuario.php");
   exit;
 }
-
 ?>
 
 <!DOCTYPE html>
