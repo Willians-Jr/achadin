@@ -144,7 +144,7 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
             </div>
 
 
-            <div class="row g-3">
+            <div class="row g-1">
 
                 <?php
                 $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja";
@@ -152,7 +152,7 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
 
                 while ($dados = mysqli_fetch_assoc($resultado)) {
                 ?>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card p-3 text-center h-100">
                             <?= htmlspecialchars($dados['nomeLoja']) ?>
                         </div>
