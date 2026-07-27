@@ -80,9 +80,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <button type="submit" value="login" >
               Login
             </button>
-</main>
-<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
-</body>
-</html>
- 
-<script src="../../assets/JS/validacoes.js"></script>
+           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
