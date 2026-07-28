@@ -1,0 +1,60 @@
+body {
+  background: #f8f9fa;
+}
+
+.card {
+  border-radius: 18px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+.card img {
+  height: 180px;
+  object-fit: contain;
+}
+
+.badge {
+  display: block;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+.btn-ver-produtos {
+  width: 100%;
+  height: 52px;
+  background: #fff;
+  border: 1.5px solid #2f54eb; /* azul semelhante ao Figma */
+  border-radius: 10px; /* menos arredondado */
+  color: #2f54eb;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  font-size: 20px;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btn-ver-produtos .seta {
+  position: absolute;
+  right: 28px;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.btn-ver-produtos:hover {
+  background: #2f54eb;
+  color: #fff;
+}
+@media screen and (max-width: 992px) {
+  .card {
+    width: 100% !important;
+  }
+  #card {
+    align-items: flex-start !important;
+  }
+}

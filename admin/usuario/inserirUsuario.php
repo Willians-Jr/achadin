@@ -6,10 +6,10 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-  if (isset($_POST['nomeUsuario']) && isset($_POST['loginUsuario']) && isset($_POST['senhaUsuario'])&& isset($_POST['telefoneUsuario'])) {
+  if (isset($_POST['nomeUsuario']) && isset($_POST['loginUsuario']) && isset($_POST['senhaUsuario'])&& isset($_POST['emailUsuario'])) {
 $nomeUsuario = $_POST['nomeUsuario'];
 $loginUsuario = $_POST['loginUsuario'];
-$telefoneUsuario = $_POST['telefoneUsuario'];
+$emailUsuario = $_POST['emailUsuario'];
 $senhaUsuario = $_POST['senhaUsuario'];
 $senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
 $senhaForte = $_POST['senhaForte'];
@@ -46,16 +46,16 @@ if ($senhaForte !== 'true') {
     exit;
 }
 
- $sql = "INSERT INTO usuario (nomeUsuario, loginUsuario, telefoneUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?, ?)";
+ $sql = "INSERT INTO usuario (nomeUsuario, loginUsuario, emailUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?, ?)";
 
-    if (!empty($nomeUsuario) && !empty($loginUsuario) && !empty($senhaUsuario) &&!empty($telefoneUsuario)) {
+    if (!empty($nomeUsuario) && !empty($loginUsuario) && !empty($senhaUsuario) &&!empty($emailUsuario)) {
       // PREPARET STATEMENT
       //o sql possui apenas os espaços reservados (?)
       //os dados são enviados separadamente
       //isso impede SQL injection - usuario mal intencionado invadir o sistema
       $resultado = mysqli_prepare($conexao,$sql);
       // liga as variaveis aos espaços reservados
-      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario, $telefoneUsuario, $senhacripto, $nomeImagem);
+      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario, $emailUsuario, $senhacripto, $nomeImagem);
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         
@@ -75,7 +75,7 @@ if (
     empty($nomeUsuario) ||
     empty($loginUsuario) ||
     empty($senhaUsuario) ||
-    empty($telefoneUsuario)
+    empty($emailUsuario)
 ) {
     die("Todos os campos são obrigatórios.");
 }

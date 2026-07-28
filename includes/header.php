@@ -10,7 +10,7 @@ include_once __DIR__ . '/config.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
   </head>
 <body>
 
@@ -70,19 +70,19 @@ include_once __DIR__ . '/config.php';
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
                 <li class="nav-item">
-                    <a class="active nav-link link-light" href="#">Categorias</a>
+                    <a class="active nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Produtos</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/produto/produtos.php">Produtos</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Lojas</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/gerenciarLoja.php">Lojas</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Como Funciona</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>comoFunciona.php">Como Funciona</a>
                 </li>
            
  
