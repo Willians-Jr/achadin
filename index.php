@@ -8,7 +8,7 @@ if (isset($_GET['nomeProduto'])){
   $pesquisa=trim($_GET['nomeProduto']);
   
 }
-$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE  '%$pesquisa%' ORDER BY nomeProduto";
+$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE '%$pesquisa%' ORDER BY nomeProduto";
 
 $resultadoProduto = mysqli_query($conexao,$sqlProduto);
 ?>
@@ -30,7 +30,7 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
    <!-- HEADER -->
-<header class="bannerIndex ">
+<header class="bannerIndex ">  
  
  <div class="container banner">
  
