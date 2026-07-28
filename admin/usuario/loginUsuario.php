@@ -1,40 +1,41 @@
 <?php
 session_start();
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     $loginUsuario = trim($_POST['loginUsuario'] ?? '');
     $senhaUsuario = $_POST['senhaUsuario'] ?? '';
 
-    $sql = "SELECT * FROM usuario WHERE loginUsuario = '$loginUsuario'";
-
-    $resultado = mysqli_query($conexao, $sql);
+    // CORRIGIDO: Uso de Prepared Statement contra SQL Injection
+    $sql = "SELECT * FROM usuario WHERE loginUsuario = ?";
+    $stmt = mysqli_prepare($conexao, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $loginUsuario);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
 
     if (!$resultado) {
-    die(mysqli_error($conexao));
+        die(mysqli_error($conexao));
     }
 
     if(mysqli_num_rows($resultado)>0){
-      $dados = mysqli_fetch_assoc($resultado);
+        $dados = mysqli_fetch_assoc($resultado);
 
-    
-      if(password_verify($senhaUsuario, $dados['senhaUsuario'])){
+        if(password_verify($senhaUsuario, $dados['senhaUsuario'])){
+            $_SESSION['idUsuario']= $dados['idUsuario'];
+            $_SESSION['nomeUsuario']= $dados['nomeUsuario'];
+            $_SESSION['loginUsuario']= $dados['loginUsuario'];
 
-      $_SESSION['idUsuario']= $dados['idUsuario'];
-      $_SESSION['nomeUsuario']= $dados['nomeUsuario'];
-      $_SESSION['loginUsuario']= $dados['loginUsuario'];
-
-      header("Location: " . BASE_URL . "index.php");
-      exit;
-      }else {
-      echo "Usuário ou senha incorretos!";
-      }
-    }else {
-      echo "Usuário ou senha incorretos!";
+            header("Location: " . BASE_URL . "index.php");
+            exit;
+        } else {
+            echo "Usuário ou senha incorretos!";
+        }
+    } else {
+        echo "Usuário ou senha incorretos!";
     }
-  }
+    mysqli_stmt_close($stmt);
+}
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             Login de Usuário
           </h1>
 
-          <form action="inserirUsuario.php" method="post" enctype="multipart/form-data">
+          <form action="loginUsuario.php" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
               <label class="form-label" for="loginUsuario">E-mail:</label>

@@ -231,7 +231,7 @@ $resultado = mysqli_stmt_get_result($stmt);
                         <div class="card-body">
                     
                             <h5 class="fw-bold">
-                                <?= $produto['nomeProduto'] ?>
+                                <?= htmlspecialchars($produto['nomeProduto'], ENT_QUOTES, 'UTF-8') ?>
                             </h5>
  
                             <p class="text-secondary">
