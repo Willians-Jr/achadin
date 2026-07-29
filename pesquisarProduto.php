@@ -234,9 +234,9 @@ $resultado = mysqli_stmt_get_result($stmt);
             </div>
  
             <!-- CARDS -->
-              <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
+             
             <div class="row g-4">
- 
+  <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                     <div class="card h-100">
  

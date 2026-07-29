@@ -76,7 +76,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <!-- Área da imagem -->
        <div class="position-relative">
 
-    <img src="../img/iphone.jpg"
+    <img src="<?= BASE_URL ?>assets/UPLOAD/iphone.jpg"
          class="card-img-top p-3 produto-img"
          alt="iPhone 16">
 
@@ -117,7 +117,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
        <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100">
-                <img src="imagens/galaxy-s25.png"   class="card-img-top p-3 produto-img">
+                <img src="<?= BASE_URL ?>assets/UPLOAD/galaxy-s25.png"   class="card-img-top p-3 produto-img">
 
                 <div class="card-body">
 
@@ -139,7 +139,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
      <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100">
 
-                <img src="imagens/notebook.png"  class="card-img-top p-3 produto-img">
+                <img src="<?= BASE_URL ?>assets/UPLOAD/notebook.png"  class="card-img-top p-3 produto-img">
 
                 <div class="card-body">
 
@@ -162,7 +162,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
             <div class="card h-100">
 
-                <img src="imagens/ps5.png"   class="card-img-top p-3 produto-img">
+                <img src="<?= BASE_URL ?>assets/UPLOAD/ps5.png"   class="card-img-top p-3 produto-img">
 
                 <div class="card-body">
 
