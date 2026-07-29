@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
@@ -57,34 +56,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <body>
   <main>
     <?php require_once ROOT_PATH . '/includes/header.php'; ?>
-       <!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Top Achados</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    
-    <link rel="stylesheet" href="cadastrarUsuario.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
     <div class="container py-5">
       <div class="row justify-content-center">
@@ -142,7 +114,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         </div>
       </div>
     </div>
-
+</main>
   </body>
 </html>
   <!-- <form action="" method="post">

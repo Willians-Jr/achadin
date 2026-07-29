@@ -1,5 +1,3 @@
-
-
 <?php
 /* =========================================================================
    CupomIA — Gerador + Atualizador de Cupons (PHP, sem UI)
@@ -19,8 +17,8 @@
 
 
 // ====================== CONFIGURAÇÃO ======================
-$SUPABASE_URL = "https://0ec90b57d6e95fcbda19832f.supabase.co";
-$SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJib2x0Iiwic3VmIjoiMGVjOTBiNTdkNmU5NWZjYmRhMTk4MzJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg4ODE1NzQsImV4cCI6MTc1ODg4MTU3NH0.9I8-U0x86Ak8t2DGaIk0HfvTSLsAyzdnz-Nw00mMKw";
+$SUPABASE_URL = "https://axeymfffugrlhvrejjca.supabase.co";
+$SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF4ZXltZmZmdWdybGh2cmVqamNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUzNDEwNzYsImV4cCI6MjEwMDkxNzA3Nn0.itgvJhiXptaDSv-d782EbOIOrGow3eNFFwQV8tZ87Yo";
 
 
 // Intervalos do loop (em segundos)
@@ -319,6 +317,8 @@ if ($once) {
 } else {
   startAutoUpdate($count);
 }
+
+
 
 
 

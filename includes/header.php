@@ -1,31 +1,20 @@
 <?php
 include_once __DIR__ . '/config.php';
+
 ?>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-  </head>
-<body>
-
 <nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
  
     <div class="container-fluid">
  
         <!-- LOGO -->
         <a class="navbar-brand logoA" href="<?= BASE_URL ?>">
-    <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
- 
-    <div class="logoTexto">
-        <span class="logo">Top</span>
-        <span class="logo">Achados</span>
-    </div>
-</a>
+            <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="Logo Top Achados">
+        
+            <div class="logoTexto">
+                <span class="logo">Top</span>
+                <span class="logo">Achados</span>
+            </div>
+        </a>
  
         <!-- TELEFONE ICONE-->
         <button
@@ -43,7 +32,7 @@ include_once __DIR__ . '/config.php';
  
             <!-- BARRA DE BUSCA -->
     
-<form class="d-flex mx-auto w-50 form formularioBusca" action="<?= BASE_URL ?>pesquisarProduto.php" role="search">
+<form class="d-flex mx-auto w-50 formularioBusca" method="GET" action="<?= BASE_URL ?>pesquisarProduto.php" role="search">
 
     <div class="position-relative flex-grow-1 me-2">
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
@@ -54,6 +43,7 @@ include_once __DIR__ . '/config.php';
             class="form-control pe-5"
             type="search"
             name="pesquisa"
+            value="<?= htmlspecialchars($_GET['pesquisa'] ?? '') ?>"
             placeholder="Busca por palavra-chave..."
             aria-label="Busca">
  
@@ -68,10 +58,12 @@ include_once __DIR__ . '/config.php';
  
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
+                <?php if (isset($_SESSION['idUsuario'])) { ?>
+
                 <li class="nav-item">
-                    <a class="active nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
                 </li>
- 
+                <?php } ?>
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/produto/produtos.php">Produtos</a>
                 </li>
@@ -87,17 +79,29 @@ include_once __DIR__ . '/config.php';
  
  
  
-                  <li class="favoritosIcon">
-    <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">
-       <span class="material-symbols-outlined">
-login
-</span>
- 
-        <span>Login</span>
-    </a>
-  </li>
+                <li class="favoritosIcon">
+                        <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
+                        <span class="material-symbols-outlined">
+                    login
+                    </span>
+        
+                    <span>Login</span>
+                        </a>
+                </li>
+                    <li class ="nav-item">
+                        <button id="btnTema" class="btn btn-outline-light">
+                        <span id="iconeTema" class="material-symbols-outlined text-white">
+                            dark_mode
+                        </span>
+                        </button>
+                    </li>
             </ul>
  
         </div>
     </div>
 </nav>
+
+<script src="<?= BASE_URL ?>assets/JS/atualizarTema.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+ 
+ 
