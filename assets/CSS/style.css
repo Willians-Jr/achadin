@@ -249,12 +249,14 @@ main {
 /* COMO FUNCIONA INICIO   */
 .cartao-passo {
   transition: 0.3s;
+}
 .cartao-passo {
   transition: 0.3s;
 }
 
 .cartao-passo:hover {
   transform: translateY(-5px);
+}
 
 .cartao-passo:hover {
   transform: translateY(-5px);
@@ -275,6 +277,7 @@ main {
   border-radius: 50%;
   font-weight: 700;
   font-size: 1.2rem;
+}
 
 #numeroPasso {
   position: absolute !important;
