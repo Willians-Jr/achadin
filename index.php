@@ -4,13 +4,20 @@ require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 $pesquisa="";
 
+//  SEGURO: Usando Prepared Statements
+$pesquisa = "";
 if (isset($_GET['nomeProduto'])){
-  $pesquisa=trim($_GET['nomeProduto']);
-  
+  $pesquisa = trim($_GET['nomeProduto']);
 }
-$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE '%$pesquisa%' ORDER BY nomeProduto";
 
-$resultadoProduto = mysqli_query($conexao,$sqlProduto);
+$sqlProduto = "SELECT * FROM produto WHERE nomeProduto LIKE ? ORDER BY nomeProduto";
+$stmt = mysqli_prepare($conexao, $sqlProduto);
+
+$termo = "%" . $pesquisa . "%";
+mysqli_stmt_bind_param($stmt, "s", $termo);
+mysqli_stmt_execute($stmt);
+
+$resultadoProduto = mysqli_stmt_get_result($stmt);
 ?>
 
 
