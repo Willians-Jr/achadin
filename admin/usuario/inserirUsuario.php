@@ -55,7 +55,7 @@ if ($senhaForte !== 'true') {
       //isso impede SQL injection - usuario mal intencionado invadir o sistema
       $resultado = mysqli_prepare($conexao,$sql);
       // liga as variaveis aos espaços reservados
-      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario, $emailUsuario, $senhacripto, $nomeImagem);
+      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario,$emailUsuario,$senhacripto,$nomeImagem);
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         
