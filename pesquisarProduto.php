@@ -8,14 +8,53 @@ if (isset($_GET['pesquisa'])){
   $pesquisa=trim($_GET['pesquisa']);
   
 }
+
+$sqlCategorias = "SELECT * FROM categoria ORDER BY nomeCategoria";
+$resCategorias = mysqli_query($conexao, $sqlCategorias);
 $sql = "SELECT * FROM produto WHERE nomeProduto LIKE ?";
 
+if (isset($_GET['categoria'])){
+    $categorias = implode(",", array_map('intval', $_GET['categoria']));
+
+    $sql .= " AND idCategoria IN ($categorias)";
+}
+if(isset($_GET['precoMax'])){
+
+    $sql .= " AND precoProduto <= ?";
+
+}
 $stmt= mysqli_prepare($conexao, $sql);
 
 $termo = "%" . $pesquisa . "%";
 
 mysqli_stmt_bind_param($stmt, "s", $termo);
 mysqli_stmt_execute($stmt);
+
+// switch($_GET['ordenar']){
+
+//     case 'precoASC':
+//         $sql .= " ORDER BY precoProduto ASC";
+//         break;
+
+//     case 'precoDESC':
+//         $sql .= " ORDER BY precoProduto DESC";
+//         break;
+
+//     case 'desconto':
+//         $sql .= " ORDER BY descontoProduto DESC";
+//         break;
+
+//     case 'cashback':
+//         $sql .= " ORDER BY cashbackProduto DESC";
+//         break;
+
+//     case 'recentes':
+//         $sql .= " ORDER BY idProduto DESC";
+//         break;
+
+//     default:
+//         $sql .= " ORDER BY nomeProduto";
+// }
 
 $resultado = mysqli_stmt_get_result($stmt);
 ?>
@@ -75,89 +114,89 @@ $resultado = mysqli_stmt_get_result($stmt);
  
     <!-- NOVA ESTRUTURA -->
     <div class="row">
- 
-        <!-- FILTROS -->
-        <aside class="col-lg-3 mb-4">
- 
-            <div class="card shadow-sm">
- 
-                <div class="card-body">
- 
-                    <h5 class="fw-bold mb-4">
-                        Filtros
-                    </h5>
- 
-                    <div class="mb-4">
- 
-                        <label class="form-label fw-semibold">
-                            Categoria
-                        </label>
- 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Eletrônicos
+        
+            <!-- FILTROS -->
+            <aside class="col-lg-3 mb-4">
+    
+                <div class="card shadow-sm">
+    
+                    <div class="card-body">
+    
+                        <h5 class="fw-bold mb-4">
+                            Filtros
+                        </h5>
+    
+                        <div class="mb-4">
+                            <form method="GET">
+                            <label class="form-label fw-semibold">
+                                Categoria
                             </label>
+    
+                            <?php while($categoria = mysqli_fetch_assoc($resCategorias)){ ?>
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="categoria[]"
+                                        value="<?= $categoria['idCategoria'] ?>">
+
+                                    <label class="form-check-label">
+                                        <?= $categoria['nomeCategoria'] ?>
+                                    </label>
+
+                                </div>
+
+                            <?php } ?>
+    
                         </div>
- 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Informática
+    
+                        <div class="mb-4">
+    
+                            <label class="form-label fw-semibold">
+                                Faixa de preço
                             </label>
+    
+                            <input type="range"
+                                name="preco"
+                                min="0"
+                                max="1000"
+                                class="form-range">
+    
                         </div>
- 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Games
+    
+                        <div class="mb-4">
+    
+                            <label class="form-label fw-semibold">
+                                Cashback
                             </label>
+    
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label">
+                                    Acima de 2%
+                                </label>
+                            </div>
+    
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox">
+                                <label class="form-check-label">
+                                    Acima de 5%
+                                </label>
+                            </div>
+    
                         </div>
- 
+    
+                        <button class="btn btn-primary w-100" type="submit">
+                            Aplicar filtros
+                        </button>
+                        </form>
                     </div>
- 
-                    <div class="mb-4">
- 
-                        <label class="form-label fw-semibold">
-                            Faixa de preço
-                        </label>
- 
-                        <input type="range"
-                               class="form-range">
- 
-                    </div>
- 
-                    <div class="mb-4">
- 
-                        <label class="form-label fw-semibold">
-                            Cashback
-                        </label>
- 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Acima de 2%
-                            </label>
-                        </div>
- 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox">
-                            <label class="form-check-label">
-                                Acima de 5%
-                            </label>
-                        </div>
- 
-                    </div>
- 
-                    <button class="btn btn-primary w-100">
-                        Aplicar filtros
-                    </button>
- 
+    
                 </div>
- 
-            </div>
- 
-        </aside>
+    
+            </aside>
  
         <!-- PRODUTOS -->
         <div class="col-lg-9">
@@ -166,7 +205,7 @@ $resultado = mysqli_stmt_get_result($stmt);
             <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
  
                 <p class="text-secondary mb-2 mb-lg-0">
-                    248 produtos encontrados
+                    <?= mysqli_num_rows($resultado) ?> produtos encontrados
                 </p>
  
                 <div class="d-flex align-items-center gap-2">
@@ -175,15 +214,19 @@ $resultado = mysqli_stmt_get_result($stmt);
                         Ordenar por
                     </label>
  
-                    <select class="form-select" style="width:220px;">
+                    <select name="ordenar" class="form-select" style="width:220px;">
  
-                        <option>Mais relevantes</option>
-                        <option>Menor preço</option>
-                        <option>Maior preço</option>
-                        <option>Maior desconto</option>
-                        <option>Maior cashback</option>
-                        <option>Mais recentes</option>
- 
+                        <option value="relevancia">Mais relevantes</option>
+
+                        <option value="precoASC">Menor preço</option>
+
+                        <option value="precoDESC">Maior preço</option>
+
+                        <option value="desconto">Maior desconto</option>
+
+                        <option value="cashback">Maior cashback</option>
+
+                        <option value="recentes">Mais recentes</option>
                     </select>
  
                 </div>
