@@ -282,7 +282,7 @@ login
                         <img src="/achadin/assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner">
                     </div>
  
-                    <div class="col-12 col-md-7">
+                    
                         <div class="porcentagem text-center">
  
                             <p class="mb-1 text-secondary fw-semibold">
