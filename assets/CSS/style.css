@@ -90,7 +90,7 @@ main {
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12) !important;
 }
 
-/* MENU FIN */
+/* MENU FIM */
 
 /* INDEX INICIO */
 
@@ -246,3 +246,32 @@ main {
   background-color: var(--azul-principal) !important;
 }
 /* ADMIN FIM */
+/* COMO FUNCIONA INICIO   */
+ .cartao-passo{
+    transition: .3s;
+}
+ 
+.cartao-passo:hover{
+    transform: translateY(-5px);
+}
+ 
+#numeroPasso{
+    position: absolute !important;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 45px;
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0d6efd;
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+ 
+.caixa-informacoes{
+    overflow: hidden;
+}
