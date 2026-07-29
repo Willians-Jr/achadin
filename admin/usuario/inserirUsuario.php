@@ -10,19 +10,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 $nomeUsuario = $_POST['nomeUsuario'];
 $emailUsuario = $_POST['emailUsuario'];
 $senhaUsuario = $_POST['senhaUsuario'];
-$senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
+
 $senhaForte = $_POST['senhaForte'];
 
 
 if (
     strlen($senhaUsuario) < 6 ||
-    !preg_match('/[A-Z]/', $senha) ||
-    !preg_match('/[a-z]/', $senha) ||
-    !preg_match('/[0-9]/', $senha) ||
-    !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $senha)
+    !preg_match('/[A-Z]/', $senhaUsuario) ||
+    !preg_match('/[a-z]/', $senhaUsuario) ||
+    !preg_match('/[0-9]/', $senhaUsuario) ||
+    !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $senhaUsuario)
 ) {
     die("Cadastre uma senha forte!");
 }
+$senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
 
 if (isset($_FILES["imgUsuario"]) && $_FILES["imgUsuario"]["error"] == UPLOAD_ERR_OK) {
 
@@ -55,16 +56,13 @@ if ($senhaForte !== 'true') {
     exit;
 }
 
- $sql = "INSERT INTO usuario (nomeUsuario, loginUsuario, emailUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?, ?)";
+ $sql = "INSERT INTO usuario (nomeUsuario, emailUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?)";
 
     if (!empty($nomeUsuario)&& !empty($senhaUsuario) &&!empty($emailUsuario)) {
-      // PREPARET STATEMENT
-      //o sql possui apenas os espaços reservados (?)
-      //os dados são enviados separadamente
-      //isso impede SQL injection - usuario mal intencionado invadir o sistema
+    
       $resultado = mysqli_prepare($conexao,$sql);
       // liga as variaveis aos espaços reservados
-      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario, $emailUsuario, $senhacripto, $nomeImagem);
+      mysqli_stmt_bind_param($resultado,"ssss",$nomeUsuario, $emailUsuario, $senhacripto, $nomeImagem);
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         

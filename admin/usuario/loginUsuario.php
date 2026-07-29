@@ -3,13 +3,17 @@ require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $loginUsuario = trim($_POST['loginUsuario'] ?? '');
-    $senhaUsuario = $_POST['senhaUsuario'] ?? '';
+    $emailUsuario = trim($_POST['emailUsuario'] ?? '');
+    $senhaUsuario = trim($_POST['senhaUsuario'] ?? '');
+
+    if ($emailUsuario === '' || $senhaUsuario === '') {
+    die("Preencha todos os campos.");
+}
 
     // CORRIGIDO: Uso de Prepared Statement contra SQL Injection
-    $sql = "SELECT * FROM usuario WHERE loginUsuario = ?";
+    $sql = "SELECT * FROM usuario WHERE emailUsuario = ?";
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $loginUsuario);
+    mysqli_stmt_bind_param($stmt, "s", $emailUsuario);
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
 
@@ -23,7 +27,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         if(password_verify($senhaUsuario, $dados['senhaUsuario'])){
             $_SESSION['idUsuario']= $dados['idUsuario'];
             $_SESSION['nomeUsuario']= $dados['nomeUsuario'];
-            $_SESSION['loginUsuario']= $dados['loginUsuario'];
+            $_SESSION['emailUsuario']= $dados['emailUsuario'];
+
+            mysqli_stmt_close($stmt);
 
             header("Location: " . BASE_URL . "index.php");
             exit;
@@ -33,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     } else {
         echo "Usuário ou senha incorretos!";
     }
-    mysqli_stmt_close($stmt);
+    
 }
 ?>
 
@@ -66,15 +72,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             Login de Usuário
           </h1>
 
-          <form action="loginUsuario.php" method="post" enctype="multipart/form-data">
+          <form action="loginUsuario.php" method="post">
 
             <div class="mb-3">
-              <label class="form-label" for="loginUsuario">Login:</label>
+              <label class="form-label" for="emailUsuario">E-mail:</label>
               <input
                 class="form-control"
-                type="text"
-                id="loginUsuario"
-                name="loginUsuario"
+                type="email"
+                id="emailUsuario"
+                name="emailUsuario"
+                required
               />
             </div>
 
@@ -85,6 +92,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 type="password"
                 id="senhaUsuario"
                 name="senhaUsuario"
+                required
               />
 
             </div>
