@@ -171,4 +171,3 @@ mysqli_stmt_bind_param(
    
   </body>
 </html>
-

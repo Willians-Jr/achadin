@@ -6,11 +6,10 @@ include_once __DIR__ . '/config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu Principal</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
   </head>
 <body>
 
@@ -43,9 +42,9 @@ include_once __DIR__ . '/config.php';
         <div class="collapse navbar-collapse" id="navbarColor03">
  
             <!-- BARRA DE BUSCA -->
-   
-<form class="d-flex mx-auto w-50 form formularioBusca" role="search">
- 
+    
+<form class="d-flex mx-auto w-50 form formularioBusca" action="<?= BASE_URL ?>pesquisarProduto.php" role="search">
+
     <div class="position-relative flex-grow-1 me-2">
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
             search
@@ -54,6 +53,7 @@ include_once __DIR__ . '/config.php';
         <input
             class="form-control pe-5"
             type="search"
+            name="pesquisa"
             placeholder="Busca por palavra-chave..."
             aria-label="Busca">
  
@@ -69,19 +69,19 @@ include_once __DIR__ . '/config.php';
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
                 <li class="nav-item">
-                    <a class="active nav-link link-light" href="#">Categorias</a>
+                    <a class="active nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Produtos</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/produto/produtos.php">Produtos</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Lojas</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/gerenciarLoja.php">Lojas</a>
                 </li>
  
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Como Funciona</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>comoFunciona.php">Como Funciona</a>
                 </li>
            
  

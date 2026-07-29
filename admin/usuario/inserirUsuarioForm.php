@@ -15,6 +15,11 @@ require_once ROOT_PATH . '/includes/conexao.php';
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
   </head>
@@ -31,7 +36,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="ladoEsquerdoAdmin col-md-4 text-center p-5 border-end ">
  
             <!-- LOGO -->
-            <a class="navbar-brand logoA" href="index.html">
+            <a class="navbar-brand logoA" href="<?= BASE_URL ?>index.php">
             <img src="../../assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
  
             <div class="logoTexto">
@@ -48,7 +53,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="col-md-8 p-5">
  
             <h1 class="text-center mb-5">
-                Formulário de Cadastro de Usuário
+                Cadastro de Usuário
             </h1>
  
               <form action="inserirUsuario.php" method="post"  enctype="multipart/form-data">
@@ -80,12 +85,12 @@ require_once ROOT_PATH . '/includes/conexao.php';
                 </div>
  
                   <div class="mb-3">
-                   <label class="form-label" for="telefoneUsuario">Telefone:</label>
+                   <label class="form-label" for="emailUsuario"><E-mail></E-mail>E-mail:</label>
         <input class="form-control"   type="text"
-            id="tel"
-            name="telefoneUsuario"
-            data-mask="(00)00000-0000"
-            placeholder="Ex.: (00)00000-0000"
+            id="e-mail"
+            name="emailUsuario"
+            
+            placeholder="Ex.: email@address.com"
           />
            
      
@@ -110,13 +115,35 @@ require_once ROOT_PATH . '/includes/conexao.php';
   </div>
  
  
-  <div class="mb-3">
-    <label class="form-label">
-      Foto do usuario:
-    </label>
-  <input class="form-control" type="file" name="imgUsuario"/>
- 
- 
+  <div class="mb-4">
+    <label class="form-label fw-semibold">Foto do usuário</label>
+
+    <div class="border rounded-4 p-4 text-center bg-light">
+
+        <i class="bi bi-person-circle fs-1 text-primary"></i>
+
+        <p class="mt-2 mb-3 text-muted">
+            Escolha uma foto de perfil
+        </p>
+
+        <input
+            type="file"
+            id="imgUsuario"
+            name="imgUsuario"
+            class="d-none"
+            accept="image/*"
+            onchange="mostrarNomeArquivo()">
+
+        <label for="imgUsuario" class="btn btn-outline-primary rounded-pill px-4">
+            <i class="bi bi-upload"></i>
+            Selecionar imagem
+        </label>
+
+        <div id="nomeArquivo" class="mt-3 small text-secondary">
+            Nenhum arquivo selecionado
+        </div>
+
+    </div>
 </div>
  
  
