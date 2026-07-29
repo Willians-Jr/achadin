@@ -8,13 +8,15 @@ $dados = [
     'nomeProduto' => '',
     'idCategoria' => '',
     'idLoja' => '',
+    'linkAfiliado' => '',
+    'descricaoProduto' => '',
     'fotoProduto' => ''
 ];
 
 if (isset($_GET['id'])) {
     $idProduto = mysqli_real_escape_string($conexao, $_GET['id']);
     
-    $sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto FROM produto WHERE idProduto = '$idProduto'";
+    $sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto, linkAfiliado, descricaoProduto FROM produto WHERE idProduto = '$idProduto'";
     $resultProduto = mysqli_query($conexao, $sqlProduto);
     
     if ($resultProduto && mysqli_num_rows($resultProduto) > 0) {
@@ -72,6 +74,14 @@ if (isset($_GET['id'])) {
         ?>
     </select>
     <br> <br>
+
+    <label for="linkAfiliado">Link do Produto</label>
+      <input type="text" name="linkAfiliado" id="linkAfiliado" value="<?php echo $dados['linkAfiliado'];?>">
+      <br><br>
+
+    <label for="descricaoProduto">Descrição do Produto</label>
+      <input type="text" name="descricaoProduto" id="descricaoProduto" value="<?php echo $dados['descricaoProduto'];?>">
+      <br><br>
 
     <label for="fotoProduto">Nova foto</label>
     <input type="file" name="fotoProduto" id="fotoProduto" accept="image/*">
