@@ -1,4 +1,4 @@
-<?include_once __DIR__ . '/config.php';?>
+<?php include_once __DIR__ . '/config.php'; ?>
 <head>
 
     <meta charset="UTF-8">
