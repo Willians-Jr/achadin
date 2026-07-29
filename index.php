@@ -37,7 +37,7 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
    <!-- HEADER -->
-<header class="bannerIndex ">
+<header class="bannerIndex ">  
  
  <div class="container banner">
  
