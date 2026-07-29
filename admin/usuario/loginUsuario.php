@@ -97,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
           <form action="loginUsuario.php" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
-              <label class="form-label" for="loginUsuario">E-mail:</label>
+              <label class="form-label" for="loginUsuario">Login:</label>
               <input
                 class="form-control"
                 type="text"
@@ -113,10 +113,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 type="password"
                 id="senhaUsuario"
                 name="senhaUsuario"
-                onkeyup="verificarSenha()"
               />
 
-              <span id="erroSenha"></span>
             </div>
 
             <!-- Link de cadastro -->
@@ -142,6 +140,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         </div>
       </div>
     </div>
+</main>
+
+    <?php require_once ROOT_PATH . '/includes/footer.php';?>
 
   </body>
 </html>

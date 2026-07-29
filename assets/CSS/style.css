@@ -247,31 +247,149 @@ main {
 }
 /* ADMIN FIM */
 /* COMO FUNCIONA INICIO   */
- .cartao-passo{
-    transition: .3s;
+.cartao-passo {
+  transition: 0.3s;
 }
- 
-.cartao-passo:hover{
-    transform: translateY(-5px);
+
+.cartao-passo:hover {
+  transform: translateY(-5px);
 }
- 
-#numeroPasso{
-    position: absolute !important;
-    top: -22px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 45px;
-    height: 45px;
-     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #0d6efd;
-    color: #fff;
-    border-radius: 50%;
-    font-weight: 700;
-    font-size: 1.2rem;
+
+#numeroPasso {
+  position: absolute !important;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
- 
-.caixa-informacoes{
-    overflow: hidden;
+
+.caixa-informacoes {
+  overflow: hidden;
 }
+
+/* BANNER INCIO */
+.bannerIndex {
+  border-radius: 0 0 80px 80px;
+  background-image:
+    linear-gradient(90deg, rgba(2, 69, 184, 0.92), rgba(3, 105, 245, 0.92)),
+    url("img/fundo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  padding: 70px 0;
+  overflow: hidden;
+}
+
+.icone-sacola {
+  font-size: 120px;
+  color: var(--branco);
+}
+
+.porcentagem {
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.economize {
+  background: #d9f7d9;
+  color: var(--verde-economia);
+  border-radius: 20px;
+  display: inline-block;
+  padding: 6px 18px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.beneficio {
+  font-size: 0.85rem;
+}
+
+.banner {
+  max-width: 1320px;
+}
+
+.banner-img {
+  max-width: 143% !important;
+  height: auto;
+  margin-left: -12%;
+}
+
+@media (max-width: 992px) {
+  .bannerIndex {
+    padding: 50px 0;
+  }
+
+  .banner h1 {
+    font-size: 2.3rem;
+  }
+
+  .banner p {
+    font-size: 1rem;
+  }
+
+  .banner .d-flex.flex-wrap {
+    gap: 1.5rem !important;
+  }
+
+  .banner-img {
+    max-width: 260px;
+    transform: none;
+    margin-bottom: 20px;
+  }
+
+  .porcentagem {
+    max-width: 320px;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .bannerIndex {
+    padding: 35px 0;
+  }
+
+  .banner h1 {
+    font-size: 1.9rem;
+  }
+
+  .banner p {
+    font-size: 0.95rem;
+  }
+
+  .banner .display-1 {
+    font-size: 4rem;
+  }
+
+  .beneficio {
+    font-size: 0.75rem;
+  }
+
+  .banner-img {
+    max-width: 100% !important;
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  .porcentagem {
+    padding: 20px;
+    max-width: 280px;
+  }
+
+  .economize {
+    font-size: 0.8rem;
+    padding: 6px 14px;
+  }
+}
+
+/* BANNER FIM */
