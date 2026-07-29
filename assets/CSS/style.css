@@ -249,11 +249,32 @@ main {
 /* COMO FUNCIONA INICIO   */
 .cartao-passo {
   transition: 0.3s;
+.cartao-passo {
+  transition: 0.3s;
 }
 
 .cartao-passo:hover {
   transform: translateY(-5px);
+
+.cartao-passo:hover {
+  transform: translateY(-5px);
 }
+
+#numeroPasso {
+  position: absolute !important;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0d6efd;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1.2rem;
 
 #numeroPasso {
   position: absolute !important;
