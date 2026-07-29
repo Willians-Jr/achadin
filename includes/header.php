@@ -18,7 +18,7 @@ include_once __DIR__ . '/config.php';
     <div class="container-fluid">
  
         <!-- LOGO -->
-        <a class="navbar-brand logoA" href="<?= BASE_URL ?>index.php">
+        <a class="navbar-brand logoA" href="<?= BASE_URL ?>">
     <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
  
     <div class="logoTexto">

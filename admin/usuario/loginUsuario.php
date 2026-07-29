@@ -97,7 +97,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
           <form action="loginUsuario.php" method="post" enctype="multipart/form-data">
 
             <div class="mb-3">
-              <label class="form-label" for="loginUsuario">E-mail:</label>
+              <label class="form-label" for="loginUsuario">Login:</label>
               <input
                 class="form-control"
                 type="text"
@@ -173,5 +173,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <button type="submit" value="login" >
               Login
             </button> -->
-           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
+           
            <script src="<?= BASE_URL ?>assets/JS/InserirFoto.js"></script>

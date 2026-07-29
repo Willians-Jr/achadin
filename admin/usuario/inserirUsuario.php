@@ -42,7 +42,8 @@ if (isset($_FILES["imgUsuario"]) && $_FILES["imgUsuario"]["error"] == UPLOAD_ERR
     $nomeImagem = "";
 }
 if ($senhaForte !== 'true') {
-    echo "Erro: A senha não atende aos critérios de segurança.";
+    
+    header("Location: " . BASE_URL . "admin/usuario/inserirUsuarioForm.php");
     exit;
 }
 
