@@ -315,5 +315,6 @@ $resultado = mysqli_stmt_get_result($stmt);
  
 </div>
 </main>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 </body>
 </html>

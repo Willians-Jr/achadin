@@ -25,7 +25,7 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achadin - Página Inicial</title>
+    <title>Top Achados - Página Inicial</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -35,6 +35,8 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
     <main>
    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
+
+   <!-- HEADER -->
 <header class="bannerIndex ">
  
  <div class="container banner">
@@ -43,7 +45,9 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
  
             <!-- Texto -->
            <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+           <div class="col-12 col-lg-6 mt-5 mt-lg-0">
  
+                <h1 class="display-5 fw-bold text-white mb-4">
                 <h1 class="display-5 fw-bold text-white mb-4">
                     Cupons de desconto <br>
                     das <span class="text-warning">melhores lojas</span>
@@ -98,16 +102,23 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
  
             <!-- Ícone e porcentagem -->
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0">
  
+               <div class="row align-items-center justify-content-center">
                <div class="row align-items-center justify-content-center">
  
                     <div class="col-12 col-md-5">
                         <img src="<?= BASE_URL ?>assets/IMG/Sacola.png"
      class="img-fluid banner-img"
      alt="Sacola Banner">
+                    <div class="col-12 col-md-5">
+                        <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
+     class="img-fluid banner-img"
+     alt="Sacola Banner">
                     </div>
  
                     <div class="col-12 col-md-7">
+                    
                         <div class="porcentagem text-center">
  
                             <p class="mb-1 text-secondary fw-semibold">
@@ -137,6 +148,9 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
  
 <!-- FIM HEADER -->
  
+ 
+<!-- FIM HEADER -->
+
 <!-- LOJAS EM DESTAQUE -->
 <div class="container mt-5">
  

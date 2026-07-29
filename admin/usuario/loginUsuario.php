@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Achadin - Login</title>
+  <title>Usuário - Login</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -85,10 +85,8 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 type="password"
                 id="senhaUsuario"
                 name="senhaUsuario"
-                onkeyup="verificarSenha()"
               />
 
-              <span id="erroSenha"></span>
             </div>
 
             <!-- Link de cadastro -->
@@ -115,6 +113,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
       </div>
     </div>
 </main>
+
+    <?php require_once ROOT_PATH . '/includes/footer.php';?>
+
   </body>
 </html>
   <!-- <form action="" method="post">
