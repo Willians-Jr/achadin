@@ -69,7 +69,7 @@ include_once __DIR__ . '/config.php';
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
                 <li class="nav-item">
-                    <a class="active nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
+                    <a class="active nav-link link-light" href="<?= BASE_URL ?>admin/categoria/categorias.php">Categorias</a>
                 </li>
  
                 <li class="nav-item">
