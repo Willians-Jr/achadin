@@ -29,7 +29,7 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
     <main>
    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
-   <!-- HEADER -->
+<!-- HEADER -->
 <header class="bannerIndex ">
  
  <div class="container banner">
@@ -37,9 +37,9 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
         <div class="row align-items-center">
  
             <!-- Texto -->
-            <div class="col-lg-6">
+           <div class="col-12 col-lg-6 mt-5 mt-lg-0">
  
-                <h1 class="display-5 fw-bold text-white mb-3">
+                <h1 class="display-5 fw-bold text-white mb-4">
                     Cupons de desconto <br>
                     das <span class="text-warning">melhores lojas</span>
                 </h1>
@@ -92,15 +92,17 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
             </div>
  
             <!-- Ícone e porcentagem -->
-            <div class="col-lg-6">
+            <div class="col-12 col-lg-6 mt-5 mt-lg-0">
  
-                <div class="row align-items-center">
+               <div class="row align-items-center justify-content-center">
  
-                    <div class="col-5">
-                        <img src="<?= BASE_URL ?>assets/IMG/Sacola.png" alt="Sacola Banner" width="126%">
+                    <div class="col-12 col-md-5">
+                        <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
+     class="img-fluid banner-img"
+     alt="Sacola Banner">
                     </div>
  
-                    <div class="col-7">
+                    <div class="col-12 col-md-7">
                         <div class="porcentagem text-center">
  
                             <p class="mb-1 text-secondary fw-semibold">
@@ -127,6 +129,8 @@ $resultadoProduto = mysqli_query($conexao,$sqlProduto);
     </div>
  
 </header>
+ 
+<!-- FIM HEADER -->
 
 <!-- LOJAS EM DESTAQUE -->
 <div class="container mt-5">
