@@ -110,8 +110,8 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
                     
                     <div class="col-12 col-md-5">
                         <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
-     class="img-fluid banner-img"
-     alt="Sacola Banner">
+                            class="img-fluid banner-img"
+                            alt="Sacola Banner">
                     </div>
  
                     <div class="col-12 col-md-7">
@@ -163,26 +163,25 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
  
             </div>
  
-            <div class="row g-3">
- 
-                <div class="col">
-                    <div class="card p-3 text-center">
-                        Shopee
+            <div class="row g-2">
+
+                <?php
+                $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja LIMIT 4";
+                $resultado = mysqli_query($conexao, $sql);
+
+                while ($dados = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <div class="col-md-3">
+                        <a href="loja.php?id=<?= $dados['idLoja'] ?>" class="text-decoration-none">
+                            <div class="card p-3 text-center h-100">
+                                <?= htmlspecialchars($dados['nomeLoja']) ?>
+                            </div>
+                        </a>
                     </div>
-                </div>
- 
-                <div class="col">
-                    <div class="card p-3 text-center">
-                        Mercado Livre
-                    </div>
-                </div>
- 
-                <div class="col">
-                    <div class="card p-3 text-center">
-                        Amazon
-                    </div>
-                </div>
- 
+                <?php
+                }
+                ?>
+
             </div>
  
         </div>
@@ -222,7 +221,7 @@ $resultadoProduto = mysqli_stmt_get_result($stmt);
 <!-- PROTUTOS -->
 <div class="container">
  
-    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4">
+    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-4">
  
         <div class="col">
  
