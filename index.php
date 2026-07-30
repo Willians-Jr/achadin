@@ -280,7 +280,9 @@ login
  
                     
                     <div class="col-12 col-md-5">
-                        <img src="/achadin/assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner">
+                        <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
+                            class="img-fluid banner-img"
+                            alt="Sacola Banner">
                     </div>
  
                     <div class="col-12 col-md-7">
@@ -332,18 +334,25 @@ login
  
             </div>
  
- 
-            <div class="row g-1">
- 
-                                    <div class="col-md-3">
-                        <div class="card p-3 text-center h-100">
-                            Kalunga                        </div>
+            <div class="row g-2">
+
+                <?php
+                $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja LIMIT 4";
+                $resultado = mysqli_query($conexao, $sql);
+
+                while ($dados = mysqli_fetch_assoc($resultado)) {
+                ?>
+                    <div class="col-md-3">
+                        <a href="loja.php?id=<?= $dados['idLoja'] ?>" class="text-decoration-none">
+                            <div class="card p-3 text-center h-100">
+                                <?= htmlspecialchars($dados['nomeLoja']) ?>
+                            </div>
+                        </a>
                     </div>
-                                    <div class="col-md-3">
-                        <div class="card p-3 text-center h-100">
-                            Magazine Luiza                        </div>
-                    </div>
-               
+                <?php
+                }
+                ?>
+
             </div>
  
  
