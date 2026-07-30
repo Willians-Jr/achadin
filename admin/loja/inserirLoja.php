@@ -6,6 +6,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nomeLoja = trim($_POST['nomeLoja']);
+    $linkLoja = $_POST['linkLoja'];
 
     // Verifica se foi enviada uma imagem
     if (isset($_FILES["logoLoja"]) && $_FILES["logoLoja"]["error"] == 0) {
@@ -61,14 +62,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insere a loja
-    $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES (?, ?)";
+    $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja, linkLoja) VALUES (?, ?, ?)";
 
     $stmt = mysqli_prepare($conexao, $sqlInsert);
 
     mysqli_stmt_bind_param(
         $stmt,
-        "ss",
+        "sss",
         $nomeLoja,
+        $linkLoja,
         $logoLoja
     );
 
