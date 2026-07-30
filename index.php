@@ -388,7 +388,7 @@ login
                     Cosméticos</option><option value="1">
                     Produto de Limpeza</option><option value="3">
                     Tecnologia</option><option value="4">
-                    Uso cotidiano</option>        </select>
+                    Uso Cotidiano</option>        </select>
  
     </div>
  
@@ -409,6 +409,7 @@ login
     padding: 20px;
 }
 </style>
+
 <div class="container my-4">
     <h5 class="mb-3 text-secondary fw-semibold">Recomendados para você</h5>
     
