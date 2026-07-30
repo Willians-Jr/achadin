@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 $pesquisa="";
@@ -57,6 +57,21 @@ mysqli_stmt_execute($stmt);
 // }
 
 $resultado = mysqli_stmt_get_result($stmt);
+
+// =========================================================================
+// 🚨 INÍCIO DA ADIÇÃO: GRAVAR NO HISTÓRICO ATRAVÉS DE NAVEGAÇÃO DA PESQUISA
+// =========================================================================
+if (isset($_GET['id'])) {
+    $idProdutoAtual = intval($_GET['id']); 
+    $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']) : 1;
+    
+    // Insere o clique atual no histórico
+    $sqlInsert = "INSERT INTO historicoclique (idUsuario, idProduto) VALUES ($idUsuarioLogado, $idProdutoAtual)";
+    mysqli_query($conexao, $sqlInsert);
+}
+// =========================================================================
+// 🚨 FIM DA ADIÇÃO
+// =========================================================================
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,6 +89,11 @@ $resultado = mysqli_stmt_get_result($stmt);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/produto.css">
+    <style>
+        /* CSS Auxiliar para formatar os novos links invisíveis nos cards */
+        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
+        .link-produto-vitrine:hover h5 { color: #0d6efd; }
+    </style>
 </head>
 <body>
 <main>
@@ -112,10 +132,8 @@ $resultado = mysqli_stmt_get_result($stmt);
  
     </div>
  
-    <!-- NOVA ESTRUTURA -->
     <div class="row">
         
-            <!-- FILTROS -->
             <aside class="col-lg-3 mb-4">
     
                 <div class="card shadow-sm">
@@ -198,10 +216,8 @@ $resultado = mysqli_stmt_get_result($stmt);
     
             </aside>
  
-        <!-- PRODUTOS -->
         <div class="col-lg-9">
  
-            <!-- ORDENAR -->
             <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
  
                 <p class="text-secondary mb-2 mb-lg-0">
@@ -234,17 +250,23 @@ $resultado = mysqli_stmt_get_result($stmt);
             </div>
  
             <!-- CARDS -->
+            <div class="row g-4 ">
+
               <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
-            <div class="row g-4">
  
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
-                    <div class="card h-100">
+                    <div class="card h-100 shadow-sm">
  
                         <div class="position-relative">
- 
-                            <img src="<?= $produto['fotoProduto'] ?>"
-                                 class="card-img-top img-fluid p-3"
-                                 alt="<?= $produto['nomeProduto'] ?>">
+                            
+                            <a href="<?= htmlspecialchars($produto['linkAfiliado']) ?>" 
+                               target="_blank" 
+                               onclick="window.location.href='?id=<?= $produto['idProduto'] ?>';" 
+                               class="link-produto-vitrine">
+                                <img src="<?= BASE_URL ?><?= !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png' ?>"
+                                     class="card-img-top img-fluid p-3"
+                                     alt="<?= $produto['nomeProduto'] ?>">
+                            </a>
  
                             <div class="position-absolute top-0 end-0 p-3 d-flex flex-column gap-2">
  
@@ -272,10 +294,15 @@ $resultado = mysqli_stmt_get_result($stmt);
                         </div>
                        
                         <div class="card-body">
-                    
-                            <h5 class="fw-bold">
-                                <?= htmlspecialchars($produto['nomeProduto'], ENT_QUOTES, 'UTF-8') ?>
-                            </h5>
+                            
+                            <a href="<?= htmlspecialchars($produto['linkAfiliado']) ?>" 
+                               target="_blank" 
+                               onclick="window.location.href='?id=<?= $produto['idProduto'] ?>';" 
+                               class="link-produto-vitrine">
+                                <h5 class="fw-bold">
+                                    <?= htmlspecialchars($produto['nomeProduto'], ENT_QUOTES, 'UTF-8') ?>
+                                </h5>
+                            </a>
  
                             <p class="text-secondary">
                                 A partir de R$ 5.489
@@ -294,14 +321,11 @@ $resultado = mysqli_stmt_get_result($stmt);
                     </div>
                 </div>
   <?php } ?>  
-                <!-- Os demais cards permanecem exatamente iguais -->
-                <!-- Basta colar aqui os outros cards -->
- 
-            </div>
+                </div>
  
             <div class="text-center mt-5">
  
-                <button class="btn-ver-produtos">
+                <button class="btn-ver-produtos" onclick="window.location.href='produtos.php';">
                     <span>Ver todos os produtos</span>
                     <span class="seta">→</span>
                 </button>
