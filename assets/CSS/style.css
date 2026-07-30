@@ -289,6 +289,19 @@ main {
   padding: 70px 0;
   overflow: hidden;
 }
+/* BANNER INCIO */
+.bannerIndex {
+  border-radius: 0 0 80px 80px;
+  background-image:
+    linear-gradient(90deg, rgba(2, 69, 184, 0.92), rgba(3, 105, 245, 0.92)),
+    url("img/fundo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
+  padding: 70px 0;
+  overflow: hidden;
+}
 
 .icone-sacola {
   font-size: 120px;
@@ -393,3 +406,135 @@ main {
 }
 
 /* BANNER FIM */
+/* TEMA ESCURO INICIO */
+#btnTema{
+    display: flex;
+}
+ 
+body.dark-mode {
+ 
+    --fundo: #121212;
+    --cinza: #1E1E1E;
+ 
+    --texto-escuro: #F8FAFC;
+    --texto-secundario: #B5BDC9;
+ 
+    --branco: #1E1E1E;
+ 
+    --cor-card: #1E1E1E;
+    --cor-menu-usuario: #1A1A1A;
+    --cor-footer: #181818;
+    --cor-borda: #333333;
+}
+body.dark-mode{
+    background:#121212;
+    color:#f8f9fa;
+}
+/* header */
+body.dark-mode .bannerIndex{
+background-image: linear-gradient(90deg, rgb(28 28 28 / 92%), rgb(88 120 163 / 92%)), url(img/fundo.png);
+}
+ 
+body.dark-mode .porcentagem{
+    background:#242424;
+    color:#fff;
+}
+ 
+body.dark-mode .porcentagem .text-secondary{
+    color:#d2d2d2 !important;
+}
+ 
+body.dark-mode .porcentagem .text-primary{
+    color:#5aa7ff !important;
+}
+/* Fundo geral */
+ 
+ 
+ 
+body.dark-mode,
+body.dark-mode main{
+    background:#121212;
+}
+/* menu */
+body.dark-mode .menuPrincipal{
+    background-color: #1a1a1a !important;
+    border-bottom: 1px solid #333;
+}
+/* Cards */
+ 
+body.dark-mode .card{
+    background:#1f1f1f;
+    color:#fff;
+    border-color:#343434;
+}
+ 
+/* Lojas em destaque */
+ 
+body.dark-mode .card-body{
+    color:#fff;
+}
+ 
+/* Filtros */
+ 
+body.dark-mode .form-select{
+    background:#2a2a2a;
+    color:#fff;
+    border-color:#444;
+}
+ 
+body.dark-mode .btn-light{
+    background:#2a2a2a;
+    color:#fff;
+    border-color:#444;
+}
+ 
+/* Footer */
+ 
+body.dark-mode .footer{
+    background:#1a1a1a;
+}
+ 
+/* Menu do usuário */
+ 
+body.dark-mode .menuUsuario{
+    background:#1a1a1a;
+    border-color:#333;
+}
+ 
+/* Textos */
+ 
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label{
+    color:#fff;
+}
+ 
+/* Links */
+ 
+body.dark-mode a{
+    color:#6ea8fe;
+}
+ 
+/* Banner de porcentagem */
+ 
+body.dark-mode .porcentagem{
+    background:#242424;
+}
+ 
+body.dark-mode .economize{
+    background:#1d472f;
+}
+ 
+/* Produtos */
+ 
+body.dark-mode .text-muted{
+    color:#bfbfbf !important;
+}
+/* TEMA ESCURO FIM */
+ 

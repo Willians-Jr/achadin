@@ -6,15 +6,24 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-  if (isset($_POST['nomeUsuario']) && isset($_POST['loginUsuario']) && isset($_POST['senhaUsuario'])&& isset($_POST['emailUsuario'])) {
+  if (isset($_POST['nomeUsuario']) && isset($_POST['senhaUsuario'])&& isset($_POST['emailUsuario'])) {
 $nomeUsuario = $_POST['nomeUsuario'];
-$loginUsuario = $_POST['loginUsuario'];
 $emailUsuario = $_POST['emailUsuario'];
 $senhaUsuario = $_POST['senhaUsuario'];
-$senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
+
 $senhaForte = $_POST['senhaForte'];
 
 
+if (
+    strlen($senhaUsuario) < 6 ||
+    !preg_match('/[A-Z]/', $senhaUsuario) ||
+    !preg_match('/[a-z]/', $senhaUsuario) ||
+    !preg_match('/[0-9]/', $senhaUsuario) ||
+    !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $senhaUsuario)
+) {
+    die("Cadastre uma senha forte!");
+}
+$senhacripto = password_hash($senhaUsuario, PASSWORD_DEFAULT);
 
 if (isset($_FILES["imgUsuario"]) && $_FILES["imgUsuario"]["error"] == UPLOAD_ERR_OK) {
 
@@ -42,20 +51,18 @@ if (isset($_FILES["imgUsuario"]) && $_FILES["imgUsuario"]["error"] == UPLOAD_ERR
     $nomeImagem = "";
 }
 if ($senhaForte !== 'true') {
-    echo "Erro: A senha não atende aos critérios de segurança.";
+    
+    header("Location: " . BASE_URL . "admin/usuario/inserirUsuarioForm.php");
     exit;
 }
 
- $sql = "INSERT INTO usuario (nomeUsuario, loginUsuario, emailUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?, ?)";
+ $sql = "INSERT INTO usuario (nomeUsuario, emailUsuario, senhaUsuario, imgUsuario) VALUES (?, ?, ?, ?)";
 
-    if (!empty($nomeUsuario) && !empty($loginUsuario) && !empty($senhaUsuario) &&!empty($emailUsuario)) {
-      // PREPARET STATEMENT
-      //o sql possui apenas os espaços reservados (?)
-      //os dados são enviados separadamente
-      //isso impede SQL injection - usuario mal intencionado invadir o sistema
+    if (!empty($nomeUsuario)&& !empty($senhaUsuario) &&!empty($emailUsuario)) {
+    
       $resultado = mysqli_prepare($conexao,$sql);
       // liga as variaveis aos espaços reservados
-      mysqli_stmt_bind_param($resultado,"sssss",$nomeUsuario,$loginUsuario,$emailUsuario,$senhacripto,$nomeImagem);
+      mysqli_stmt_bind_param($resultado,"ssss",$nomeUsuario, $emailUsuario, $senhacripto, $nomeImagem);
       // executa a query
       if (mysqli_stmt_execute($resultado)){
         
@@ -73,7 +80,6 @@ if ($senhaForte !== 'true') {
 }
 if (
     empty($nomeUsuario) ||
-    empty($loginUsuario) ||
     empty($senhaUsuario) ||
     empty($emailUsuario)
 ) {
