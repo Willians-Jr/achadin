@@ -1,16 +1,19 @@
 <?php
-session_start();
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
-    $loginUsuario = trim($_POST['loginUsuario'] ?? '');
-    $senhaUsuario = $_POST['senhaUsuario'] ?? '';
+    $emailUsuario = trim($_POST['emailUsuario'] ?? '');
+    $senhaUsuario = trim($_POST['senhaUsuario'] ?? '');
+
+    if ($emailUsuario === '' || $senhaUsuario === '') {
+    die("Preencha todos os campos.");
+}
 
     // CORRIGIDO: Uso de Prepared Statement contra SQL Injection
-    $sql = "SELECT * FROM usuario WHERE loginUsuario = ?";
+    $sql = "SELECT * FROM usuario WHERE emailUsuario = ?";
     $stmt = mysqli_prepare($conexao, $sql);
-    mysqli_stmt_bind_param($stmt, "s", $loginUsuario);
+    mysqli_stmt_bind_param($stmt, "s", $emailUsuario);
     mysqli_stmt_execute($stmt);
     $resultado = mysqli_stmt_get_result($stmt);
 
@@ -24,7 +27,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         if(password_verify($senhaUsuario, $dados['senhaUsuario'])){
             $_SESSION['idUsuario']= $dados['idUsuario'];
             $_SESSION['nomeUsuario']= $dados['nomeUsuario'];
-            $_SESSION['loginUsuario']= $dados['loginUsuario'];
+            $_SESSION['emailUsuario']= $dados['emailUsuario'];
+
+            mysqli_stmt_close($stmt);
 
             header("Location: " . BASE_URL . "index.php");
             exit;
@@ -34,7 +39,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     } else {
         echo "Usuário ou senha incorretos!";
     }
-    mysqli_stmt_close($stmt);
+    
 }
 ?>
 
@@ -57,34 +62,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 <body>
   <main>
     <?php require_once ROOT_PATH . '/includes/header.php'; ?>
-       <!doctype html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login - Top Achados</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-
-    
-    <link rel="stylesheet" href="cadastrarUsuario.css" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  </head>
-
-  <body>
-
-    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
     <div class="container py-5">
       <div class="row justify-content-center">
@@ -94,15 +72,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             Login de Usuário
           </h1>
 
-          <form action="loginUsuario.php" method="post" enctype="multipart/form-data">
+          <form action="loginUsuario.php" method="post">
 
             <div class="mb-3">
-              <label class="form-label" for="loginUsuario">Login:</label>
+              <label class="form-label" for="emailUsuario">E-mail:</label>
               <input
                 class="form-control"
-                type="text"
-                id="loginUsuario"
-                name="loginUsuario"
+                type="email"
+                id="emailUsuario"
+                name="emailUsuario"
+                required
               />
             </div>
 
@@ -113,6 +92,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 type="password"
                 id="senhaUsuario"
                 name="senhaUsuario"
+                required
               />
 
             </div>
@@ -174,5 +154,5 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             <button type="submit" value="login" >
               Login
             </button> -->
-           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
+           
            <script src="<?= BASE_URL ?>assets/JS/InserirFoto.js"></script>

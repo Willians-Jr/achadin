@@ -1,6 +1,7 @@
 <?php
 // 1. Inicia a sessão para saber quem está logado
-session_start();
+
+include_once __DIR__ . '/config.php';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
