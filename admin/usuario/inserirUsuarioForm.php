@@ -69,20 +69,11 @@ require_once ROOT_PATH . '/includes/conexao.php';
             id="nomeUsuario"
             name="nomeUsuario"
             placeholder="Ex.: Francisco da Silva"
+            required
           />
                 </div>
  
-                 <div class="mb-3">
-                   <label class="form-label" for="loginUsuario">Login:</label>
-        <input class="form-control"   type="text"
-           
-            id="loginUsuario"
-            name="loginUsuario"
-            placeholder="Ex.: Usu@rio122"
-          />
-           
-       
-                </div>
+
  
                   <div class="mb-3">
                    <label class="form-label" for="emailUsuario"><E-mail></E-mail>E-mail:</label>
@@ -91,6 +82,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
             name="emailUsuario"
             
             placeholder="Ex.: email@address.com"
+            required
           />
            
      
@@ -103,6 +95,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
             name="senhaUsuario"
             onkeyup="verificarSenha()"
             placeholder="Ex.: Senh@122"
+            required
           />
            
               <span id="erroSenha" ></span>
