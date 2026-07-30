@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once dirname(__DIR__, 2) . '/includes/config.php';
-require_once ROOT_PATH . '/includes/conexao.php';
+require_once dirname(__DIR__) . '../../includes/config.php';
+require_once dirname(__DIR__, 2) . '/includes/conexao.php';
 
 // =========================================================================
 
@@ -32,6 +32,7 @@ $resultado = mysqli_stmt_get_result($stmt);
     <title>TopAchados - Produtos </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- CSS do menu -->
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
@@ -46,10 +47,12 @@ $resultado = mysqli_stmt_get_result($stmt);
 
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <style>
-        /* CSS Auxiliar para formatar os links invisíveis nos cards dinâmicos */
-        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
-        .link-produto-vitrine:hover h5 { color: #0d6efd; }
-    </style>
+.link-produto-vitrine{text-decoration:none;color:inherit;display:block}
+.link-produto-vitrine:hover h5{color:#0d6efd}
+.card{border-radius:18px;overflow:hidden}
+.produto-img{width:100%;height:220px;object-fit:contain;padding:20px}
+.card-body{display:flex;flex-direction:column}
+</style>
 </head>
 
 <body>
@@ -95,9 +98,7 @@ $resultado = mysqli_stmt_get_result($stmt);
     <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 shadow-sm">
-        <a href="#" class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-        <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-        </svg></a>
+        
 
                 <div class="position-relative">
                    
@@ -113,13 +114,12 @@ $resultado = mysqli_stmt_get_result($stmt);
                     <div class="position-absolute top-0 end-0 p-3 d-flex flex-column gap-2">
 
                         <a href="#" class="text-dark">
-                            <i class="bi bi-heart fs-4"><span class="material-symbols-outlined"> favorite </span></i>
+                            <i class="bi bi-heart fs-4"></i>
                         </a>
 
                         <a href="#" class="text-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-                            </svg>
+                            <i class="bi bi-share fs-5"></i><!--                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+                            -->
                         </a>
 
                     </div>

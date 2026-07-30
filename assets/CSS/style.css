@@ -5,7 +5,6 @@
 :root {
   /* Cores Principais */
   --azul-principal: #2563eb;
-
   --laranja-cta: #ff6b00;
   --verde-economia: #22c55e;
   --amarelo-oferta: #fbbf24;
@@ -33,6 +32,7 @@ main {
 .imgLogo {
   width: 80px;
 }
+
 .logo {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
@@ -57,6 +57,7 @@ main {
   align-items: center;
   gap: 8px;
 }
+
 .menuPrincipal {
   background-color: var(--azul-principal);
   color: var(--branco);
@@ -94,16 +95,6 @@ main {
 
 /* INDEX INICIO */
 
-.bannerIndex {
-  border-radius: 0 0 122px 122px;
-  background-image:
-    linear-gradient(90deg, #0245b8 0%, #0369f5 100%), url(img/fundo.png);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: lighten;
-}
-
 /* INDEX FIM */
 
 /* FOOTER INICIO */
@@ -113,7 +104,6 @@ main {
 
 .footer {
   background-color: hsl(221, 70%, 82%);
-
   box-shadow: 0 -4px 20px rgba(87, 104, 133, 0.08);
 }
 
@@ -128,25 +118,19 @@ main {
 
 .footer .imgLogo {
   width: 50px;
-
   height: 50px;
-
   object-fit: contain;
 }
 
 .footer .logoTexto {
   display: flex;
-
   flex-direction: column;
-
   line-height: 1;
 }
 
 .footer .logo {
   font-size: 28px;
-
   font-weight: 700;
-
   color: var(--azul-principal);
 }
 
@@ -159,7 +143,7 @@ main {
 }
 
 /* =========================================
-   TÍTULOS
+   TITULOS
 ========================================= */
 
 .footer-column h3 {
@@ -188,64 +172,11 @@ main {
 
 /* ADMIN INICIO */
 
-* {
-  box-sizing: border-box;
-}
-:root {
-  /* Cores Principais */
-  --azul-principal: #2563eb;
-
-  --laranja-cta: #ff6b00;
-  --verde-economia: #22c55e;
-  --amarelo-oferta: #fbbf24;
-
-  /* Textos */
-  --texto-escuro: #1e293b;
-  --texto-secundario: #64748b;
-
-  /* Fundos */
-  --fundo: #f8fafc;
-  --branco: #ffffff;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #f8fafc;
-}
-
-main {
-  flex: 1;
-}
-
-.imgLogo {
-  width: 80px;
-}
-.logo {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  display: block;
-  color: var(--branco);
-}
-
-.logoA {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.logoTexto {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
-}
-
 .ladoEsquerdoAdmin {
   background-color: var(--azul-principal) !important;
 }
 /* ADMIN FIM */
+
 /* COMO FUNCIONA inicio  */
 .cartao-passo {
   transition: 0.3s;
@@ -278,19 +209,6 @@ main {
 
 /* COMO FUNCIONA FIM */
 
-/* BANNER INCIO */
-.bannerIndex {
-  border-radius: 0 0 80px 80px;
-  background-image:
-    linear-gradient(90deg, rgba(2, 69, 184, 0.92), rgba(3, 105, 245, 0.92)),
-    url("img/fundo.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-blend-mode: multiply;
-  padding: 70px 0;
-  overflow: hidden;
-}
 /* BANNER INCIO */
 .bannerIndex {
   border-radius: 0 0 80px 80px;
@@ -408,6 +326,7 @@ main {
 }
 
 /* BANNER FIM */
+
 /* TEMA ESCURO INICIO */
 #btnTema {
   display: flex;
@@ -416,21 +335,17 @@ main {
 body.dark-mode {
   --fundo: #121212;
   --cinza: #1e1e1e;
-
   --texto-escuro: #f8fafc;
   --texto-secundario: #b5bdc9;
-
   --branco: #1e1e1e;
-
   --cor-card: #1e1e1e;
   --cor-menu-usuario: #1a1a1a;
   --cor-footer: #181818;
   --cor-borda: #333333;
-}
-body.dark-mode {
   background: #121212;
   color: #f8f9fa;
 }
+
 /* header */
 body.dark-mode .bannerIndex {
   background-image:
@@ -450,19 +365,19 @@ body.dark-mode .porcentagem .text-secondary {
 body.dark-mode .porcentagem .text-primary {
   color: #5aa7ff !important;
 }
-/* Fundo geral */
 
-body.dark-mode,
+/* Fundo geral */
 body.dark-mode main {
   background: #121212;
 }
+
 /* menu */
 body.dark-mode .menuPrincipal {
   background-color: #1a1a1a !important;
   border-bottom: 1px solid #333;
 }
-/* Cards */
 
+/* Cards */
 body.dark-mode .card {
   background: #1f1f1f;
   color: #fff;
@@ -470,13 +385,11 @@ body.dark-mode .card {
 }
 
 /* Lojas em destaque */
-
 body.dark-mode .card-body {
   color: #fff;
 }
 
 /* Filtros */
-
 body.dark-mode .form-select {
   background: #2a2a2a;
   color: #fff;
@@ -490,20 +403,17 @@ body.dark-mode .btn-light {
 }
 
 /* Footer */
-
 body.dark-mode .footer {
   background: #1a1a1a;
 }
 
-/* Menu do usuário */
-
+/* Menu do usuario */
 body.dark-mode .menuUsuario {
   background: #1a1a1a;
   border-color: #333;
 }
 
 /* Textos */
-
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -517,15 +427,8 @@ body.dark-mode label {
 }
 
 /* Links */
-
 body.dark-mode a {
   color: #6ea8fe;
-}
-
-/* Banner de porcentagem */
-
-body.dark-mode .porcentagem {
-  background: #242424;
 }
 
 body.dark-mode .economize {
@@ -533,7 +436,6 @@ body.dark-mode .economize {
 }
 
 /* Produtos */
-
 body.dark-mode .text-muted {
   color: #bfbfbf !important;
 }
