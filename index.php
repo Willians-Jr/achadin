@@ -123,7 +123,7 @@ if (count($recomendacoes) < 5) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
     <style>
         .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
         .link-produto-vitrine:hover h6 { color: #0d6efd; }
@@ -131,18 +131,6 @@ if (count($recomendacoes) < 5) {
 </head>
 <body>
     <main>
-   
- 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&amp;display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
- 
- 
- 
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
    <header class="bannerIndex ">
@@ -212,9 +200,7 @@ if (count($recomendacoes) < 5) {
  
                     
                     <div class="col-12 col-md-5">
-                        <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
-                            class="img-fluid banner-img"
-                            alt="Sacola Banner">
+                        <img src="/achadin/assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner">
                     </div>
  
                     <div class="col-12 col-md-7">
@@ -266,25 +252,18 @@ if (count($recomendacoes) < 5) {
  
             </div>
  
-            <div class="row g-2">
-
-                <?php
-                $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja LIMIT 4";
-                $resultado = mysqli_query($conexao, $sql);
-
-                while ($dados = mysqli_fetch_assoc($resultado)) {
-                ?>
-                    <div class="col-md-3">
-                        <a href="loja.php?id=<?= $dados['idLoja'] ?>" class="text-decoration-none">
-                            <div class="card p-3 text-center h-100">
-                                <?= htmlspecialchars($dados['nomeLoja']) ?>
-                            </div>
-                        </a>
+ 
+            <div class="row g-1">
+ 
+                                    <div class="col-md-3">
+                        <div class="card p-3 text-center h-100">
+                            Kalunga                        </div>
                     </div>
-                <?php
-                }
-                ?>
-
+                                    <div class="col-md-3">
+                        <div class="card p-3 text-center h-100">
+                            Magazine Luiza                        </div>
+                    </div>
+               
             </div>
  
  
