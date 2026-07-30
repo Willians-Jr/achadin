@@ -30,13 +30,15 @@ $resultado = mysqli_stmt_get_result($stmt);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopAchados - Produtos</title>
+    <title>TopAchados - Produtos </title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../menu.css">
+    <!-- CSS do menu -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
 
-    <link rel="stylesheet" href="produtos.css">
+    <!-- CSS da página -->
+    <link rel="stylesheet" href="<?= BASE_URL ?>produtos.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

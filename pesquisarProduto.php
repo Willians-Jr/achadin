@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 $pesquisa="";
@@ -249,8 +249,11 @@ if (isset($_GET['id'])) {
  
             </div>
  
-            <div class="row g-4">
-  <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
+            <!-- CARDS -->
+            <div class="row g-4 ">
+
+              <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
+ 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                     <div class="card h-100 shadow-sm">
  

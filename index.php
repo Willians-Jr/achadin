@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
@@ -276,12 +275,15 @@ login
  
             <div class="col-12 col-lg-6 mt-5 mt-lg-0">
  
+               
                <div class="row align-items-center justify-content-center">
  
+                    
                     <div class="col-12 col-md-5">
                         <img src="/achadin/assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner">
                     </div>
  
+                    <div class="col-12 col-md-7">
                     
                         <div class="porcentagem text-center">
  
@@ -312,15 +314,21 @@ login
  
 <div class="container mt-5">
  
+ 
     <div class="card shadow-lg border-0 rounded-4">
+ 
  
         <div class="card-body">
  
+ 
             <div class="d-flex justify-content-between mb-3">
+ 
  
                 <h6>Lojas em destaque</h6>
  
+ 
                 <a href="#">Ver todas</a>
+ 
  
             </div>
  
@@ -338,13 +346,17 @@ login
                
             </div>
  
+ 
         </div>
  
+ 
     </div>
+ 
  
 </div>
  
 <div class="container my-4">
+ 
  
     <div class="d-flex flex-wrap gap-3">
  
@@ -352,9 +364,11 @@ login
             Todos os filtros
         </button>
  
+ 
         <select class="form-select w-auto">
             <option>Preços</option>
         </select>
+ 
  
         <select class="form-select w-auto">
             <option>Modelos</option>
@@ -368,6 +382,7 @@ login
                     Uso cotidiano</option>        </select>
  
     </div>
+ 
  
 </div>
  
@@ -423,6 +438,7 @@ login
         ?>
        
     </div>
+ 
  
 </div>
  
