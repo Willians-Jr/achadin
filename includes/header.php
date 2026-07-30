@@ -61,7 +61,7 @@ include_once __DIR__ . '/config.php';
                 <?php if (isset($_SESSION['idUsuario'])) { ?>
 
                 <li class="nav-item">
-                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php">Categorias</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/categoria/categorias.php">Categorias</a>
                 </li>
                 <?php } ?>
                 <li class="nav-item">
