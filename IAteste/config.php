@@ -7,7 +7,7 @@ define("SENHA", "senac@02");
 define("BANCO", "clinica");
 
 // API do Groq
-define("GROQ_API_KEY", "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");
+define("", "");
 
 // Timezone
 date_default_timezone_set("America/Sao_Paulo");
