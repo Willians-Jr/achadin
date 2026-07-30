@@ -19,6 +19,9 @@ $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
 
+$sqlLojas = "SELECT nomeLoja, logoLoja FROM loja ORDER BY nomeLoja";
+$resultLojas = mysqli_query($conexao, $sqlLojas);
+
 $idsHistorico = [];
 while ($row = mysqli_fetch_assoc($resSelect)) {
     $idsHistorico[] = $row['idProduto'];
@@ -255,17 +258,34 @@ if (count($recomendacoes) < 5) {
  
  
             <div class="row g-1">
- 
-                                    <div class="col-md-3">
-                        <div class="card p-3 text-center h-100">
-                            Kalunga                        </div>
+    <?php 
+    if ($resultLojas && mysqli_num_rows($resultLojas) > 0):
+        while ($loja = mysqli_fetch_assoc($resultLojas)): 
+    ?>
+        <div class="col-md-3">
+            <div class="card p-3 text-center h-100">
+                <?php if (!empty($loja['logoLoja'])): ?>
+                    <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
+                         alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
+                         class="img-fluid mb-2" 
+                         style="max-height: 60px; object-fit: contain;">
+                <?php else: ?>
+                    <div class="bg-light mb-2 d-flex align-items-center justify-content-center" style="height: 60px;">
+                        <span class="text-muted small">Sem foto</span>
                     </div>
-                                    <div class="col-md-3">
-                        <div class="card p-3 text-center h-100">
-                            Magazine Luiza                        </div>
-                    </div>
-               
+                <?php endif; ?>
+
             </div>
+        </div>
+    <?php 
+        endwhile; 
+    else:
+    ?>
+        <div class="col-12 text-center text-muted">
+            Nenhuma loja cadastrada.
+        </div>
+    <?php endif; ?>
+</div>
  
  
         </div>
