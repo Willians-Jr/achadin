@@ -36,7 +36,7 @@ include_once __DIR__ . '/config.php';
 
     <div class="position-relative flex-grow-1 me-2">
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
-            search
+            
         </span>
  
         <input
