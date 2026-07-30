@@ -6,6 +6,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 $idLoja = (int)$_POST['idLoja'];
 $nomeLoja = $_POST['nomeLoja'];
 $logoLoja = $_POST['logoAtual']; // mantém a imagem atual por padrão
+$linkLoja = $_POST['linkLoja'];
 
 // Verifica se foi enviada uma nova imagem
 if (isset($_FILES['logoLoja']) && $_FILES['logoLoja']['error'] == 0) {
@@ -36,16 +37,17 @@ if (isset($_FILES['logoLoja']) && $_FILES['logoLoja']['error'] == 0) {
 }
 
 $sql = "UPDATE loja
-        SET nomeLoja = ?, logoLoja = ?
+        SET nomeLoja = ?, logoLoja = ?, linkLoja = ?
         WHERE idLoja = ?";
 
 $stmt = mysqli_prepare($conexao, $sql);
 
 mysqli_stmt_bind_param(
     $stmt,
-    "ssi",
+    "sssi",
     $nomeLoja,
     $logoLoja,
+    $linkLoja,
     $idLoja
 );
 

@@ -19,8 +19,9 @@ $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
 
-$sqlLojas = "SELECT nomeLoja, logoLoja FROM loja ORDER BY nomeLoja";
+$sqlLojas = "SELECT nomeLoja, logoLoja, linkLoja FROM loja ORDER BY nomeLoja";
 $resultLojas = mysqli_query($conexao, $sqlLojas);
+
 
 $idsHistorico = [];
 while ($row = mysqli_fetch_assoc($resSelect)) {
@@ -263,17 +264,22 @@ if (count($recomendacoes) < 5) {
         while ($loja = mysqli_fetch_assoc($resultLojas)): 
     ?>
         <div class="col-md-3">
-            <div class="card p-3 text-center h-100">
-                <?php if (!empty($loja['logoLoja'])): ?>
-                    <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
-                         alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
-                         class="img-fluid mb-2" 
-                         style="max-height: 60px; object-fit: contain;">
-                <?php else: ?>
-                    <div class="bg-light mb-2 d-flex align-items-center justify-content-center" style="height: 60px;">
-                        <span class="text-muted small">Sem foto</span>
-                    </div>
-                <?php endif; ?>
+            <div class="card text-center h-100 overflow-hidden" style="min-height: 100px;">
+                
+                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" class="d-flex align-items-center justify-content-center h-100 text-decoration-none">
+                    
+                    <?php if (!empty($loja['logoLoja'])): ?>
+                        <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
+                             alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
+                             class="w-100 h-100" 
+                             style="max-height: 60px; object-fit: contain;">
+                    <?php else: ?>
+                        <div class="bg-light h-100 d-flex align-items-center justify-content-center p-3" style="min-height: 100px;">
+                            <span class="text-dark fw-bold"><?php echo htmlspecialchars($loja['nomeLoja']); ?></span>
+                        </div>
+                    <?php endif; ?>
+
+                </a>
 
             </div>
         </div>
