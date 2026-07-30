@@ -143,76 +143,8 @@ if (count($recomendacoes) < 5) {
  
  
  
-<nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
- 
-    <div class="container-fluid">
- 
-        <a class="navbar-brand logoA" href="/achadin/">
-    <img src="/achadin/assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
- 
-    <div class="logoTexto">
-        <span class="logo">Top</span>
-        <span class="logo">Achados</span>
-    </div>
-</a>
- 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
- 
-        <div class="collapse navbar-collapse" id="navbarColor03">
- 
-            <form class="d-flex mx-auto w-50 form formularioBusca" action="/achadin/pesquisarProduto.php" role="search">
- 
-    <div class="position-relative flex-grow-1 me-2">
-        <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
-            search
-        </span>
- 
-        <input class="form-control pe-5" type="search" name="pesquisa" placeholder="Busca por palavra-chave..." aria-label="Busca">
- 
-           
-    </div>
- 
-    <button class="btn btn-primary" type="submit">
-        Buscar
-    </button>
- 
-</form>
- 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
-                <li class="nav-item">
-                    <a class="active nav-link link-light" href="/achadin/admin/categoria/gerenciarCategoria.php">Categorias</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/admin/produto/produtos.php">Produtos</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/admin/loja/gerenciarLoja.php">Lojas</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/comoFunciona.php">Como Funciona</a>
-                </li>
-           
- 
- 
-                  <li class="favoritosIcon">
-    <a href="/achadin/admin/usuario/loginUsuario.php" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">
-       <span class="material-symbols-outlined">
-login
-</span>
- 
-        <span>Login</span>
-    </a>
-  </li>
-            </ul>
- 
-        </div>
-    </div>
-</nav>
+<?php require_once ROOT_PATH . '/includes/header.php'; ?>
+
    <header class="bannerIndex ">
  
  <div class="container banner">
