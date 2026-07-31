@@ -109,7 +109,7 @@ include_once __DIR__ . '/config.php';
         </div>
     </div>
 </nav>
-<script>
+d<script>
   const BASE_URL = "<?= BASE_URL ?>";
 </script>
 
