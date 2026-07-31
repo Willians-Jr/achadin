@@ -91,11 +91,13 @@ include_once __DIR__ . '/config.php';
                         <?php }else { ?>
                         <a href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
-                    account_circle
+                            <?php if (isset($_SESSION['fotoUsuario']) && !empty($_SESSION['fotoUsuario'])) { ?>
+                                <img src="<?= BASE_URL ?>assets/UPLOAD/<?= htmlspecialchars($_SESSION['fotoUsuario']) ?>" alt="Foto do Usuário" class="rounded-circle" style="width: 30px; height: 30px;">
+                    <?php } else { ?>account_circle
                     </span>
                     <span>Perfil</span>
                         </a>
-                        <?php } ?>
+                        <?php }} ?>
                 </li>
                     <li class ="nav-item">
                         <button id="btnTema" class="btn btn-outline-light">
