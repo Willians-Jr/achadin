@@ -80,14 +80,15 @@ include_once __DIR__ . '/config.php';
  
  
                 <li class="favoritosIcon">
-                         <?php if (!isset($_SESSION['idUsuario'])) { ?>
+                         <?php if (isset($_SESSION['idUsuario'])) { ?>
                          <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
                     login
                     </span>
-        <?php } ?>
+        
                     <span>Login</span>
                         </a>
+                        <?php } ?>
                 </li>
                     <li class ="nav-item">
                         <button id="btnTema" class="btn btn-outline-light">
