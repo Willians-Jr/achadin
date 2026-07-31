@@ -1,5 +1,5 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 
 require_once ROOT_PATH . '/includes/conexao.php';
 
@@ -13,7 +13,7 @@ if (!isset($_SESSION['idUsuario'])) {
 $idUsuario = $_SESSION['idUsuario'];
 
 // Busca dados do usuário logado
-$sql = "SELECT nomeUsuario, loginUsuario, imgUsuario FROM usuario WHERE idUsuario = ?";
+$sql = "SELECT nomeUsuario, emailUsuario, imgUsuario FROM usuario WHERE idUsuario = ?";
 $stmt = mysqli_prepare($conexao, $sql);
 mysqli_stmt_bind_param($stmt, "i", $idUsuario);
 mysqli_stmt_execute($stmt);
@@ -25,13 +25,13 @@ if (mysqli_num_rows($resultado) === 0) {
 
 $dados = mysqli_fetch_assoc($resultado);
 $nomeUsuario = $dados['nomeUsuario'] ?? '';
-$loginUsuario = $dados['loginUsuario'] ?? '';
+$emailUsuario = $dados['emailUsuario'] ?? '';
 $imgUsuario = $dados['imgUsuario'] ?? '';
 
-// Atualiza nome/login
+// Atualiza nome/email
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $novoNome = trim($_POST['nomeUsuario'] ?? '');
-  $novoLogin = trim($_POST['loginUsuario'] ?? '');
+  $novoemail = trim($_POST['emailUsuario'] ?? '');
   $nomeImagem=$imgUsuario;
 
  if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
@@ -45,14 +45,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     move_uploaded_file($arquivo['tmp_name'], $caminho);
 }
 
-  if ($novoNome === '' || $novoLogin === '') {
-    $_SESSION['mensagemPerfil'] = "Nome e login são obrigatórios.";
+  if ($novoNome === '' || $novoemail === '') {
+    $_SESSION['mensagemPerfil'] = "Nome e email são obrigatórios.";
     header("Location: perfilUsuario.php");
     exit;
   }
 
   $sqlUpd = "UPDATE usuario
-           SET nomeUsuario = ?, loginUsuario = ?, imgUsuario = ?
+           SET nomeUsuario = ?, emailUsuario = ?, imgUsuario = ?
            WHERE idUsuario = ?";
 
 $stmtUpd = mysqli_prepare($conexao, $sqlUpd);
@@ -61,7 +61,7 @@ mysqli_stmt_bind_param(
     $stmtUpd,
     "sssi",
     $novoNome,
-    $novoLogin,
+    $novoemail,
     $nomeImagem,
     $idUsuario
 );
@@ -83,7 +83,16 @@ mysqli_stmt_bind_param(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Perfil</title>
-       
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     
     
@@ -107,7 +116,7 @@ mysqli_stmt_bind_param(
 
             <div class="mt-3">
               <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
-              <p class="mb-1"><strong>Login:</strong> <?php echo htmlspecialchars($loginUsuario); ?></p>
+              <p class="mb-1"><strong>email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
             </div>
           </div>
         </div>
@@ -130,13 +139,13 @@ mysqli_stmt_bind_param(
               </div>
 
               <div class="mb-3">
-                <label for="loginUsuario" class="form-label">login</label>
+                <label for="emailUsuario" class="form-label">email</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="loginUsuario"
-                  name="loginUsuario"
-                  value="<?php echo htmlspecialchars($loginUsuario); ?>"
+                  id="emailUsuario"
+                  name="emailUsuario"
+                  value="<?php echo htmlspecialchars($emailUsuario); ?>"
                   required
                 />
               </div>

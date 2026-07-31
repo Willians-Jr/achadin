@@ -80,13 +80,20 @@ include_once __DIR__ . '/config.php';
  
  
                 <li class="favoritosIcon">
-                         <?php if (isset($_SESSION['idUsuario'])) { ?>
+                         <?php if (!isset($_SESSION['idUsuario'])) { ?>
                          <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
                     login
                     </span>
         
                     <span>Login</span>
+                        </a>
+                        <?php }else { ?>
+                        <a href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
+                        <span class="material-symbols-outlined">
+                    account_circle
+                    </span>
+                    <span>Perfil</span>
                         </a>
                         <?php } ?>
                 </li>
@@ -102,6 +109,9 @@ include_once __DIR__ . '/config.php';
         </div>
     </div>
 </nav>
+<script>
+  const BASE_URL = "<?= BASE_URL ?>";
+</script>
 
 <script src="<?= BASE_URL ?>assets/JS/atualizarTema.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

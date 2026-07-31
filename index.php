@@ -205,7 +205,7 @@ if (count($recomendacoes) < 5) {
  
                     
                     <div class="col-12 col-md-5">
-                        <img src="/achadin/assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner">
+                        <img id="sacola" src="<?= BASE_URL ?>assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner" >
                     </div>
  
                     <div class="col-12 col-md-7">
@@ -302,36 +302,7 @@ if (count($recomendacoes) < 5) {
  
 </div>
  
-<div class="container my-4">
- 
- 
-    <div class="d-flex flex-wrap gap-3">
- 
-        <button class="btn btn-light border">
-            Todos os filtros
-        </button>
- 
- 
-        <select class="form-select w-auto">
-            <option>Preços</option>
-        </select>
- 
- 
-        <select class="form-select w-auto">
-            <option>Modelos</option>
-        </select>
- 
-        <select name="categoriaProduto" id="categoriaProduto" class="form-select w-auto">
-            <option value="" disabled="" selected="">Categorias</option><option value="2">
-                    Cosméticos</option><option value="1">
-                    Produto de Limpeza</option><option value="3">
-                    Tecnologia</option><option value="4">
-                    Uso Cotidiano</option>        </select>
- 
-    </div>
- 
- 
-</div>
+
  
 <style>
   .card {

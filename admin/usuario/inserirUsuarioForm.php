@@ -24,12 +24,13 @@ require_once ROOT_PATH . '/includes/conexao.php';
   
 
   <body class="bg-light">
+    <main> 
     <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
-<main> 
+
 <div class="container py-4">
 
-  <div class="row shadow rounded-4 overflow-hidden bg-white">
+  <div class="row shadow rounded-4 overflow-hidden">
         <!-- Lado esquerdo -->
         <div class="ladoEsquerdoAdmin col-md-4 text-center p-5 border-end ">
             <!-- LOGO -->
@@ -72,7 +73,6 @@ require_once ROOT_PATH . '/includes/conexao.php';
           <input class="form-control"   type="email"
             id="emailUsuario"
             name="emailUsuario"
-            
             placeholder="Ex.: email@address.com"
             required
           />
@@ -102,7 +102,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
         <div class="mb-4">
           <label class="form-label fw-semibold">Foto do usuário</label>
 
-          <div class="border rounded-4 p-4 text-center bg-light">
+          <div class="border rounded-4 p-4 text-center ">
 
               <i class="bi bi-person-circle fs-1 text-primary"></i>
 
