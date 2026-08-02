@@ -3,8 +3,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Top Achados - Footer</title>
 
@@ -18,8 +17,7 @@
 
     <!-- CSS do Footer -->
 
-    <link rel="stylesheet"
-          href="<?= BASE_URL ?>assets/CSS/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
 
 </head>
 
@@ -34,22 +32,17 @@
             <div class="row align-items-start g-4">
 
 
-                <!-- =====================================
-                     TOP ACHADOS
-                ====================================== -->
+                <!-- =====================================TOP ACHADOS====================================== -->
 
                 <div class="col-12 col-md-6 col-lg-6">
 
 
                     <!-- LOGO -->
 
-                    <a class="navbar-brand logoA d-flex align-items-center gap-2"
-                       href="<?= BASE_URL?>index.php">
+                    <a class="navbar-brand logoA d-flex align-items-center gap-2"href="<?= BASE_URL?>">
 
 
-                        <img src="<?= BASE_URL ?>assets/IMG/Catavento.png"
-                             class="imgLogo"
-                             alt="Logo Top Achados">
+                        <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo"alt="Logo Top Achados">
 
 
                         <div class="logoTexto">
@@ -78,9 +71,7 @@
                 </div>
 
 
-                <!-- =====================================
-                     FRONTEND
-                ====================================== -->
+                <!-- =====================================FRONTEND ====================================== -->
 
                 <div class="col-12 col-md-3 col-lg-3 footer-column">
 
@@ -101,9 +92,7 @@
                 </div>
 
 
-                <!-- =====================================
-                     BACKEND
-                ====================================== -->
+                <!-- =====================================BACKEND====================================== -->
 
                 <div class="col-12 col-md-3 col-lg-3 footer-column">
 
