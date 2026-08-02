@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../includes/conexao.php';
+
 
 
 $idCategoria = isset($_GET['idCategoria']) ? (int) $_GET['idCategoria'] : 0;

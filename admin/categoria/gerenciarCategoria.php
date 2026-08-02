@@ -1,5 +1,6 @@
 <?php
-include_once __DIR__ . '/../../includes/conexao.php';
+include_once __DIR__ . '/config.php';
+require_once ROOT_PATH . '/includes/conexao.php';
 
 $pesquisaCategoria = isset($_GET['pesquisaCategoria']) ? $_GET['pesquisaCategoria'] : '';
 
@@ -20,12 +21,10 @@ if (!$resultado) {
 
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Categorias</title>
-  </head>
+  <?php $titulo = "Gerenciar Categoria"; 
+    require_once ROOT_PATH . '/includes/head.php'; ?>
   <body>
+    <?phprequire_once ROOT_PATH . '/includes/header.php'; ?>
     <h1>Categorias</h1>
 
     <form method="GET">
