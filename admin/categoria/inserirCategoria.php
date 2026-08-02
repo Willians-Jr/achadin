@@ -19,8 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_query($conexao, $sqlInsert)) {
 
-        header("Location: inserirCategoria.php");
-        exit;
+        echo "<script>
+                alert('Categoria cadastrada com sucesso!');
+                window.location='inserirCategoriaForm.php';
+              </script>";
 
     } else {
 

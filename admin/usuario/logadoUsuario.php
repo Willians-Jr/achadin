@@ -32,15 +32,7 @@ if (isset($_SESSION['idUsuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Perfil - Top Achados</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-</head>
+<?php $titulo="Meu Perfil - Top Achados"; require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
   
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
@@ -50,36 +42,99 @@ if (isset($_SESSION['idUsuario'])) {
 <!-- SEGUNDO -->
  
 <div class="menuUsuario py-2">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center">
- 
-        <div class="textoUsuario mb-2 mb-md-0">
-            Olá, <span class="nomeUsuario">
-            <?php
-            if ($usuario = mysqli_fetch_assoc($resultadoUsuario)) {
-            echo $usuario['nomeUsuario'];
-        }
-            ?>
-            </span>
+    <div class="container my-5">
+
+    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+
+    <div class="row g-4">
+
+        <!-- Adicionar Produto -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/inserirProdutoForm.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            add_box
+                        </span>
+                        <h5 class="mt-3">Adicionar Produto</h5>
+                        <p class="text-muted">
+                            Cadastre um novo produto e compartilhe ofertas.
+                        </p>
+                    </div>
+                </div>
+            </a>
         </div>
- 
-       <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
- 
-           <a href="#" class="nav-link linkUsuario d-flex align-items-center px-0">
-    <span class="material-symbols-outlined me-1">
-        person
-    </span>
-    Minha conta
-</a>
- 
-<span class="mx-3 text-secondary d-none d-md-inline">|</span>
- 
-<a href="logoutUsuario.php" class="nav-link linkSair px-0 mt-2 mt-md-0 ms-md-3">
-    Sair
-</a>
- 
+
+        <!-- Meus Produtos -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/meusProdutos.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            inventory_2
+                        </span>
+                        <h5 class="mt-3">Meus Produtos</h5>
+                        <p class="text-muted">
+                            Visualize e gerencie seus produtos cadastrados.
+                        </p>
+                    </div>
+                </div>
+            </a>
         </div>
- 
+
+        <!-- Editar Perfil -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/usuario/perfilUsuario.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            manage_accounts
+                        </span>
+                        <h5 class="mt-3">Editar Perfil</h5>
+                        <p class="text-muted">
+                            Atualize seus dados pessoais e foto.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Favoritos -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>favoritos.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            favorite
+                        </span>
+                        <h5 class="mt-3">Favoritos</h5>
+                        <p class="text-muted">
+                            Veja seus produtos favoritos.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Cupons -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>coupons.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            sell
+                        </span>
+                        <h5 class="mt-3">Cupons</h5>
+                        <p class="text-muted">
+                            Confira cupons e descontos disponíveis.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
     </div>
 </div>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 </body>
 </html>

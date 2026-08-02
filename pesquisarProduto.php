@@ -3,7 +3,9 @@
 require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 $pesquisa="";
-
+if ($pesquisa=null){
+  $pesquisa="";
+}else{}
 if (isset($_GET['pesquisa'])){
   $pesquisa=trim($_GET['pesquisa']);
   
@@ -75,26 +77,8 @@ if (isset($_GET['id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Resultado da Pesquisa</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/produto.css">
-    <style>
-        /* CSS Auxiliar para formatar os novos links invisíveis nos cards */
-        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
-        .link-produto-vitrine:hover h5 { color: #0d6efd; }
-    </style>
-</head>
+<?php $titulo = "Resultado da Pesquisa - TopAchados";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
 <main>
    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
@@ -325,7 +309,7 @@ if (isset($_GET['id'])) {
  
             <div class="text-center mt-5">
  
-                <button class="btn-ver-produtos" onclick="window.location.href='produtos.php';">
+                <button class="btn-ver-produtos" onclick="window.location.href='<?= BASE_URL ?>admin/produto/produtos.php';">
                     <span>Ver todos os produtos</span>
                     <span class="seta">→</span>
                 </button>

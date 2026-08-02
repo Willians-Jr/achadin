@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Insere a loja
-    $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja, linkLoja) VALUES (?, ?, ?)";
+    $sqlInsert = "INSERT INTO loja (nomeLoja, linkLoja, logoLoja) VALUES (?, ?, ?)";
 
     $stmt = mysqli_prepare($conexao, $sqlInsert);
 

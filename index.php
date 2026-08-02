@@ -120,19 +120,8 @@ if (count($recomendacoes) < 5) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Achados - Página Inicial</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-    <style>
-        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
-        .link-produto-vitrine:hover h6 { color: #0d6efd; }
-    </style>
-</head>
+<?php $titulo="Top Achados - Página Inicial";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
     <main>
 
@@ -266,13 +255,13 @@ if (count($recomendacoes) < 5) {
         <div class="col-md-3">
             <div class="card text-center h-100 overflow-hidden" style="min-height: 100px;">
                 
-                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" class="d-flex align-items-center justify-content-center h-100 text-decoration-none">
+                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none">
                     
                     <?php if (!empty($loja['logoLoja'])): ?>
                         <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
                              alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
                              class="w-100 h-100" 
-                             style="max-height: 60px; object-fit: contain;">
+                             style="max-height: 150px; object-fit: contain;">
                     <?php else: ?>
                         <div class="bg-light h-100 d-flex align-items-center justify-content-center p-3" style="min-height: 100px;">
                             <span class="text-dark fw-bold"><?php echo htmlspecialchars($loja['nomeLoja']); ?></span>

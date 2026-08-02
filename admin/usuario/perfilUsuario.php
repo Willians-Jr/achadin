@@ -34,13 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $novoemail = trim($_POST['emailUsuario'] ?? '');
   $nomeImagem=$imgUsuario;
 
- if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
+if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
 
     $arquivo = $_FILES['imgUsuario'];
 
     $nomeImagem = time() . "_" . basename($arquivo['name']);
 
-    $caminho = "imagens/" . $nomeImagem;
+    $caminho = ROOT_PATH . "/assets/UPLOAD/" . $nomeImagem;
 
     move_uploaded_file($arquivo['tmp_name'], $caminho);
 }
@@ -51,9 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit;
   }
 
-  $sqlUpd = "UPDATE usuario
-           SET nomeUsuario = ?, emailUsuario = ?, imgUsuario = ?
-           WHERE idUsuario = ?";
+  $sqlUpd = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ?, imgUsuario = ? WHERE idUsuario = ?";
 
 $stmtUpd = mysqli_prepare($conexao, $sqlUpd);
 
@@ -79,28 +77,11 @@ mysqli_stmt_bind_param(
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Perfil</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-
-    
-    
-  </head>
+  <?php $titulo = "Meu Perfil";  
+  require_once ROOT_PATH . '/includes/head.php'; ?>
 
   <body>
-   <?php require_once ROOT_PATH . '/includes/header.php';
-?>
+<?php require_once ROOT_PATH . '/includes/header.php';?>
     <main class="container mt-4">
       <h1 class="text-center mb-4">Meu Perfil</h1>
 
@@ -108,17 +89,23 @@ mysqli_stmt_bind_param(
         <div class="col-md-4">
           <div class="card shadow p-3">
             <div class="text-center">
-              <img
-                src="<?php echo !empty($imgUsuario) ? 'imagens/' . $imgUsuario : 'BASE_URL img/download.png'; ?>"
-                alt="Foto do usuário"
-              />
+              <?php if (!empty($imgUsuario)): ?>
+    <img
+      src="<?php echo BASE_URL . 'assets/UPLOAD/' . htmlspecialchars($imgUsuario); ?>"
+      alt="Foto do usuário"
+      style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%;"
+    />
+  <?php else: ?>
+    <i class="bi bi-person-circle" style="font-size: 160px;"></i>
+    
+  <?php endif; ?>
             </div>
 
             <div class="mt-3">
               <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
               <p class="mb-1"><strong>email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
             </div>
-          </div>
+            </div>
         </div>
 
         <div class="col-md-8">
@@ -176,6 +163,6 @@ mysqli_stmt_bind_param(
       </div>
     </main>
 
-   
+    <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
   </body>
 </html>
