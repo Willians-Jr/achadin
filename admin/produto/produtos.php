@@ -27,38 +27,14 @@ $resultado = mysqli_stmt_get_result($stmt);
 <!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopAchados - Produtos </title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-    <!-- CSS do menu -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-
-    <!-- CSS da página -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>produtos.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <style>
-.link-produto-vitrine{text-decoration:none;color:inherit;display:block}
-.link-produto-vitrine:hover h5{color:#0d6efd}
-.card{border-radius:18px;overflow:hidden}
-.produto-img{width:100%;height:220px;object-fit:contain;padding:20px}
-.card-body{display:flex;flex-direction:column}
-</style>
+   <?php $titulo="TopAchados - Produtos";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 </head>
 
 <body>
-
-<main>
  <?php require_once ROOT_PATH . '/includes/header.php'; ?>
+<main>
+
 <div class="container py-5">
 
   
@@ -165,8 +141,5 @@ $resultado = mysqli_stmt_get_result($stmt);
 </main>
 
 <?php require_once ROOT_PATH . '/includes/footer.php';?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

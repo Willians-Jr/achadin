@@ -1,5 +1,19 @@
 <?php
 include_once __DIR__ . '/config.php';
+require_once ROOT_PATH . '/includes/conexao.php';
+
+if (isset($_SESSION['idUsuario'])) {
+    $idUsuario = $_SESSION['idUsuario'];
+$sqlnav = "SELECT imgUsuario,nivel FROM usuario WHERE idUsuario = ?";
+$stmt = mysqli_prepare($conexao, $sqlnav);
+mysqli_stmt_bind_param($stmt, "i", $idUsuario);
+mysqli_stmt_execute($stmt);
+$resultadu = mysqli_stmt_get_result($stmt);
+$dado = mysqli_fetch_assoc($resultadu);
+$imgUsuario = $dado['imgUsuario'];
+$_SESSION['nivel'] = $dado['nivel'];
+}
+
 
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
@@ -80,24 +94,125 @@ include_once __DIR__ . '/config.php';
                     <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
                     login
-                    </span>
-        
-                    <span>Login</span>
+                    </span><span>Login</span>
                         </a>
-                    <?php } else { ?>
-                        <a href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php" class="btn btn-outline-light d-flex align-items-center gap-2" role="button">
-                            <?php if (isset($_SESSION['fotoUsuario']) && !empty($_SESSION['fotoUsuario'])) { ?>
-                                <img src="<?= BASE_URL ?>assets/UPLOAD/<?= htmlspecialchars($_SESSION['fotoUsuario']) ?>"
-                                    alt="Foto do Usuário"
-                                    class="rounded-circle"
-                                    style="width:30px; height:30px; object-fit:cover;">
-                            <?php } else { ?>
-                                <span class="material-symbols-outlined">account_circle</span>
-                            <?php } ?>
+                    <?php } else{?>
+                        <div class="dropdown">
 
-                            <span>Perfil</span>
-                        </a>
-                    <?php } ?>
+    <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center gap-2"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false">
+
+       <?php if (!empty($imgUsuario)){ ?>
+    <img src="<?php echo BASE_URL . 'assets/UPLOAD/' . htmlspecialchars($imgUsuario); ?>"alt="Foto do usuário"class="rounded-circle"width="32"
+                height="32" style="object-fit:cover;"><span>Perfil</span>
+<?php }else{ ?>
+    <i class="bi bi-person-circle"></i>
+    
+
+
+            
+        <span>Perfil</span>
+ <?php }}?> 
+    </button>
+
+    <ul class="dropdown-menu dropdown-menu-end shadow">
+
+        <li class="dropdown-header">
+            <?= htmlspecialchars($_SESSION['nomeUsuario']) ?>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>admin/usuario/perfilUsuario.php">
+
+                <span class="material-symbols-outlined me-2">
+                    person
+                </span>
+
+                Gerenciar Perfil
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php">
+
+                <span class="material-symbols-outlined me-2">
+                    dashboard
+                </span>
+
+                Painel do Usuário
+            </a>
+        </li>
+<?php if ($_SESSION['nivel']==1){ ?>
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>admin/loja/inserirLojaForm.php">
+
+                <span class="material-symbols-outlined me-2">
+                    add_box
+                </span>
+
+                Adicionar Loja
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>admin/categoria/inserirCategoriaForm.php">
+
+                <span class="material-symbols-outlined me-2">
+                    add_box
+                </span>
+
+                Adicionar Categoria
+            </a>
+        </li>
+        <?php } ?>
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>admin/produto/inserirProdutoForm.php">
+
+                <span class="material-symbols-outlined me-2">
+                    add_box
+                </span>
+
+                Adicionar Produto
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item"
+               href="<?= BASE_URL ?>favoritos.php">
+
+                <span class="material-symbols-outlined me-2">
+                    favorite
+                </span>
+
+                Favoritos
+            </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <li>
+            <a class="dropdown-item text-danger"
+               href="<?= BASE_URL ?>admin/usuario/logoutUsuario.php">
+
+                <span class="material-symbols-outlined me-2">
+                    logout
+                </span>
+
+                Sair
+            </a>
+        </li>
+
+    </ul>
+
+</div>
                 </li>
                     <li class ="nav-item">
                         <button id="btnTema" class="btn btn-outline-light">
@@ -115,4 +230,5 @@ const BASE_URL = "<?= BASE_URL ?>";
 </script>
 
 <script src="<?= BASE_URL ?>assets/JS/atualizarTema.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
