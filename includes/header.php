@@ -3,9 +3,9 @@ include_once __DIR__ . '/config.php';
 
 ?>
 <nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
- 
+
     <div class="container-fluid">
- 
+
         <!-- LOGO -->
         <a class="navbar-brand logoA" href="<?= BASE_URL ?>">
             <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="Logo Top Achados">
@@ -15,7 +15,7 @@ include_once __DIR__ . '/config.php';
                 <span class="logo">Achados</span>
             </div>
         </a>
- 
+
         <!-- TELEFONE ICONE-->
         <button
             class="navbar-toggler"
@@ -27,9 +27,9 @@ include_once __DIR__ . '/config.php';
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
- 
+
         <div class="collapse navbar-collapse" id="navbarColor03">
- 
+
             <!-- BARRA DE BUSCA -->
     
 <form class="d-flex mx-auto w-50 formularioBusca" method="GET" action="<?= BASE_URL ?>pesquisarProduto.php" role="search">
@@ -38,7 +38,7 @@ include_once __DIR__ . '/config.php';
         <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
             
         </span>
- 
+
         <input
             class="form-control pe-5"
             type="search"
@@ -46,16 +46,15 @@ include_once __DIR__ . '/config.php';
             value="<?= htmlspecialchars($_GET['pesquisa'] ?? '') ?>"
             placeholder="Busca por palavra-chave..."
             aria-label="Busca">
- 
-           
+
+
     </div>
- 
+
     <button class="btn btn-primary" type="submit">
         Buscar
     </button>
- 
+
 </form>
- 
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
                 <?php if (isset($_SESSION['idUsuario'])) { ?>
@@ -67,55 +66,53 @@ include_once __DIR__ . '/config.php';
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/produto/produtos.php">Produtos</a>
                 </li>
- 
+
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/gerenciarLoja.php">Lojas</a>
                 </li>
- 
+
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>comoFunciona.php">Como Funciona</a>
                 </li>
-           
- 
- 
- 
+
                 <li class="favoritosIcon">
-                         <?php if (!isset($_SESSION['idUsuario'])) { ?>
-                         <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
+                    <?php if (!isset($_SESSION['idUsuario'])) { ?>
+                    <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
                     login
                     </span>
         
                     <span>Login</span>
                         </a>
-                        <?php }else { ?>
-                        <a href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
-                        <span class="material-symbols-outlined">
+                    <?php } else { ?>
+                        <a href="<?= BASE_URL ?>admin/usuario/logadoUsuario.php" class="btn btn-outline-light d-flex align-items-center gap-2" role="button">
                             <?php if (isset($_SESSION['fotoUsuario']) && !empty($_SESSION['fotoUsuario'])) { ?>
-                                <img src="<?= BASE_URL ?>assets/UPLOAD/<?= htmlspecialchars($_SESSION['fotoUsuario']) ?>" alt="Foto do Usuário" class="rounded-circle" style="width: 30px; height: 30px;">
-                    <?php } else { ?>account_circle
-                    </span>
-                    <span>Perfil</span>
+                                <img src="<?= BASE_URL ?>assets/UPLOAD/<?= htmlspecialchars($_SESSION['fotoUsuario']) ?>"
+                                    alt="Foto do Usuário"
+                                    class="rounded-circle"
+                                    style="width:30px; height:30px; object-fit:cover;">
+                            <?php } else { ?>
+                                <span class="material-symbols-outlined">account_circle</span>
+                            <?php } ?>
+
+                            <span>Perfil</span>
                         </a>
-                        <?php }} ?>
+                    <?php } ?>
                 </li>
                     <li class ="nav-item">
                         <button id="btnTema" class="btn btn-outline-light">
-                        <span id="iconeTema" class="material-symbols-outlined text-white">
+                        <span id="iconeTema" class="material-symbols-outlined">
                             dark_mode
                         </span>
                         </button>
                     </li>
             </ul>
- 
         </div>
     </div>
 </nav>
-d<script>
-  const BASE_URL = "<?= BASE_URL ?>";
+<script>
+const BASE_URL = "<?= BASE_URL ?>";
 </script>
 
 <script src="<?= BASE_URL ?>assets/JS/atualizarTema.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
- 
- 

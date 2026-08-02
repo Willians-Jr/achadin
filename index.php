@@ -138,7 +138,7 @@ if (count($recomendacoes) < 5) {
 
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
-   <header class="bannerIndex ">
+<header class="bannerIndex ">
  
  <div class="container banner">
  
@@ -362,114 +362,6 @@ if (count($recomendacoes) < 5) {
 </div>
  
 </main>
- 
- 
- 
-    <meta charset="UTF-8">
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <title>Top Achados - Footer</title>
- 
- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
- 
- 
-    <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
- 
- 
- 
- 
- 
- 
- 
-    <footer class="footer py-4">
- 
-        <div class="container">
- 
-            <div class="row align-items-start g-4">
- 
- 
-                <div class="col-12 col-md-6 col-lg-6">
- 
- 
-                    <a class="navbar-brand logoA d-flex align-items-center gap-2" href="/achadin/index.php">
- 
- 
-                        <img src="/achadin/assets/IMG/Catavento.png" class="imgLogo" alt="Logo Top Achados">
- 
- 
-                        <div class="logoTexto">
- 
-                            <span class="logo">
-                                Top
-                            </span>
- 
-                            <span class="logo">
-                                Achados
-                            </span>
- 
-                        </div>
- 
-                    </a>
- 
- 
-                    <p class="footer-slogan mt-3 mb-0">
- 
-                        O que você busca está aqui!
- 
-                    </p>
- 
-                </div>
- 
- 
-                <div class="col-12 col-md-3 col-lg-3 footer-column">
- 
- 
-                    <h3 class="h6 text-uppercase fw-bold mb-3">
- 
-                        FrontEnd
- 
-                    </h3>
- 
- 
-                    <p class="mb-0">
- 
-                        Nomes dos responsáveis
- 
-                    </p>
- 
-                </div>
- 
- 
-                <div class="col-12 col-md-3 col-lg-3 footer-column">
- 
- 
-                    <h3 class="h6 text-uppercase fw-bold mb-3">
- 
-                        BackEnd
- 
-                    </h3>
- 
- 
-                    <p class="mb-0">
- 
-                        Nomes dos responsáveis
- 
-                    </p>
- 
-                </div>
- 
- 
-            </div>
- 
-        </div>
- 
-    </footer>
- 
- 
- 
- 
- 
- 
-</body></html>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
+</body>
+</html>
