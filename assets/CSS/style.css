@@ -424,7 +424,8 @@ body.dark-mode p,
 body.dark-mode label {
   color: #fff;
 }
-body.dark-mode .btn-outline-light {
+body.dark-mode .btn-outline-light,
+.logo {
   color: #fff;
   border-color: #fff;
 }
