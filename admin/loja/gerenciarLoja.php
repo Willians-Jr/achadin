@@ -1,68 +1,151 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
-
+ 
 $pesquisaLoja = isset($_GET['pesquisaLoja']) ? $_GET['pesquisaLoja'] : '';
-
+ 
 if ($pesquisaLoja) {
     $sql = "SELECT * FROM loja WHERE nomeLoja LIKE '%$pesquisaLoja%'
-    ORDER BY nomeLoja ASC";
+            ORDER BY nomeLoja ASC";
 } else {
     $sql = "SELECT * FROM loja";
 }
-
+ 
 $resultado = mysqli_query($conexao, $sql);
-
+ 
 if (!$resultado) {
     die("Erro ao buscar a loja: " . mysqli_error($conexao));
 }
 ?>
-
+ 
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lojas - Gerenciar</title>
-  </head>
-  <body>
-    <h1>Tabela de Gerenciamento de Lojas</h1>
-
-    <form method="GET">
-    <input
-        type="search"
-        name="pesquisaLoja"
-        placeholder="Pesquisar loja..."
-        value="<?php echo htmlspecialchars($pesquisaLoja); ?>">
-    <button type="submit">
-        Pesquisar
-    </button>
-
-    <table border="1">
-  <tr>
-    <th>Nome</th>
-    <th>Logo</th>
-    <th colspan="2">Ações</th>
-  </tr>
+ 
 <?php
-while ($dados = mysqli_fetch_assoc($resultado)) { ?>
-  <tr>
-    <td><?php echo $dados['nomeLoja']; ?></td>
-
-    <td><img src="<?=BASE_URL?>/assets/UPLOAD/<?php echo $dados['logoLoja']; ?>" alt="Logo da Loja" width="100" /></td>
-    <br><br>
-    
-    <td><a href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>">Alterar</a></td>
-    <td>
-      <a href="excluirLoja.php?id=<?php echo $dados['idLoja']; ?>"
-         onclick="return confirm('Deseja realmente excluir esta loja?')">
-        Excluir
-      </a>
-    </td>
-  </tr>
-<?php } ?>
-</table>
-</form>
-  </body>
+$titulo = "Gerenciar Loja";
+require_once ROOT_PATH . '/includes/head.php';
+?>
+ 
+<body>
+  <?php require_once ROOT_PATH . '/includes/header.php'; ?>
+ 
+<div class="container py-5">
+ 
+    <div class="d-flex justify-content-between align-items-center mb-4">
+ 
+        <a href="<?= BASE_URL ?>" class="btn bg-dark-subtle">
+            Menu Principal
+</a>
+ 
+        <h1 class="fw-bold mb-0">
+            Lojas
+</h1>
+ 
+        <a href="inserirLoja.php" class="btn bg-dark-subtle">
+            Inserir Loja
+</a>
+ 
+    </div>
+ 
+    <div class="card shadow-lg border-0">
+ 
+        <div class="card-body">
+ 
+            <div class="col-lg-6 col-md-8 mb-4">
+ 
+                <form method="GET">
+ 
+                    <div class="d-flex gap-2">
+ 
+                        <input
+                            class="form-control"
+                            type="search"
+                            name="pesquisaLoja"
+                            placeholder="Pesquisar loja..."
+                            value="<?php echo htmlspecialchars($pesquisaLoja); ?>">
+ 
+                        <button type="submit" class="btn bg-info-subtle">
+                            Pesquisar
+</button>
+ 
+                    </div>
+ 
+                </form>
+ 
+            </div>
+ 
+            <div class="table-responsive">
+ 
+                <table class="table table-striped table-hover align-middle text-center">
+ 
+                    <thead class="table-primary">
+ 
+                        <tr>
+<th>Nome</th>
+<th>Logo</th>
+<th colspan="2">Ações</th>
+</tr>
+ 
+                    </thead>
+ 
+                    <tbody>
+ 
+                        <?php while ($dados = mysqli_fetch_assoc($resultado)) { ?>
+ 
+                        <tr>
+ 
+                            <td>
+<?php echo $dados['nomeLoja']; ?>
+</td>
+ 
+                            <td>
+<img
+                                    src="<?= BASE_URL ?>/assets/UPLOAD/<?php echo $dados['logoLoja']; ?>"
+                                    alt="Logo da Loja"
+                                    class="img-fluid rounded"
+                                    style="max-width:100px; max-height:60px;">
+</td>
+ 
+                            <td width="120">
+ 
+                                <a
+                                    href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>"
+                                    class="btn bg-warning-subtle btn-sm">
+ 
+                                    Alterar
+ 
+                                </a>
+ 
+                            </td>
+ 
+                            <td width="120">
+ 
+                                <a
+                                    href="excluirLoja.php?id=<?php echo $dados['idLoja']; ?>"
+                                    class="btn bg-danger-subtle btn-sm"
+                                    onclick="return confirm('Deseja realmente excluir esta loja?')">
+ 
+                                    Excluir
+ 
+                                </a>
+ 
+                            </td>
+ 
+                        </tr>
+ 
+                        <?php } ?>
+ 
+                    </tbody>
+ 
+                </table>
+ 
+            </div>
+ 
+        </div>
+ 
+    </div>
+ 
+</div>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
+</body>
 </html>

@@ -87,16 +87,16 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
     <h1 class="fw-bold display-5">Resultado da pesquisa</h1>
 
     <p class="text-secondary">
-        Descubra ofertas e cupons para os produtos mais desejados.
+        Descubra ofertas para os produtos mais desejados.
     </p>
 
-    <div class="d-flex gap-3 flex-wrap my-4">
+    <!-- <div class="d-flex gap-3 flex-wrap my-4">
         <button class="btn btn-primary rounded-pill">Em Alta</button>
         <button class="btn btn-outline-secondary rounded-pill">Eletrônicos</button>
         <button class="btn btn-outline-secondary rounded-pill">Informática</button>
         <button class="btn btn-outline-secondary rounded-pill">Smartphones</button>
         <button class="btn btn-outline-secondary rounded-pill">Games</button>
-    </div>
+    </div> -->
 
     <?php if (isset($erro)) { ?>
 

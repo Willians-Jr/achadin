@@ -1,71 +1,143 @@
 <?php
-include_once __DIR__ . '/config.php';
+ require_once dirname(__DIR__, 2) . '/includes/config.php';
+
 require_once ROOT_PATH . '/includes/conexao.php';
-
+ 
 $pesquisaCategoria = isset($_GET['pesquisaCategoria']) ? $_GET['pesquisaCategoria'] : '';
-
+ 
 if ($pesquisaCategoria) {
-    $sql = "SELECT * FROM categoria WHERE nomeCategoria
- LIKE '%$pesquisaCategoria%'
-    ORDER BY nomeCategoria ASC";
+    $sql = "SELECT * FROM categoria
+            WHERE nomeCategoria LIKE '%$pesquisaCategoria%'
+            ORDER BY nomeCategoria ASC";
 } else {
-       $sql = "SELECT * FROM categoria ORDER BY nomeCategoria ASC";
+    $sql = "SELECT * FROM categoria ORDER BY nomeCategoria ASC";
 }
-
+ 
 $resultado = mysqli_query($conexao, $sql);
-
+ 
 if (!$resultado) {
     die("Erro ao buscar categoria" . mysqli_error($conexao));
 }
 ?>
-
+ 
 <!doctype html>
 <html lang="pt-br">
-  <?php $titulo = "Gerenciar Categoria"; 
-    require_once ROOT_PATH . '/includes/head.php'; ?>
-  <body>
-    <?phprequire_once ROOT_PATH . '/includes/header.php'; ?>
-    <h1>Categorias</h1>
-
-    <form method="GET">
-    <input
-        type="search"
-        name="pesquisaCategoria"
-        placeholder="Pesquisar Categoria..."
-        value="<?php echo htmlspecialchars($pesquisaCategoria); ?>">
-    <button type="submit">
-        Pesquisar Categoria
-    </button>
-</form>
-
-<table border="1">
-<tr>
-    <th>Nome</th>
-    <th>Alterar</th>
-    <th>Excluir</th>
+ 
+<?php
+$titulo = "Gerenciar Categoria";
+require_once ROOT_PATH . '/includes/head.php';
+?>
+ 
+<body>
+ 
+<?php require_once ROOT_PATH . '/includes/header.php'; ?>
+ 
+<div class="container py-5">
+ 
+    <div class="d-flex justify-content-between align-items-center mb-4">
+ 
+        <a href="<?= BASE_URL ?>" class="btn bg-dark-subtle">
+            Menu Principal
+</a>
+ 
+        <h1 class="fw-bold mb-0">
+            Categorias
+</h1>
+ 
+        <a href="inserirCategoriaForm.php" class="btn bg-dark-subtle">
+            Inserir Categoria
+</a>
+ 
+    </div>
+ 
+    <div class="card shadow-lg border-0">
+ 
+        <div class="card-body">
+ 
+            <div class="col-lg-6 col-md-8 mb-4">
+ 
+                <form method="GET">
+ 
+                    <div class="d-flex gap-2">
+ 
+                        <input
+                            class="form-control"
+                            type="search"
+                            name="pesquisaCategoria"
+                            placeholder="Pesquisar Categoria..."
+                            value="<?php echo htmlspecialchars($pesquisaCategoria); ?>">
+ 
+                        <button type="submit" class="btn bg-info-subtle">
+                            Pesquisar
+</button>
+ 
+                    </div>
+ 
+                </form>
+ 
+            </div>
+ 
+            <div class="table-responsive">
+ 
+                <table class="table table-striped table-hover align-middle text-center">
+ 
+                    <thead class="table-primary">
+ 
+                        <tr>
+<th>Nome</th>
+<th colspan="2">Ações</th>
 </tr>
-
-<?php while ($dados = mysqli_fetch_assoc($resultado)) { ?>
-
-<tr>
-    <td><?php echo $dados['nomeCategoria']; ?></td>
-
-    <td>
-        <a href="editarCategoria.php?id=<?php echo $dados['idCategoria']; ?>">
-            Alterar
-        </a>
-    </td>
-
-    <td>
-        <a href="excluirCategoria.php?id=<?php echo $dados['idCategoria']; ?>"
-           onclick="return confirm('Deseja realmente excluir esta categoria?')">
-            Excluir
-        </a>
-    </td>
-</tr>
-
-<?php } ?>
-
-</table>
-  </body>
+ 
+                    </thead>
+ 
+                    <tbody>
+ 
+                        <?php while ($dados = mysqli_fetch_assoc($resultado)) { ?>
+ 
+                        <tr>
+ 
+                            <td><?php echo $dados['nomeCategoria']; ?></td>
+ 
+                            <td width="120">
+ 
+                                <a
+                                    href="editarCategoria.php?id=<?php echo $dados['idCategoria']; ?>"
+                                    class="btn bg-warning-subtle btn-sm">
+ 
+                                    Alterar
+ 
+                                </a>
+ 
+                            </td>
+ 
+                            <td width="120">
+ 
+                                <a
+                                    href="excluirCategoria.php?id=<?php echo $dados['idCategoria']; ?>"
+                                    class="btn bg-danger-subtle btn-sm"
+                                    onclick="return confirm('Deseja realmente excluir esta categoria?')">
+ 
+                                    Excluir
+ 
+                                </a>
+ 
+                            </td>
+ 
+                        </tr>
+ 
+                        <?php } ?>
+ 
+                    </tbody>
+ 
+                </table>
+ 
+            </div>
+ 
+        </div>
+ 
+    </div>
+ 
+</div>
+ <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
+</body>
 </html>
