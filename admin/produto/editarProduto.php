@@ -1,7 +1,7 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
 
 $dados = [
     'idProduto' => '',
@@ -13,23 +13,28 @@ $dados = [
     'fotoProduto' => ''
 ];
 
-if (isset($_GET['id'])) {
-    $idProduto = mysqli_real_escape_string($conexao, $_GET['id']);
-    
-    $sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto, linkAfiliado, descricaoProduto FROM produto WHERE idProduto = '$idProduto'";
-    $resultProduto = mysqli_query($conexao, $sqlProduto);
-    
-    if ($resultProduto && mysqli_num_rows($resultProduto) > 0) {
-        $dados = mysqli_fetch_assoc($resultProduto);
-    } else {
-        echo "<script>alert('Produto não encontrado!'); window.location='gerenciarProduto.php';</script>";
-        exit;
-    }
-} else {
+$idProduto = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if ($idProduto <= 0) {
     echo "<script>alert('ID do produto não informado!'); window.location='gerenciarProduto.php';</script>";
     exit;
 }
+
+$sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto, linkAfiliado, descricaoProduto FROM produto WHERE idProduto = ?";
+$stmt = mysqli_prepare($conexao, $sqlProduto);
+mysqli_stmt_bind_param($stmt, "i", $idProduto);
+mysqli_stmt_execute($stmt);
+$resultProduto = mysqli_stmt_get_result($stmt);
+
+if ($resultProduto && mysqli_num_rows($resultProduto) > 0) {
+    $dados = mysqli_fetch_assoc($resultProduto);
+} else {
+    mysqli_stmt_close($stmt);
+    echo "<script>alert('Produto não encontrado!'); window.location='gerenciarProduto.php';</script>";
+    exit;
+}
+mysqli_stmt_close($stmt);
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

@@ -1,18 +1,17 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $idProduto = $_POST['idProduto'] ?? 0;
-    $idCategoria = $_POST['idCategoria'] ?? 0;
-    $nomeProduto = $_POST['nomeProduto'] ?? '';
-    $idLoja = $_POST['idLoja'] ?? 0;
+    $idProduto = intval($_POST['idProduto'] ?? 0);
+    $idCategoria = intval($_POST['idCategoria'] ?? 0);
+    $idLoja = intval($_POST['idLoja'] ?? 0);
+    $nomeProduto = trim($_POST['nomeProduto'] ?? '');
+    $fotoProduto = trim($_POST['fotoAtual'] ?? '');
 
-    $fotoProduto = $_POST['fotoAtual'] ?? ''; 
-
-    if ($nomeProduto === '' || $idCategoria == 0 || $idLoja == 0 || $idProduto == 0) {
-        echo "Todos os campos obrigatórios precisam ser preenchidos.";
-        exit;
+    if ($nomeProduto === '' || $idCategoria <= 0 || $idLoja <= 0 || $idProduto <= 0) {
+        die("Todos os campos obrigatórios precisam ser preenchidos.");
     }
 
     if (isset($_FILES['fotoProduto']) && $_FILES['fotoProduto']['error'] == 0) {
@@ -22,53 +21,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             mkdir($pastaDestino, 0777, true);
         }
 
-        $nomeOriginal = $_FILES['fotoProduto']['name'];
-        $extensao = strtolower(pathinfo($nomeOriginal, PATHINFO_EXTENSION));
-        $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
+        $imagemTmp = $_FILES['fotoProduto']['tmp_name'];
+        $mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $imagemTmp);
+        $extensoesPermitidas = [
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/gif' => 'gif'
+        ];
 
-        if (in_array($extensao, $extensoesPermitidas)) {
+        if (isset($extensoesPermitidas[$mime])) {
+            $extensao = $extensoesPermitidas[$mime];
             $novoNome = uniqid('produto_') . '.' . $extensao;
             $caminhoCompleto = $pastaDestino . $novoNome;
 
-            if (move_uploaded_file($_FILES['fotoProduto']['tmp_name'], $caminhoCompleto)) {
+            if (move_uploaded_file($imagemTmp, $caminhoCompleto)) {
                 $fotoProduto = 'assets/UPLOAD/' . $novoNome;
             }
         }
     }
 
-    $sqlUpdate = "UPDATE produto SET 
-                    nomeProduto = '$nomeProduto', 
-                    idCategoria = $idCategoria, 
-                    idLoja = $idLoja, 
-                    fotoProduto = '$fotoProduto' 
-                  WHERE idProduto = $idProduto";
+    $sqlUpdate = "UPDATE produto SET nomeProduto = ?, idCategoria = ?, idLoja = ?, fotoProduto = ? WHERE idProduto = ?";
+    $stmt = mysqli_prepare($conexao, $sqlUpdate);
+    mysqli_stmt_bind_param($stmt, "sissi", $nomeProduto, $idCategoria, $idLoja, $fotoProduto, $idProduto);
 
-    if (mysqli_query($conexao, $sqlUpdate)) {
+    if (mysqli_stmt_execute($stmt)) {
+        mysqli_stmt_close($stmt);
         echo "<script>
                 alert('Produto atualizado com sucesso!');
                 window.location='gerenciarProduto.php';
               </script>";
         exit;
     } else {
-        echo "Não foi possível realizar a edição: " . mysqli_error($conexao);
-        exit;
+        error_log("Não foi possível realizar a edição: " . mysqli_error($conexao));
+        mysqli_stmt_close($stmt);
+        die("Não foi possível realizar a edição. Tente novamente mais tarde.");
     }
 }
 
-$idProduto = $_GET['id'] ?? 0;
-
-if ($idProduto == 0) {
-    echo "ID do produto inválido ou não informado.";
-    exit;
+$idProduto = intval($_GET['id'] ?? 0);
+if ($idProduto <= 0) {
+    die("ID do produto inválido ou não informado.");
 }
 
-$sql = "SELECT * FROM produto WHERE idProduto = $idProduto";
-$result = mysqli_query($conexao, $sql);
+$sql = "SELECT * FROM produto WHERE idProduto = ?";
+$stmt = mysqli_prepare($conexao, $sql);
+mysqli_stmt_bind_param($stmt, "i", $idProduto);
+mysqli_stmt_execute($stmt);
+$result = mysqli_stmt_get_result($stmt);
 
 if ($result && mysqli_num_rows($result) > 0) {
     $dados = mysqli_fetch_assoc($result);
+    mysqli_stmt_close($stmt);
 } else {
-    echo "Produto não encontrado.";
-    exit;
+    mysqli_stmt_close($stmt);
+    die("Produto não encontrado.");
 }
 ?>

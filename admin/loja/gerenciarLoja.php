@@ -1,21 +1,25 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
 
-$pesquisaLoja = isset($_GET['pesquisaLoja']) ? $_GET['pesquisaLoja'] : '';
+$pesquisaLoja = trim($_GET['pesquisaLoja'] ?? '');
 
-if ($pesquisaLoja) {
-    $sql = "SELECT * FROM loja WHERE nomeLoja LIKE '%$pesquisaLoja%'
-    ORDER BY nomeLoja ASC";
+if ($pesquisaLoja !== '') {
+    $sql = "SELECT * FROM loja WHERE nomeLoja LIKE ? ORDER BY nomeLoja ASC";
+    $stmt = mysqli_prepare($conexao, $sql);
+    $like = "%{$pesquisaLoja}%";
+    mysqli_stmt_bind_param($stmt, "s", $like);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
 } else {
-    $sql = "SELECT * FROM loja";
+    $sql = "SELECT * FROM loja ORDER BY nomeLoja ASC";
+    $resultado = mysqli_query($conexao, $sql);
 }
 
-$resultado = mysqli_query($conexao, $sql);
-
 if (!$resultado) {
-    die("Erro ao buscar a loja: " . mysqli_error($conexao));
+    die("Erro ao buscar a loja.");
 }
 ?>
 
@@ -34,7 +38,7 @@ if (!$resultado) {
         type="search"
         name="pesquisaLoja"
         placeholder="Pesquisar loja..."
-        value="<?php echo htmlspecialchars($pesquisaLoja); ?>">
+        value="<?php echo htmlspecialchars($pesquisaLoja, ENT_QUOTES, 'UTF-8'); ?>">
     <button type="submit">
         Pesquisar
     </button>
@@ -48,14 +52,12 @@ if (!$resultado) {
 <?php
 while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   <tr>
-    <td><?php echo $dados['nomeLoja']; ?></td>
+    <td><?php echo htmlspecialchars($dados['nomeLoja'], ENT_QUOTES, 'UTF-8'); ?></td>
 
-    <td><img src="<?=BASE_URL?>/assets/UPLOAD/<?php echo $dados['logoLoja']; ?>" alt="Logo da Loja" width="100" /></td>
-    <br><br>
-    
-    <td><a href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>">Alterar</a></td>
+    <td><img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo htmlspecialchars($dados['logoLoja'], ENT_QUOTES, 'UTF-8'); ?>" alt="Logo da Loja" width="100" /></td>
+    <td><a href="editarLoja.php?id=<?php echo (int) $dados['idLoja']; ?>">Alterar</a></td>
     <td>
-      <a href="excluirLoja.php?id=<?php echo $dados['idLoja']; ?>"
+      <a href="excluirLoja.php?idLoja=<?php echo (int) $dados['idLoja']; ?>"
          onclick="return confirm('Deseja realmente excluir esta loja?')">
         Excluir
       </a>
