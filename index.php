@@ -19,7 +19,7 @@ $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
 
-$sqlLojas = "SELECT nomeLoja, logoLoja, linkLoja FROM loja ORDER BY nomeLoja";
+$sqlLojas = "SELECT nomeLoja, logoLoja, linkLoja FROM loja ORDER BY nomeLoja LIMIT 4";
 $resultLojas = mysqli_query($conexao, $sqlLojas);
 
 
@@ -255,7 +255,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
         <div class="col-md-3">
             <div class="card text-center h-100 overflow-hidden" style="min-height: 100px;">
                 
-                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none">
+                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" target="_blank" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none">
                     
                     <?php if (!empty($loja['logoLoja'])): ?>
                         <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 

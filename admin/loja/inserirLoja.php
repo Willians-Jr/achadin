@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Gera um nome único
             $nomeImagem = uniqid() . "." . $extensao;
 
-            // Caminho da imagem
-            $caminho = "/.BASE_URL/.assets/UPLOAD/" . $nomeImagem;
+            // Caminho da imagem no servidor
+            $caminho = ROOT_PATH . '/assets/UPLOAD/' . $nomeImagem;
 
             // Move a imagem
             if (!move_uploaded_file($imagem["tmp_name"], $caminho)) {
