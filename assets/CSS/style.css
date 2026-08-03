@@ -333,6 +333,7 @@ main {
 /* TEMA ESCURO INICIO */
 #btnTema {
   display: flex;
+  margin-left: 10px;
 }
 
 body.dark-mode {
