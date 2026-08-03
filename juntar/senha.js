@@ -2,22 +2,20 @@ function mostrarRequisitos() {
   document.getElementById("requisitosSenha").style.display = "block";
 }
 function verificarSenha() {
-  // Procura primeiro senhaNova, se não existir usa senhaUsuario
   const campoSenha =
     document.getElementById("senhaNova") ||
     document.getElementById("senhaUsuario");
-
+ 
   const senha = campoSenha.value;
-
-  const erroSenha = document.getElementById("erroSenha");
+ 
   const senhaForte = document.getElementById("senhaForte");
-
+ 
   let tamanho = senha.length >= 6;
   let maiuscula = /[A-Z]/.test(senha);
   let minuscula = /[a-z]/.test(senha);
   let numero = /[0-9]/.test(senha);
   let especial = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
-
+ 
   atualizarItem(
     "reqTamanho",
     tamanho,
@@ -27,13 +25,14 @@ function verificarSenha() {
   atualizarItem("reqMinuscula", minuscula, "Deve conter uma letra minúscula");
   atualizarItem("reqNumero", numero, "Deve conter um número");
   atualizarItem("reqEspecial", especial, "Deve conter um caractere especial");
-
+ 
   if (tamanho && maiuscula && minuscula && numero && especial) {
     senhaForte.value = "true";
   } else {
     senhaForte.value = "false";
   }
 }
+ 
 function atualizarItem(id, valido, texto) {
   const item = document.getElementById(id);
  
@@ -56,12 +55,3 @@ document
       alert("A senha ainda não atende todos os requisitos.");
     }
   });
-
-function mostrarSenha() {
-  // Procura primeiro senhaNova, se não existir usa senhaUsuario
-  const campoSenha =
-    document.getElementById("senhaNova") ||
-    document.getElementById("senhaUsuario");
-
-  campoSenha.type = campoSenha.type === "password" ? "text" : "password";
-}
