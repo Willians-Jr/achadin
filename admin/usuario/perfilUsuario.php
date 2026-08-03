@@ -103,7 +103,7 @@ mysqli_stmt_bind_param(
 
             <div class="mt-3">
               <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
-              <p class="mb-1"><strong>email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
+              <p class="mb-1"><strong>Email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
             </div>
             </div>
         </div>

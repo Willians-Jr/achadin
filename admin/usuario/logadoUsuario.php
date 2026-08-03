@@ -34,7 +34,7 @@ if (isset($_SESSION['idUsuario'])) {
 <html lang="pt-BR">
 <?php $titulo="Meu Perfil - Top Achados"; require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
-  
+<main>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
 <!-- -->
@@ -135,6 +135,7 @@ if (isset($_SESSION['idUsuario'])) {
 
     </div>
 </div>
+</main>
 <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 </body>
 </html>
