@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
                 alert('Produto cadastrado com sucesso!');
-                window.location='gerenciarProduto.php';
+                window.location='produtos.php';
               </script>";
         exit;
     } else {

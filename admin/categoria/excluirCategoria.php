@@ -1,5 +1,8 @@
 <?php
-include_once __DIR__ . '/../../includes/conexao.php';
+require_once dirname(__DIR__, 2) . '/includes/config.php';
+exigirLogin();
+
+require_once ROOT_PATH . '/includes/conexao.php';
 
 $idCategoria = isset($_GET['idCategoria']) ? (int) $_GET['idCategoria'] : 0;
 

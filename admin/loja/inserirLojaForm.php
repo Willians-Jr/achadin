@@ -22,7 +22,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
  
             <!-- LOGO -->
             <a class="navbar-brand logoA" href="index.html">
-            <img src="../../assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
+            <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
  
             <div class="logoTexto">
                 <span class="logo">Top</span>

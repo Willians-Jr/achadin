@@ -1,7 +1,8 @@
 <?php
+   require_once dirname(__DIR__, 2) . '/includes/config.php';
 
-include_once "../conexao.php";
-include_once "config.php";
+require_once ROOT_PATH . '/includes/conexao.php';
+
 
 header("Content-Type: application/json; charset=utf-8");
 
