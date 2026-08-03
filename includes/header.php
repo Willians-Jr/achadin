@@ -89,12 +89,13 @@ $_SESSION['nivel'] = $dado['nivel'];
                     <a class="nav-link link-light" href="<?= BASE_URL ?>comoFunciona.php">Como Funciona</a>
                 </li>
 
-                <li class="favoritosIcon">
+                <li class="favoritosIcon nav-item">
                     <?php if (!isset($_SESSION['idUsuario'])) { ?>
                     <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
                         <span class="material-symbols-outlined">
                     login
-                    </span><span>Login</span>
+                    </span>
+                    <span>Login</span>
                         </a>
                     <?php } else{?>
                         <div class="dropdown">
