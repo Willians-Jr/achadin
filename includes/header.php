@@ -78,7 +78,7 @@ $_SESSION['nivel'] = $dado['nivel'];
 
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
-                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
+                    
                 </li>
 
                 <li class="nav-item">
