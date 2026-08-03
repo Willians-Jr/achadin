@@ -20,12 +20,12 @@ if (isset($_FILES['logoLoja']) && $_FILES['logoLoja']['error'] == 0) {
 
         $nomeImagem = uniqid() . "." . $extensao;
 
-        $caminho = __DIR__ . "/../../assets/UPLOAD/" . $nomeImagem;
+        $caminho = __DIR__ . "/" . BASE_URL . "/assets/UPLOAD/" . $nomeImagem;
 
         if (move_uploaded_file($imagem["tmp_name"], $caminho)) {
 
             // (Opcional) Apaga a imagem antiga
-            $arquivoAntigo = __DIR__ . "/../../assets/UPLOAD/" . $_POST['logoAtual'];
+            $arquivoAntigo = __DIR__ . "/" . BASE_URL . "/assets/UPLOAD/" . $_POST['logoAtual'];
 
             if (file_exists($arquivoAntigo)) {
                 unlink($arquivoAntigo);

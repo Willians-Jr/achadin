@@ -23,8 +23,8 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
         <div class="ladoEsquerdoAdmin col-md-4 text-center p-5 border-end ">
  
             <!-- LOGO -->
-            <a class="navbar-brand logoA" href="index.html">
-            <img src="../../assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
+            <a class="navbar-brand logoA" href="<?= BASE_URL ?>index.php">
+            <img src="<?= BASE_URL ?>assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
  
             <div class="logoTexto">
                 <span class="logo">Top</span>
@@ -81,7 +81,6 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
 </main>
  <?php require_once ROOT_PATH . '/includes/footer.php';?>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
  
 </body>
 </html>

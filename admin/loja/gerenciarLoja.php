@@ -50,7 +50,7 @@ while ($dados = mysqli_fetch_assoc($resultado)) { ?>
   <tr>
     <td><?php echo $dados['nomeLoja']; ?></td>
 
-    <td><img src="../../assets/UPLOAD/<?php echo $dados['logoLoja']; ?>" alt="Logo da Loja" width="100" /></td>
+    <td><img src="<?=BASE_URL?>/assets/UPLOAD/<?php echo $dados['logoLoja']; ?>" alt="Logo da Loja" width="100" /></td>
     <br><br>
     
     <td><a href="editarLoja.php?id=<?php echo $dados['idLoja']; ?>">Alterar</a></td>
