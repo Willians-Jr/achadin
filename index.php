@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 // ==========================================
-// 🚨 INÍCIO DA ADIÇÃO: MOTOR DE RECOMENDAÇÃO
+
 // ==========================================
 if (isset($_GET['id'])) {
     $idProdutoAtual = intval($_GET['id']); 
@@ -115,7 +115,7 @@ if (count($recomendacoes) < 5) {
     }
 }
 // ==========================================
-// 🚨 FIM DA ADIÇÃO
+
 // ==========================================
 ?>
 <!DOCTYPE html>
