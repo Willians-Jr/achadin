@@ -229,6 +229,7 @@ $_SESSION['nivel'] = $dado['nivel'];
                         </span>
                         </button>
                     </li>
+                </li>
             </ul>
         </div>
     </div>
