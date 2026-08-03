@@ -106,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
             <!-- Link de cadastro -->
             <div class="text-center mb-4">
-              <span class="text-secondary">Não tem cadastro?</span>
+              <span class="text-secondary">Não possui cadastro?</span>
               <a href="<?= BASE_URL ?>admin/usuario/inserirUsuarioForm.php"
                  class="text-decoration-none fw-semibold">
                 Cadastre-se
