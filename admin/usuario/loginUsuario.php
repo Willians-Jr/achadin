@@ -95,6 +95,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 required
               />
 
+              <div class="mb-3">
+                <input class="form-check-input" type="checkbox" value="" id="checkDefault" onclick="mostrarSenha()">
+                <label class="form-check-label"for="checkDefault">
+                  Mostrar senha
+                </label>
+              </div>
+
             </div>
 
             <!-- Link de cadastro -->
@@ -156,3 +163,4 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             </button> -->
            
            <script src="<?= BASE_URL ?>assets/JS/InserirFoto.js"></script>
+           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>

@@ -132,7 +132,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
     <?php } ?>
 
 <div class="text-center mt-5">
- <button class="btn-ver-produtos">
+ <button class="btn btn-primary">
     <span>Ver todos os produtos</span>
     <span class="seta">→</span>
 </button>

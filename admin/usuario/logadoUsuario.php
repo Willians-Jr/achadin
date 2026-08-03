@@ -32,7 +32,7 @@ if (isset($_SESSION['idUsuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<?php $titulo="Meu Perfil - Top Achados"; require_once ROOT_PATH . '/includes/head.php'; ?>
+<?php $titulo="Meu Perfil - Painel"; require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
 <main>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
@@ -44,7 +44,11 @@ if (isset($_SESSION['idUsuario'])) {
 <div class="menuUsuario py-2">
     <div class="container my-5">
 
-    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+    <?php if ($_SESSION['nivel'] == 1) { ?>
+                    <h2 class="fw-bold mb-4">Painel do Administrador</h2>
+                <?php } else { ?>
+                    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+                <?php } ?>
 
     <div class="row g-4">
 
