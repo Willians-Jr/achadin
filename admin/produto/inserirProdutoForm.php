@@ -104,25 +104,16 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                 <div class="mb-3">
                     <label for="idUsuario" class="form-label">
-                        Usuário:
+                        Ligado ao Usuário (Email):
                     </label>
  
-                    <select
-                        class="form-select"
+                    <input
+                        type="text"
+                        class="form-control"
                         id="idUsuario"
                         name="idUsuario"
-                        required>
- 
-                        <?php
-                            $sqlUsuario = "SELECT idUsuario, nomeUsuario FROM usuario ORDER BY nomeUsuario";
-                            $resultUsuario = mysqli_query($conexao, $sqlUsuario);
-                            echo "<option value='' disabled selected>Selecione...</option>";
-                            while ($dadosUsuario = mysqli_fetch_assoc($resultUsuario)) {
-                                echo "<option value='" . $dadosUsuario['idUsuario'] . "'>" . $dadosUsuario['nomeUsuario'] . "</option>";
-                            }
-                        ?>
- 
-                    </select>
+                        value="<?= $_SESSION['emailUsuario'] ?>"
+                        disabled>
                 </div>
 
                 <div class="mb-3">
