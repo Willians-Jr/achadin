@@ -32,9 +32,9 @@ if (isset($_SESSION['idUsuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<?php $titulo="Meu Perfil - Top Achados"; require_once ROOT_PATH . '/includes/head.php'; ?>
+<?php $titulo="Meu Perfil - Painel"; require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
-  
+<main>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
 <!-- -->
@@ -44,7 +44,11 @@ if (isset($_SESSION['idUsuario'])) {
 <div class="menuUsuario py-2">
     <div class="container my-5">
 
-    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+    <?php if ($_SESSION['nivel'] == 1) { ?>
+                    <h2 class="fw-bold mb-4">Painel do Administrador</h2>
+                <?php } else { ?>
+                    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+                <?php } ?>
 
     <div class="row g-4">
 
@@ -83,7 +87,7 @@ if (isset($_SESSION['idUsuario'])) {
         </div>
 
         <!-- Editar Perfil -->
-        <div class="col-md-6 col-lg-4">
+         <div class="col-md-6 col-lg-4">
             <a href="<?= BASE_URL ?>admin/usuario/perfilUsuario.php" class="text-decoration-none">
                 <div class="card painel-card shadow-sm h-100">
                     <div class="card-body text-center">
@@ -98,8 +102,56 @@ if (isset($_SESSION['idUsuario'])) {
                 </div>
             </a>
         </div>
+        <?php if ($_SESSION['nivel']==1){ ?>
+        <!-- Gerenciar -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            manage_accounts
+                        </span>
+                        <h5 class="mt-3">Gerenciar Categorias</h5>
+                        <p class="text-muted">
+                            Gerencie as categorias disponíveis para os produtos.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
 
-        <!-- Favoritos -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/gerenciarProduto.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            manage_accounts
+                        </span>
+                        <h5 class="mt-3">Gerenciar Produtos</h5>
+                        <p class="text-muted">
+                            Gerencie os produtos cadastrados no sistema.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/loja/gerenciarLoja.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            manage_accounts
+                        </span>
+                        <h5 class="mt-3">Gerenciar Lojas</h5>
+                        <p class="text-muted">
+                            Gerencie as lojas cadastradas no sistema.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <?php } ?>
+        <!-- Favoritos
         <div class="col-md-6 col-lg-4">
             <a href="<?= BASE_URL ?>favoritos.php" class="text-decoration-none">
                 <div class="card painel-card shadow-sm h-100">
@@ -114,27 +166,10 @@ if (isset($_SESSION['idUsuario'])) {
                     </div>
                 </div>
             </a>
-        </div>
-
-        <!-- Cupons -->
-        <div class="col-md-6 col-lg-4">
-            <a href="<?= BASE_URL ?>coupons.php" class="text-decoration-none">
-                <div class="card painel-card shadow-sm h-100">
-                    <div class="card-body text-center">
-                        <span class="material-symbols-outlined painel-icone">
-                            sell
-                        </span>
-                        <h5 class="mt-3">Cupons</h5>
-                        <p class="text-muted">
-                            Confira cupons e descontos disponíveis.
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-
+        </div> -->
     </div>
 </div>
+</main>
 <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 </body>
 </html>
