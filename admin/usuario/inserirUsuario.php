@@ -33,7 +33,7 @@ if (
     !preg_match('/[0-9]/', $senhaUsuario) ||
     !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $senhaUsuario)
 ) {
-    die("Cadastre uma senha forte! (mínimo 6 caracteres, maiúscula, minúscula, número e símbolo)");
+    die("Cadastre uma senha forte!");
 }
 
 // Verifica se o e-mail já está cadastrado
