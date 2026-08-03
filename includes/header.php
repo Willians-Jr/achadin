@@ -71,17 +71,13 @@ $_SESSION['nivel'] = $dado['nivel'];
 </form>
             <!-- MENU A DIREITA -->
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
-                <?php if (isset($_SESSION['idUsuario'])) { ?>
-
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/categoria/categorias.php">Categorias</a>
-                </li>
-                <?php } ?>
+                
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/produto/produtos.php">Produtos</a>
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
                 </li>
 
@@ -89,14 +85,15 @@ $_SESSION['nivel'] = $dado['nivel'];
                     <a class="nav-link link-light" href="<?= BASE_URL ?>comoFunciona.php">Como Funciona</a>
                 </li>
 
-                <li class="favoritosIcon">
                     <?php if (!isset($_SESSION['idUsuario'])) { ?>
+                <li class="favoritosIcon nav-item">
                     <a href="<?= BASE_URL ?>admin/usuario/loginUsuario.php" class="btn btn-outline-light" role="button" aria-pressed="true">
-                        <span class="material-symbols-outlined">
-                    login
-                    </span><span>Login</span>
-                        </a>
+                        <span class="material-symbols-outlined">login</span>
+                        <span>Login</span>
+                    </a>
+                </li>
                     <?php } else{?>
+                    <li class="favoritosIcon nav-item">
                         <div class="dropdown">
 
     <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center gap-2"
@@ -108,13 +105,11 @@ $_SESSION['nivel'] = $dado['nivel'];
     <img src="<?php echo BASE_URL . 'assets/UPLOAD/' . htmlspecialchars($imgUsuario); ?>"alt="Foto do usuário"class="rounded-circle"width="32"
                 height="32" style="object-fit:cover;"><span>Perfil</span>
 <?php }else{ ?>
-    <i class="bi bi-person-circle"></i>
-    
-
-
-            
+    <i class="bi bi-person-circle"></i>    
         <span>Perfil</span>
- <?php }}?> 
+ <?php }
+ }
+ ?> 
     </button>
 
     <ul class="dropdown-menu dropdown-menu-end shadow">
