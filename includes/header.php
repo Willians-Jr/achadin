@@ -78,6 +78,7 @@ $_SESSION['nivel'] = $dado['nivel'];
 
                 <li class="nav-item">
                     <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
+                    <a class="nav-link link-light" href="<?= BASE_URL ?>admin/loja/lojas.php">Lojas</a>
                 </li>
 
                 <li class="nav-item">
@@ -114,7 +115,10 @@ $_SESSION['nivel'] = $dado['nivel'];
     <ul class="dropdown-menu dropdown-menu-end shadow">
 
         <li class="dropdown-header">
-            <?= htmlspecialchars($_SESSION['nomeUsuario']) ?>
+            Bem-vindo, <?= htmlspecialchars($_SESSION['nomeUsuario']) ?>!
+            <?php if ($_SESSION['nivel'] == 1) { ?>
+                <span class="badge bg-danger ms-2">ADM</span>
+            <?php } ?>
         </li>
 
         <li><hr class="dropdown-divider"></li>
@@ -139,7 +143,11 @@ $_SESSION['nivel'] = $dado['nivel'];
                     dashboard
                 </span>
 
-                Painel do Usuário
+                <?php if ($_SESSION['nivel'] == 1) { ?>
+                    <span>Painel do Administrador</span>
+                <?php } else { ?>
+                    <span>Painel do Usuário</span>
+                <?php } ?>
             </a>
         </li>
 <?php if ($_SESSION['nivel']==1){ ?>
@@ -178,11 +186,24 @@ $_SESSION['nivel'] = $dado['nivel'];
             </a>
         </li>
 
+        <li>
+            <a class="dropdown-item disabled"
+               href="<?= BASE_URL ?>favoritos.php">
+
+                <span class="material-symbols-outlined me-2">
+                    favorite
+                </span>
+
+                Favoritos
+            </a>
+        </li>
+
         <li><hr class="dropdown-divider"></li>
 
         <li>
             <a class="dropdown-item text-danger"
-               href="<?= BASE_URL ?>admin/usuario/logoutUsuario.php">
+               href="<?= BASE_URL ?>admin/usuario/logoutUsuario.php"
+               onclick="return confirm('Tem certeza que deseja sair da sua conta?');">
 
                 <span class="material-symbols-outlined me-2">
                     logout

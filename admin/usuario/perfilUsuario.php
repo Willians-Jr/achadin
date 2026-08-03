@@ -95,22 +95,27 @@ mysqli_stmt_bind_param(
       alt="Foto do usuário"
       style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%;"
     />
+    <p><strong>Foto Atual do Perfil</strong></p>
+
   <?php else: ?>
     <i class="bi bi-person-circle" style="font-size: 160px;"></i>
     
   <?php endif; ?>
             </div>
 
-            <div class="mt-3">
+            <div class="">
+              <?php if ($_SESSION['nivel'] == 1) { ?>
+                <span class="badge bg-danger ms-2 mb-1">Perfil de Administrador</span>
+              <?php } ?>
               <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
-              <p class="mb-1"><strong>email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
+              <p class="mb-1"><strong>Email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
             </div>
             </div>
         </div>
 
         <div class="col-md-8">
           <div class="card shadow p-4">
-            <h2 class="mb-3">Editar perfil</h2>
+            <h2 class="mb-3">Editar Perfil</h2>
 
             <form method="POST" enctype="multipart/form-data">
               <div class="mb-3">
@@ -126,7 +131,7 @@ mysqli_stmt_bind_param(
               </div>
 
               <div class="mb-3">
-                <label for="emailUsuario" class="form-label">email</label>
+                <label for="emailUsuario" class="form-label">Email:</label>
                 <input
                   type="text"
                   class="form-control"
@@ -138,7 +143,7 @@ mysqli_stmt_bind_param(
               </div>
               
             <div class="mb-3">
-    <label for="imgUsuario" class="form-label">Foto do Usuário</label>
+    <label for="imgUsuario" class="form-label">Foto do Perfil:</label>
 
     <input
         type="file"
