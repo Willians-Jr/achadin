@@ -607,3 +607,14 @@ body.dark-mode .dropdown-divider {
 body.dark-mode .dropdown-header {
   color: #6ea8fe;
 }
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ou */
+
+li {
+  list-style: none;
+}
