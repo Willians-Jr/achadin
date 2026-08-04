@@ -19,7 +19,7 @@ $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
 
-$sqlLojas = "SELECT nomeLoja, logoLoja,linkLoja FROM loja ORDER BY nomeLoja";
+$sqlLojas = "SELECT nomeLoja, logoLoja,linkLoja FROM loja ORDER BY nomeLoja LIMIT 4";
 $resultLojas = mysqli_query($conexao, $sqlLojas);
 
 
