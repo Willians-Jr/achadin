@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 // ==========================================
-// 🚨 INÍCIO DA ADIÇÃO: MOTOR DE RECOMENDAÇÃO
+
 // ==========================================
 if (isset($_GET['id'])) {
     $idProdutoAtual = intval($_GET['id']); 
@@ -115,7 +115,7 @@ if (count($recomendacoes) < 5) {
     }
 }
 // ==========================================
-// 🚨 FIM DA ADIÇÃO
+
 // ==========================================
 ?>
 <!DOCTYPE html>
@@ -255,7 +255,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
         <div class="col-md-3">
             <div class="card text-center h-100 overflow-hidden" style="min-height: 100px;">
                 
-                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none" target="_blank">
+                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" target="_blank" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none">
                     
                     <?php if (!empty($loja['logoLoja'])): ?>
                         <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
