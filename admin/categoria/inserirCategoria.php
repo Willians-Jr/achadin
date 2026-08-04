@@ -5,6 +5,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try{
 
     $nomeCategoria = trim($_POST['nomeCategoria']);
 
@@ -18,17 +19,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   VALUES ('$nomeCategoria')";
 
     if (mysqli_query($conexao, $sqlInsert)) {
-
-        echo "<script>
-                alert('Categoria cadastrada com sucesso!');
-                window.location='inserirCategoriaForm.php';
-              </script>";
+        $_SESSION['mensagem'] = "Categoria cadastrada com sucesso!!";
+        $_SESSION['tipoMensagem'] = "success";
+        header("Location: gerenciarCategoria.php");
 
     } else {
 
-        echo "Erro ao cadastrar categoria: " . mysqli_error($conexao);
+        throw new Exception(mysqli_error($conexao));
 
     }
+
+}catch(Throwable $e){
+
+    $_SESSION['mensagem'] = "Erro ao cadastrar a categoria. Erro: " . $e->getMessage();
+    $_SESSION['tipoMensagem'] = "danger";
+    header("Location: gerenciarCategoria.php");
+    exit;
+}
 
 }
 

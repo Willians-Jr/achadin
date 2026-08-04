@@ -184,19 +184,6 @@ $_SESSION['nivel'] = $dado['nivel'];
                 Adicionar Produto
             </a>
         </li>
-
-        <li>
-            <a class="dropdown-item disabled"
-               href="<?= BASE_URL ?>favoritos.php">
-
-                <span class="material-symbols-outlined me-2">
-                    favorite
-                </span>
-
-                Favoritos
-            </a>
-        </li>
-
         <li><hr class="dropdown-divider"></li>
 
         <li>

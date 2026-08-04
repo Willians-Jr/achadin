@@ -3,11 +3,27 @@
 
 require_once ROOT_PATH . '/includes/conexao.php';
 
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: " . BASE_URL . "login.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        $precoProduto = $_POST['precoProduto'] ?? '';
+        if (!is_numeric($precoProduto)) {
+            throw new Exception("O preço do produto deve ser um número.");
+        }
+    } catch (Exception $e) {
+        $_SESSION['mensagem'] = "Erro ao cadastrar produto: " . $e->getMessage();
+        $_SESSION['tipoMensagem'] = "danger";
+        header("Location: inserirProduto.php");
+        exit;
+    }
     $nomeProduto = $_POST['nomeProduto'] ?? '';
     $idCategoria = $_POST['idCategoria'] ?? '';
     $idLoja = $_POST['idLoja'] ?? '';
-    $idUsuario = $_POST['idUsuario'] ?? '';
+    $idUsuario = $_SESSION['idUsuario'];
     $descricaoProduto = $_POST['descricaoProduto'] ?? '';
     $linkAfiliado = $_POST['linkAfiliado'] ?? '';
 
@@ -32,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto, descricaoProduto, linkAfiliado) 
-                  VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario', '$fotoProduto', '$descricaoProduto', '$linkAfiliado')";
+    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto, precoProduto, descricaoProduto, linkAfiliado) 
+                  VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario', '$fotoProduto', '$precoProduto', '$descricaoProduto', '$linkAfiliado')";
 
     if (mysqli_query($conexao, $sqlInsert)) {
         echo "<script>
@@ -46,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto, p.descricaoProduto, p.linkAfiliado
+$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto, p.precoProduto, p.descricaoProduto, p.linkAfiliado
         FROM produto p
         INNER JOIN categoria c ON p.idCategoria = c.idCategoria
         INNER JOIN loja l ON p.idLoja = l.idLoja

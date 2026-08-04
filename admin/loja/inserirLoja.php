@@ -4,7 +4,7 @@
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    try{
     $nomeLoja = trim($_POST['nomeLoja']);
     $linkLoja = $_POST['linkLoja'];
 
@@ -53,10 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($resultado) > 0) {
 
-        echo "<script>
-                alert('Loja já cadastrada!');
-                window.location='inserirLoja.php';
-              </script>";
+        $_SESSION['mensagem'] = "Loja já cadastrada!";
+        header("Location: gerenciarLoja.php");
         exit;
     }
 
@@ -74,17 +72,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     if (mysqli_stmt_execute($stmt)) {
-
-        echo "<script>
-                alert('Loja cadastrada com sucesso!');
-                window.location='inserirLojaForm.php';
-              </script>";
+        $_SESSION['mensagem'] = "Loja cadastrada com sucesso!!";
+        $_SESSION['tipoMensagem'] = "success";
+        header("Location: lojas.php");
 
     } else {
 
-        echo "Erro ao cadastrar loja: " . mysqli_error($conexao);
+        throw new Exception(mysqli_error($conexao));
 
     }
+    }catch(Exception $e){
+
+    $_SESSION['mensagem'] = "Erro ao cadastrar a loja. Erro: " . $e->getMessage();
+    $_SESSION['tipoMensagem'] = "danger";
+    header("Location: gerenciarLojas.php");
+    exit;
+}
 
     mysqli_stmt_close($consulta);
     mysqli_stmt_close($stmt);

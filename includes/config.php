@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 define('ROOT_PATH', dirname(__DIR__));
-define('BASE_URL', '/achadin/');
+define('BASE_URL', '/topachados/');
 function exigirLogin(): void
 {
     if (!isset($_SESSION['idUsuario'])) {
