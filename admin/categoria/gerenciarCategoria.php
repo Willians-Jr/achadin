@@ -2,21 +2,25 @@
  require_once dirname(__DIR__, 2) . '/includes/config.php';
 
 require_once ROOT_PATH . '/includes/conexao.php';
- 
-$pesquisaCategoria = isset($_GET['pesquisaCategoria']) ? $_GET['pesquisaCategoria'] : '';
- 
-if ($pesquisaCategoria) {
-    $sql = "SELECT * FROM categoria
-            WHERE nomeCategoria LIKE '%$pesquisaCategoria%'
-            ORDER BY nomeCategoria ASC";
+exigirLogin();
+
+$pesquisaCategoria = trim($_GET['pesquisaCategoria'] ?? '');
+
+if ($pesquisaCategoria !== '') {
+    $sql = "SELECT * FROM categoria WHERE nomeCategoria LIKE ? ORDER BY nomeCategoria ASC";
+    $stmt = mysqli_prepare($conexao, $sql);
+    $like = "%{$pesquisaCategoria}%";
+    mysqli_stmt_bind_param($stmt, "s", $like);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
 } else {
     $sql = "SELECT * FROM categoria ORDER BY nomeCategoria ASC";
+    $resultado = mysqli_query($conexao, $sql);
 }
- 
-$resultado = mysqli_query($conexao, $sql);
- 
+
 if (!$resultado) {
-    die("Erro ao buscar categoria" . mysqli_error($conexao));
+    die("Erro ao buscar categoria.");
 }
 ?>
  

@@ -1,20 +1,25 @@
 <?php
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+ exigirLogin();
+
+$pesquisaLoja = trim($_GET['pesquisaLoja'] ?? '');
  
-$pesquisaLoja = isset($_GET['pesquisaLoja']) ? $_GET['pesquisaLoja'] : '';
- 
-if ($pesquisaLoja) {
-    $sql = "SELECT * FROM loja WHERE nomeLoja LIKE '%$pesquisaLoja%'
-            ORDER BY nomeLoja ASC";
+if ($pesquisaLoja !== '') {
+    $sql = "SELECT * FROM loja WHERE nomeLoja LIKE ? ORDER BY nomeLoja ASC";
+    $stmt = mysqli_prepare($conexao, $sql);
+    $like = "%{$pesquisaLoja}%";
+            mysqli_stmt_bind_param($stmt, "s", $like);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
 } else {
-    $sql = "SELECT * FROM loja";
+    $sql = "SELECT * FROM loja ORDER BY nomeLoja ASC";
+    $resultado = mysqli_query($conexao, $sql);
 }
- 
-$resultado = mysqli_query($conexao, $sql);
- 
+  
 if (!$resultado) {
-    die("Erro ao buscar a loja: " . mysqli_error($conexao));
+    die("Erro ao buscar a loja.");
 }
 ?>
  
