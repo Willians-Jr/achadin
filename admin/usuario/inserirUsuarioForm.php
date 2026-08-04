@@ -6,22 +6,10 @@ require_once ROOT_PATH . '/includes/conexao.php';
 
 <!doctype html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Usuários - Cadastro</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-  </head>
-  
+<?php $titulo = "TopAchados - Cadastro de Usuário";
+require_once ROOT_PATH . '/includes/head.php'; ?>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+     
 
   <body class="bg-light">
     <main> 
@@ -158,7 +146,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
       <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
-      <script src="<?= BASE_URL ?>assets/JS/mascara.js"></script>
+      <script src="<?= BASE_URL ?>assets/JS/InserirFoto.js"></script>
     <?php require_once ROOT_PATH . '/includes/footer.php';?>
   </body>  
 </html>

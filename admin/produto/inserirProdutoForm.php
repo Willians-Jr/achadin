@@ -101,19 +101,18 @@ require_once ROOT_PATH . '/includes/conexao.php';
  
                     </select>
                 </div>
- 
                 <div class="mb-3">
-                    <label for="idUsuario" class="form-label">
-                        Ligado ao Usuário (Email):
+                    <label for="precoProduto" class="form-label">
+                        Preço:
                     </label>
  
                     <input
                         type="text"
                         class="form-control"
-                        id="idUsuario"
-                        name="idUsuario"
-                        value="<?= $_SESSION['emailUsuario'] ?>"
-                        disabled>
+                        id="valor"
+                        name="precoProduto"
+                        required
+                        placeholder='Ex.: 199.99'>
                 </div>
 
                 <div class="mb-3">
@@ -180,8 +179,6 @@ require_once ROOT_PATH . '/includes/conexao.php';
 </main>
 
 <?php require_once ROOT_PATH . '/includes/footer.php';?>
-
-
- 
+<script src="<?= BASE_URL ?>assets/JS/mascara.js"></script>
 </body>
 </html>

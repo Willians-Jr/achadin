@@ -1,4 +1,0 @@
-ALTER TABLE produto
-  ADD COLUMN precoProduto     DECIMAL(10,2)    NOT NULL DEFAULT 0 AFTER descricaoProduto,
-  ADD COLUMN descontoProduto  TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER precoProduto,
-  ADD COLUMN cashbackProduto  TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER descontoProduto;

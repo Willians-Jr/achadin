@@ -3,13 +3,29 @@ require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 exigirLogin();
 
+if (!isset($_SESSION['idUsuario'])) {
+    header("Location: " . BASE_URL . "login.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nomeProduto = trim($_POST['nomeProduto'] ?? '');
-    $idCategoria = intval($_POST['idCategoria'] ?? 0);
-    $idLoja = intval($_POST['idLoja'] ?? 0);
-    $idUsuario = intval($_SESSION['idUsuario'] ?? 0);
-    $descricaoProduto = trim($_POST['descricaoProduto'] ?? '');
-    $linkAfiliado = trim($_POST['linkAfiliado'] ?? '');
+    try {
+        $precoProduto = $_POST['precoProduto'] ?? '';
+        if (!is_numeric($precoProduto)) {
+            throw new Exception("O preço do produto deve ser um número.");
+        }
+    } catch (Exception $e) {
+        $_SESSION['mensagem'] = "Erro ao cadastrar produto: " . $e->getMessage();
+        $_SESSION['tipoMensagem'] = "danger";
+        header("Location: inserirProduto.php");
+        exit;
+    }
+    $nomeProduto = $_POST['nomeProduto'] ?? '';
+    $idCategoria = $_POST['idCategoria'] ?? '';
+    $idLoja = $_POST['idLoja'] ?? '';
+    $idUsuario = $_SESSION['idUsuario'];
+    $descricaoProduto = $_POST['descricaoProduto'] ?? '';
+    $linkAfiliado = $_POST['linkAfiliado'] ?? '';
 
     if ($nomeProduto === '' || $idCategoria <= 0 || $idLoja <= 0 || $idUsuario <= 0) {
         die("Todos os campos obrigatórios precisam ser preenchidos.");
@@ -42,9 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto, descricaoProduto, linkAfiliado) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = mysqli_prepare($conexao, $sqlInsert);
-    mysqli_stmt_bind_param($stmt, "siiisss", $nomeProduto, $idCategoria, $idLoja, $idUsuario, $fotoProduto, $descricaoProduto, $linkAfiliado);
+    $sqlInsert = "INSERT INTO produto (nomeProduto, idCategoria, idLoja, idUsuario, fotoProduto, precoProduto, descricaoProduto, linkAfiliado) 
+                  VALUES ('$nomeProduto', '$idCategoria', '$idLoja', '$idUsuario', '$fotoProduto', '$precoProduto', '$descricaoProduto', '$linkAfiliado')";
 
     if (mysqli_stmt_execute($stmt)) {
         mysqli_stmt_close($stmt);
@@ -60,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto, p.descricaoProduto, p.linkAfiliado
+$sql = "SELECT c.nomeCategoria, l.nomeLoja, u.nomeUsuario, p.nomeProduto, p.fotoProduto, p.precoProduto, p.descricaoProduto, p.linkAfiliado
         FROM produto p
         INNER JOIN categoria c ON p.idCategoria = c.idCategoria
         INNER JOIN loja l ON p.idLoja = l.idLoja

@@ -109,7 +109,7 @@ if (isset($_SESSION['idUsuario'])) {
                 <div class="card painel-card shadow-sm h-100">
                     <div class="card-body text-center">
                         <span class="material-symbols-outlined painel-icone">
-                            manage_accounts
+                            category
                         </span>
                         <h5 class="mt-3">Gerenciar Categorias</h5>
                         <p class="text-muted">
@@ -125,7 +125,7 @@ if (isset($_SESSION['idUsuario'])) {
                 <div class="card painel-card shadow-sm h-100">
                     <div class="card-body text-center">
                         <span class="material-symbols-outlined painel-icone">
-                            manage_accounts
+                            inventory
                         </span>
                         <h5 class="mt-3">Gerenciar Produtos</h5>
                         <p class="text-muted">
@@ -140,7 +140,7 @@ if (isset($_SESSION['idUsuario'])) {
                 <div class="card painel-card shadow-sm h-100">
                     <div class="card-body text-center">
                         <span class="material-symbols-outlined painel-icone">
-                            manage_accounts
+                            store
                         </span>
                         <h5 class="mt-3">Gerenciar Lojas</h5>
                         <p class="text-muted">

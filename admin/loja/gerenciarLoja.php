@@ -33,8 +33,72 @@ require_once ROOT_PATH . '/includes/head.php';
  
 <body>
   <?php require_once ROOT_PATH . '/includes/header.php'; ?>
+        <!-- Modal -->
+<div class="modal fade" id="modalMensagem" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <?php
+                $tipo = $_SESSION['tipoMensagem'] ?? 'primary';
+
+                switch ($tipo) {
+                    case 'success':
+                        $cor = 'bg-success';
+                        $titulo = 'Sucesso';
+                        break;
+
+                    case 'warning':
+                        $cor = 'bg-warning';
+                        $titulo = 'Aviso';
+                        break;
+
+                    case 'danger':
+                        $cor = 'bg-danger';
+                        $titulo = 'Erro';
+                        break;
+
+                    default:
+                        $cor = 'bg-primary';
+                        $titulo = 'Mensagem';
+                }
+            ?>
+
+            <div class="modal-header <?= $cor ?> text-white">
+                <h5 class="modal-title"><?= $titulo ?></h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <?= $_SESSION['mensagem'] ?? '' ?>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal">
+
+                    OK
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Fim Modal -->
+
+            
  
-<div class="container py-5">
+<main class="container py-5">
  
     <div class="d-flex justify-content-between align-items-center mb-4">
  
@@ -46,7 +110,7 @@ require_once ROOT_PATH . '/includes/head.php';
             Lojas
 </h1>
  
-        <a href="inserirLoja.php" class="btn bg-dark-subtle">
+        <a href="inserirLojaForm.php" class="btn bg-dark-subtle">
             Inserir Loja
 </a>
  
@@ -150,7 +214,21 @@ require_once ROOT_PATH . '/includes/head.php';
  
     </div>
  
-</div>
+</main>
 <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
+<?php if (isset($_SESSION['mensagem'])): ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = new bootstrap.Modal(document.getElementById("modalMensagem"));
+    modal.show();
+});
+</script>
+
+<?php
+unset($_SESSION['mensagem']);
+unset($_SESSION['tipoMensagem']);
+endif;
+?>
 </body>
 </html>

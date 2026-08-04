@@ -117,13 +117,15 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                     </a>
 
                     <p class="text-secondary">
-                        A partir de muitos dinheiros
+                        <?= htmlspecialchars($produto['descricaoProduto'], ENT_QUOTES, 'UTF-8') ?>
                     </p>
 
-                    <span class="badge bg-success">Até 10% OFF</span>
-                    <span class="badge bg-success-subtle text-success">
-                        Até 5% Cashback
-                    </span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        
+                        <h6 class="fw-bold">
+                            R$ <?= htmlspecialchars($produto['precoProduto'], ENT_QUOTES, 'UTF-8') ?>
+                        </h6>
+                    
 
                 </div>
 

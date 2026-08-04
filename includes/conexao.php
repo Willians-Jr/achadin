@@ -4,7 +4,7 @@
 $servidor = "localhost";
 $usuario = "root";
 $senha = "";
-$banco = "achadin";
+$banco = "topachados";
 
 // Criando a conexão
 $conexao = mysqli_connect($servidor, $usuario, $senha, $banco);

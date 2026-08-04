@@ -19,7 +19,7 @@ $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
 
-$sqlLojas = "SELECT nomeLoja, logoLoja, linkLoja FROM loja ORDER BY nomeLoja LIMIT 4";
+$sqlLojas = "SELECT nomeLoja, logoLoja,linkLoja FROM loja ORDER BY nomeLoja";
 $resultLojas = mysqli_query($conexao, $sqlLojas);
 
 
@@ -241,7 +241,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                 <h6>Lojas em destaque</h6>
  
  
-                <a href="#">Ver todas</a>
+                <a href="<?= BASE_URL ?>admin/loja/lojas.php">Ver todas</a>
  
  
             </div>
@@ -259,9 +259,9 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                     
                     <?php if (!empty($loja['logoLoja'])): ?>
                         <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
-                             alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
-                             class="w-100 h-100" 
-                             style="max-height: 150px; object-fit: contain;">
+                            alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
+                            class="w-100 h-100" 
+                            style="max-height: 150px; object-fit: contain;">
                     <?php else: ?>
                         <div class="bg-light h-100 d-flex align-items-center justify-content-center p-3" style="min-height: 100px;">
                             <span class="text-dark fw-bold"><?php echo htmlspecialchars($loja['nomeLoja']); ?></span>
