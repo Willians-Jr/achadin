@@ -327,7 +327,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                            onclick="window.location.href='?id=<?= $produto['idProduto'] ?>';" 
                            class="link-produto-vitrine">
                            
-                            <img src="/achadin/<?= $imagemFinal ?>" class="card-img-top img-produto" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
+                            <img src="/topachados/<?= $imagemFinal ?>" class="card-img-top img-produto" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
          
                             <div class="card-body">
          
