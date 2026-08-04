@@ -3,11 +3,12 @@ require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if($_SERVER["REQUEST_METHOD"]=="POST"){
+  try{
     $emailUsuario = trim($_POST['emailUsuario'] ?? '');
     $senhaUsuario = trim($_POST['senhaUsuario'] ?? '');
 
     if ($emailUsuario === '' || $senhaUsuario === '') {
-    die("Preencha todos os campos.");
+    throw new Exception("Preencha todos os campos.");
 }
 
     // CORRIGIDO: Uso de Prepared Statement contra SQL Injection
@@ -34,35 +35,92 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             header("Location: " . BASE_URL . "index.php");
             exit;
         } else {
-            echo "Usuário ou senha incorretos!";
+            throw new Exception("E-mail ou senha inválidos.");
         }
     } else {
-        echo "Usuário ou senha incorretos!";
+        throw new Exception("E-mail ou senha inválidos.");
     }
-    
+  } catch(Exception $e){
+    $_SESSION['mensagem'] = "Erro ao realizar login: " . $e->getMessage();
+    $_SESSION['tipoMensagem'] = "danger";
+    header("Location: loginUsuario.php");
+    exit;
+  }
+  mysqli_stmt_close($stmt);
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usuário - Login</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<?php $titulo = "Top Achados - Login";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-</head>
 <body>
   <main>
     <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
+        <!-- Modal -->
+<div class="modal fade" id="modalMensagem" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <?php
+                $tipo = $_SESSION['tipoMensagem'] ?? 'primary';
+
+                switch ($tipo) {
+                    case 'success':
+                        $cor = 'bg-success';
+                        $titulo = 'Sucesso';
+                        break;
+
+                    case 'warning':
+                        $cor = 'bg-warning';
+                        $titulo = 'Aviso';
+                        break;
+
+                    case 'danger':
+                        $cor = 'bg-danger';
+                        $titulo = 'Erro';
+                        break;
+
+                    default:
+                        $cor = 'bg-primary';
+                        $titulo = 'Mensagem';
+                }
+            ?>
+
+            <div class="modal-header <?= $cor ?> text-white">
+                <h5 class="modal-title"><?= $titulo ?></h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal">
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <?= $_SESSION['mensagem'] ?? '' ?>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal">
+
+                    OK
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Fim Modal -->
 
     <div class="container py-5">
       <div class="row justify-content-center">
@@ -95,11 +153,14 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
                 required
               />
 
+            
+
             </div>
+            
 
             <!-- Link de cadastro -->
             <div class="text-center mb-4">
-              <span class="text-secondary">Não tem cadastro?</span>
+              <span class="text-secondary">Não possui cadastro?</span>
               <a href="<?= BASE_URL ?>admin/usuario/inserirUsuarioForm.php"
                  class="text-decoration-none fw-semibold">
                 Cadastre-se
@@ -124,8 +185,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 
     <?php require_once ROOT_PATH . '/includes/footer.php';?>
 
-  </body>
-</html>
+
   <!-- <form action="" method="post">
           <label for="loginUsuario">Usuario:</label>
           <input
@@ -156,3 +216,20 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
             </button> -->
            
            <script src="<?= BASE_URL ?>assets/JS/InserirFoto.js"></script>
+           <script src="<?= BASE_URL ?>assets/JS/validacoes.js"></script>
+<?php if (isset($_SESSION['mensagem'])): ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = new bootstrap.Modal(document.getElementById("modalMensagem"));
+    modal.show();
+});
+</script>
+
+<?php
+unset($_SESSION['mensagem']);
+unset($_SESSION['tipoMensagem']);
+endif;
+?> 
+</body>
+</html>

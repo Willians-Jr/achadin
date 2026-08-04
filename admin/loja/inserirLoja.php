@@ -4,8 +4,9 @@
 require_once ROOT_PATH . '/includes/conexao.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    try{
     $nomeLoja = trim($_POST['nomeLoja']);
+    $linkLoja = $_POST['linkLoja'];
 
     // Verifica se foi enviada uma imagem
     if (isset($_FILES["logoLoja"]) && $_FILES["logoLoja"]["error"] == 0) {
@@ -23,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Gera um nome único
             $nomeImagem = uniqid() . "." . $extensao;
 
-            // Caminho da imagem
-            $caminho = "../../assets/UPLOAD/" . $nomeImagem;
+            // Caminho da imagem no servidor
+            $caminho = ROOT_PATH . '/assets/UPLOAD/' . $nomeImagem;
 
             // Move a imagem
             if (!move_uploaded_file($imagem["tmp_name"], $caminho)) {
@@ -53,37 +54,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($resultado) > 0) {
 
-        echo "<script>
-                alert('Loja já cadastrada!');
-                window.location='inserirLoja.php';
-              </script>";
+        $_SESSION['mensagem'] = "Loja já cadastrada!";
+        header("Location: gerenciarLoja.php");
         exit;
     }
 
     // Insere a loja
-    $sqlInsert = "INSERT INTO loja (nomeLoja, logoLoja) VALUES (?, ?)";
+    $sqlInsert = "INSERT INTO loja (nomeLoja, linkLoja, logoLoja) VALUES (?, ?, ?)";
 
     $stmt = mysqli_prepare($conexao, $sqlInsert);
 
     mysqli_stmt_bind_param(
         $stmt,
-        "ss",
+        "sss",
         $nomeLoja,
+        $linkLoja,
         $logoLoja
     );
 
     if (mysqli_stmt_execute($stmt)) {
-
-        echo "<script>
-                alert('Loja cadastrada com sucesso!');
-                window.location='inserirLojaForm.php';
-              </script>";
+        $_SESSION['mensagem'] = "Loja cadastrada com sucesso!!";
+        $_SESSION['tipoMensagem'] = "success";
+        header("Location: lojas.php");
 
     } else {
 
-        echo "Erro ao cadastrar loja: " . mysqli_error($conexao);
+        throw new Exception(mysqli_error($conexao));
 
     }
+    }catch(Exception $e){
+
+    $_SESSION['mensagem'] = "Erro ao cadastrar a loja. Erro: " . $e->getMessage();
+    $_SESSION['tipoMensagem'] = "danger";
+    header("Location: gerenciarLojas.php");
+    exit;
+}
 
     mysqli_stmt_close($consulta);
     mysqli_stmt_close($stmt);

@@ -1,5 +1,7 @@
 <?php
-include_once __DIR__ . '/../../includes/conexao.php';
+require_once dirname(__DIR__, 2) . '/includes/config.php';
+exigirLogin();
+require_once ROOT_PATH . '/includes/conexao.php';
 
 if (!isset($_POST['idCategoria'])) {
     die("ID da categoria não informado.");
@@ -10,20 +12,25 @@ if (!isset($_POST['nomeCategoria'])) {
 }
 
 $idCategoria = (int) $_POST['idCategoria'];
-$nomeCategoria = mysqli_real_escape_string($conexao, $_POST['nomeCategoria']);
+$nomeCategoria = trim($_POST['nomeCategoria']);
 
-$sql = "UPDATE categoria
-        SET nomeCategoria = '$nomeCategoria'
-        WHERE idCategoria = $idCategoria";
+if ($idCategoria <= 0 || $nomeCategoria === '') {
+    die("Dados inválidos enviados.");
+}
 
-if (mysqli_query($conexao, $sql)) {
+$sql = "UPDATE categoria SET nomeCategoria = ? WHERE idCategoria = ?";
+$stmt = mysqli_prepare($conexao, $sql);
+mysqli_stmt_bind_param($stmt, "si", $nomeCategoria, $idCategoria);
 
+if (mysqli_stmt_execute($stmt)) {
+    mysqli_stmt_close($stmt);
     header("Refresh:2; url=gerenciarCategoria.php");
     echo "Alteração realizada com sucesso!";
-
+    exit;
 } else {
-
-    echo "Erro ao alterar: " . mysqli_error($conexao);
-
+    mysqli_stmt_close($stmt);
+    error_log("Erro ao alterar categoria: " . mysqli_error($conexao));
+    echo "Erro ao alterar categoria. Tente novamente mais tarde.";
+    exit;
 }
 ?>

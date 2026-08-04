@@ -32,112 +32,144 @@ if (isset($_SESSION['idUsuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu Perfil - Top Achados</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-</head>
+<?php $titulo="Meu Perfil - Painel"; require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
-  
+<main>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
- 
-        <div class="collapse navbar-collapse" id="navbarColor03">
- 
-            <!-- BARRA DE BUSCA -->
-   
-<form class="d-flex mx-auto w-50 form formularioBusca" role="search">
- 
-    <div class="position-relative flex-grow-1 me-2">
-        <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
-            search
-        </span>
- 
-        <input
-            class="form-control pe-5"
-            type="search"
-            name="pesquisa"
-            placeholder="Busca por palavra-chave..."
-            aria-label="Busca">
- 
-           
-    </div>
- 
-    <button class="btn btn-primary" type="submit">
-        Buscar
-    </button>
- 
-</form>
- 
-            <!-- MENU A DIREITA -->
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
-                <li class="nav-item">
-                    <a class="active nav-link link-light" href="#">Categorias</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="#">Produtos</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="services.html">Lojas</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="contact.html">Como Funciona</a>
-                </li>
-           
- 
- 
- 
-                 
-            </ul>
- 
-        </div>
-    </div>
-</nav>
- 
- 
- 
- 
+
 <!-- -->
  
 <!-- SEGUNDO -->
  
 <div class="menuUsuario py-2">
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-md-center">
- 
-        <div class="textoUsuario mb-2 mb-md-0">
-            Olá, <span class="nomeUsuario">
-            <?php
-            if ($usuario = mysqli_fetch_assoc($resultadoUsuario)) {
-            echo $usuario['nomeUsuario'];
-        }
-            ?>
-            </span>
+    <div class="container my-5">
+
+    <?php if ($_SESSION['nivel'] == 1) { ?>
+                    <h2 class="fw-bold mb-4">Painel do Administrador</h2>
+                <?php } else { ?>
+                    <h2 class="fw-bold mb-4">Painel do Usuário</h2>
+                <?php } ?>
+
+    <div class="row g-4">
+
+        <!-- Adicionar Produto -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/inserirProdutoForm.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            add_box
+                        </span>
+                        <h5 class="mt-3">Adicionar Produto</h5>
+                        <p class="text-muted">
+                            Cadastre um novo produto e compartilhe ofertas.
+                        </p>
+                    </div>
+                </div>
+            </a>
         </div>
- 
-       <div class="d-flex flex-column flex-md-row align-items-start align-items-md-center">
- 
-           <a href="#" class="nav-link linkUsuario d-flex align-items-center px-0">
-    <span class="material-symbols-outlined me-1">
-        person
-    </span>
-    Minha conta
-</a>
- 
-<span class="mx-3 text-secondary d-none d-md-inline">|</span>
- 
-<a href="#" class="nav-link linkSair px-0 mt-2 mt-md-0 ms-md-3">
-    Sair
-</a>
- 
+
+        <!-- Meus Produtos -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/meusProdutos.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            inventory_2
+                        </span>
+                        <h5 class="mt-3">Meus Produtos</h5>
+                        <p class="text-muted">
+                            Visualize e gerencie seus produtos cadastrados.
+                        </p>
+                    </div>
+                </div>
+            </a>
         </div>
- 
+
+        <!-- Editar Perfil -->
+         <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/usuario/perfilUsuario.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            manage_accounts
+                        </span>
+                        <h5 class="mt-3">Editar Perfil</h5>
+                        <p class="text-muted">
+                            Atualize seus dados pessoais e foto.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <?php if ($_SESSION['nivel']==1){ ?>
+        <!-- Gerenciar -->
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/categoria/gerenciarCategoria.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            category
+                        </span>
+                        <h5 class="mt-3">Gerenciar Categorias</h5>
+                        <p class="text-muted">
+                            Gerencie as categorias disponíveis para os produtos.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/produto/gerenciarProduto.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            inventory
+                        </span>
+                        <h5 class="mt-3">Gerenciar Produtos</h5>
+                        <p class="text-muted">
+                            Gerencie os produtos cadastrados no sistema.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>admin/loja/gerenciarLoja.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            store
+                        </span>
+                        <h5 class="mt-3">Gerenciar Lojas</h5>
+                        <p class="text-muted">
+                            Gerencie as lojas cadastradas no sistema.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <?php } ?>
+        <!-- Favoritos
+        <div class="col-md-6 col-lg-4">
+            <a href="<?= BASE_URL ?>favoritos.php" class="text-decoration-none">
+                <div class="card painel-card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <span class="material-symbols-outlined painel-icone">
+                            favorite
+                        </span>
+                        <h5 class="mt-3">Favoritos</h5>
+                        <p class="text-muted">
+                            Veja seus produtos favoritos.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div> -->
     </div>
 </div>
+</main>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 </body>
 </html>

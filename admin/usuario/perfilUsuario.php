@@ -1,5 +1,5 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 
 require_once ROOT_PATH . '/includes/conexao.php';
 
@@ -13,7 +13,7 @@ if (!isset($_SESSION['idUsuario'])) {
 $idUsuario = $_SESSION['idUsuario'];
 
 // Busca dados do usuário logado
-$sql = "SELECT nomeUsuario, loginUsuario, imgUsuario FROM usuario WHERE idUsuario = ?";
+$sql = "SELECT nomeUsuario, emailUsuario, imgUsuario FROM usuario WHERE idUsuario = ?";
 $stmt = mysqli_prepare($conexao, $sql);
 mysqli_stmt_bind_param($stmt, "i", $idUsuario);
 mysqli_stmt_execute($stmt);
@@ -25,35 +25,33 @@ if (mysqli_num_rows($resultado) === 0) {
 
 $dados = mysqli_fetch_assoc($resultado);
 $nomeUsuario = $dados['nomeUsuario'] ?? '';
-$loginUsuario = $dados['loginUsuario'] ?? '';
+$emailUsuario = $dados['emailUsuario'] ?? '';
 $imgUsuario = $dados['imgUsuario'] ?? '';
 
-// Atualiza nome/login
+// Atualiza nome/email
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $novoNome = trim($_POST['nomeUsuario'] ?? '');
-  $novoLogin = trim($_POST['loginUsuario'] ?? '');
+  $novoemail = trim($_POST['emailUsuario'] ?? '');
   $nomeImagem=$imgUsuario;
 
- if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
+if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
 
     $arquivo = $_FILES['imgUsuario'];
 
     $nomeImagem = time() . "_" . basename($arquivo['name']);
 
-    $caminho = "imagens/" . $nomeImagem;
+    $caminho = ROOT_PATH . "/assets/UPLOAD/" . $nomeImagem;
 
     move_uploaded_file($arquivo['tmp_name'], $caminho);
 }
 
-  if ($novoNome === '' || $novoLogin === '') {
-    $_SESSION['mensagemPerfil'] = "Nome e login são obrigatórios.";
+  if ($novoNome === '' || $novoemail === '') {
+    $_SESSION['mensagemPerfil'] = "Nome e email são obrigatórios.";
     header("Location: perfilUsuario.php");
     exit;
   }
 
-  $sqlUpd = "UPDATE usuario
-           SET nomeUsuario = ?, loginUsuario = ?, imgUsuario = ?
-           WHERE idUsuario = ?";
+  $sqlUpd = "UPDATE usuario SET nomeUsuario = ?, emailUsuario = ?, imgUsuario = ? WHERE idUsuario = ?";
 
 $stmtUpd = mysqli_prepare($conexao, $sqlUpd);
 
@@ -61,7 +59,7 @@ mysqli_stmt_bind_param(
     $stmtUpd,
     "sssi",
     $novoNome,
-    $novoLogin,
+    $novoemail,
     $nomeImagem,
     $idUsuario
 );
@@ -79,19 +77,11 @@ mysqli_stmt_bind_param(
 
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meu Perfil</title>
-       
-
-    
-    
-  </head>
+  <?php $titulo = "Meu Perfil";  
+  require_once ROOT_PATH . '/includes/head.php'; ?>
 
   <body>
-   <?php require_once ROOT_PATH . '/includes/header.php';
-?>
+<?php require_once ROOT_PATH . '/includes/header.php';?>
     <main class="container mt-4">
       <h1 class="text-center mb-4">Meu Perfil</h1>
 
@@ -99,22 +89,33 @@ mysqli_stmt_bind_param(
         <div class="col-md-4">
           <div class="card shadow p-3">
             <div class="text-center">
-              <img
-                src="<?php echo !empty($imgUsuario) ? 'imagens/' . $imgUsuario : 'BASE_URL img/download.png'; ?>"
-                alt="Foto do usuário"
-              />
+              <?php if (!empty($imgUsuario)): ?>
+    <img
+      src="<?php echo BASE_URL . 'assets/UPLOAD/' . htmlspecialchars($imgUsuario); ?>"
+      alt="Foto do usuário"
+      style="width: 160px; height: 160px; object-fit: cover; border-radius: 50%;"
+    />
+    <p><strong>Foto Atual do Perfil</strong></p>
+
+  <?php else: ?>
+    <i class="bi bi-person-circle" style="font-size: 160px;"></i>
+    
+  <?php endif; ?>
             </div>
 
-            <div class="mt-3">
+            <div class="">
+              <?php if ($_SESSION['nivel'] == 1) { ?>
+                <span class="badge bg-danger ms-2 mb-1">Perfil de Administrador</span>
+              <?php } ?>
               <p class="mb-1"><strong>Nome:</strong> <?php echo htmlspecialchars($nomeUsuario); ?></p>
-              <p class="mb-1"><strong>Login:</strong> <?php echo htmlspecialchars($loginUsuario); ?></p>
+              <p class="mb-1"><strong>Email:</strong> <?php echo htmlspecialchars($emailUsuario); ?></p>
             </div>
-          </div>
+            </div>
         </div>
 
         <div class="col-md-8">
           <div class="card shadow p-4">
-            <h2 class="mb-3">Editar perfil</h2>
+            <h2 class="mb-3">Editar Perfil</h2>
 
             <form method="POST" enctype="multipart/form-data">
               <div class="mb-3">
@@ -130,19 +131,19 @@ mysqli_stmt_bind_param(
               </div>
 
               <div class="mb-3">
-                <label for="loginUsuario" class="form-label">login</label>
+                <label for="emailUsuario" class="form-label">Email:</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="loginUsuario"
-                  name="loginUsuario"
-                  value="<?php echo htmlspecialchars($loginUsuario); ?>"
+                  id="emailUsuario"
+                  name="emailUsuario"
+                  value="<?php echo htmlspecialchars($emailUsuario); ?>"
                   required
                 />
               </div>
               
             <div class="mb-3">
-    <label for="imgUsuario" class="form-label">Foto do Usuário</label>
+    <label for="imgUsuario" class="form-label">Foto do Perfil:</label>
 
     <input
         type="file"
@@ -167,6 +168,6 @@ mysqli_stmt_bind_param(
       </div>
     </main>
 
-   
+    <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
   </body>
 </html>

@@ -1,43 +1,43 @@
 <?php
- require_once dirname(__DIR__, 2) . '/includes/config.php';
-
+require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
 
-$pesquisaProduto = isset($_GET['pesquisaProduto']) ? $_GET['pesquisaProduto'] : '';
+$pesquisaProduto = trim($_GET['pesquisaProduto'] ?? '');
 
-if ($pesquisaProduto) {
+if ($pesquisaProduto !== '') {
     $sql = "SELECT p.*, c.nomeCategoria, l.nomeLoja 
             FROM produto p
             INNER JOIN categoria c ON p.idCategoria = c.idCategoria
             INNER JOIN loja l ON p.idLoja = l.idLoja
-            WHERE p.nomeProduto LIKE '%$pesquisaProduto%' 
+            WHERE p.nomeProduto LIKE ? 
             ORDER BY p.nomeProduto";
+    $stmt = mysqli_prepare($conexao, $sql);
+    $like = "%{$pesquisaProduto}%";
+    mysqli_stmt_bind_param($stmt, "s", $like);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+    mysqli_stmt_close($stmt);
 } else {
     $sql = "SELECT p.*, c.nomeCategoria, l.nomeLoja 
             FROM produto p
             INNER JOIN categoria c ON p.idCategoria = c.idCategoria
             INNER JOIN loja l ON p.idLoja = l.idLoja
             ORDER BY p.nomeProduto";
+    $resultado = mysqli_query($conexao, $sql);
 }
 
-$resultado = mysqli_query($conexao, $sql);
-
 if (!$resultado) {
-    die("Erro ao buscar o produto: " . mysqli_error($conexao));
+    die("Erro ao buscar o produto.");
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-    <title>Produtos ADM - Top Achados</title>
-</head>
+
+<?php $titulo = "TopAchados - Gerenciar Produtos";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
+    <?php require_once ROOT_PATH . '/includes/header.php'; ?>
 
 <h1>Produtos</h1>
 

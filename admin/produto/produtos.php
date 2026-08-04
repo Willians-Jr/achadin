@@ -1,10 +1,11 @@
 <?php
-session_start();
-require_once dirname(__DIR__, 2) . '/includes/config.php';
+   require_once dirname(__DIR__, 2) . '/includes/config.php';
+
 require_once ROOT_PATH . '/includes/conexao.php';
 
+
 // =========================================================================
-// 🚨 INÍCIO DA ADIÇÃO: GRAVAR NO HISTÓRICO ATRAVÉS DE NAVEGAÇÃO DA PÁGINA
+
 // =========================================================================
 if (isset($_GET['id'])) {
     $idProdutoAtual = intval($_GET['id']); 
@@ -15,10 +16,9 @@ if (isset($_GET['id'])) {
     mysqli_query($conexao, $sqlInsert);
 }
 // =========================================================================
-// 🚨 FIM DA ADIÇÃO
+
 // =========================================================================
 
-// CONSULTA DINÂMICA DE PRODUTOS
 $sql = "SELECT * FROM produto ORDER BY nomeProduto";
 $stmt = mysqli_prepare($conexao, $sql);
 mysqli_stmt_execute($stmt);
@@ -28,35 +28,14 @@ $resultado = mysqli_stmt_get_result($stmt);
 <!doctype html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopAchados - Produtos </title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- CSS do menu -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
-
-    <!-- CSS da página -->
-    <link rel="stylesheet" href="<?= BASE_URL ?>produtos.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <style>
-        /* CSS Auxiliar para formatar os links invisíveis nos cards dinâmicos */
-        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
-        .link-produto-vitrine:hover h5 { color: #0d6efd; }
-    </style>
+   <?php $titulo="TopAchados - Produtos";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 </head>
 
 <body>
-
-<main>
  <?php require_once ROOT_PATH . '/includes/header.php'; ?>
+<main>
+
 <div class="container py-5">
 
   
@@ -96,6 +75,7 @@ $resultado = mysqli_stmt_get_result($stmt);
     <?php while ($produto = mysqli_fetch_assoc($resultado)) { ?>
         <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="card h-100 shadow-sm">
+        
         <a href="#" class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
         <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
         </svg></a>
@@ -114,13 +94,11 @@ $resultado = mysqli_stmt_get_result($stmt);
                     <div class="position-absolute top-0 end-0 p-3 d-flex flex-column gap-2">
 
                         <a href="#" class="text-dark">
-                            <i class="bi bi-heart fs-4"><span class="material-symbols-outlined"> favorite </span></i>
+                            <i class="bi bi-heart fs-4"></i>
                         </a>
 
                         <a href="#" class="text-dark">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-                                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-                            </svg>
+                            <i class="bi bi-share fs-5"></i>
                         </a>
 
                     </div>
@@ -139,13 +117,15 @@ $resultado = mysqli_stmt_get_result($stmt);
                     </a>
 
                     <p class="text-secondary">
-                        A partir de muitos dinheiros
+                        <?= htmlspecialchars($produto['descricaoProduto'], ENT_QUOTES, 'UTF-8') ?>
                     </p>
 
-                    <span class="badge bg-success">Até 10% OFF</span>
-                    <span class="badge bg-success-subtle text-success">
-                        Até 5% Cashback
-                    </span>
+                    <div class="d-flex justify-content-between align-items-center">
+                        
+                        <h6 class="fw-bold">
+                            R$ <?= htmlspecialchars($produto['precoProduto'], ENT_QUOTES, 'UTF-8') ?>
+                        </h6>
+                    
 
                 </div>
 
@@ -153,48 +133,8 @@ $resultado = mysqli_stmt_get_result($stmt);
         </div>
     <?php } ?>
 
-    <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3">
-        <div class="card h-100">
-
-            <div class="position-relative">
-
-        <img src="<?= BASE_URL ?>assets/UPLOAD/iphone.jpg"
-             class="card-img-top p-3 produto-img"
-             alt="iPhone 16">
-
-        <div class="position-absolute top-0 end-0 p-3 d-flex flex-column gap-2">
-
-            <a href="#" class="text-dark">
-                    <i class="bi bi-heart fs-4"><span class="material-symbols-outlined"> favorite </span></i>
-                </a>
-
-
-            <a href="#" class="text-dark"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
-      <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
-    </svg></a>
-
-        </div>
-
-    </div>
-            <div class="card-body">
-                <h5 class="fw-bold">iPhone 16</h5>
-
-                <p class="text-secondary">
-                    A partir de R$ 5.489
-                </p>
-
-                <span class="badge bg-success">Até 10% OFF</span>
-                <span class="badge bg-success-subtle text-success">
-                    Até 5% Cashback
-                </span>
-
-            </div>
-
-        </div>
-    </div>
-
 <div class="text-center mt-5">
- <button class="btn-ver-produtos">
+ <button class="btn btn-primary">
     <span>Ver todos os produtos</span>
     <span class="seta">→</span>
 </button>
@@ -204,8 +144,5 @@ $resultado = mysqli_stmt_get_result($stmt);
 </main>
 
 <?php require_once ROOT_PATH . '/includes/footer.php';?>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
 </html>

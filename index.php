@@ -3,7 +3,7 @@ require_once __DIR__ . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
 
 // ==========================================
-// 🚨 INÍCIO DA ADIÇÃO: MOTOR DE RECOMENDAÇÃO
+
 // ==========================================
 if (isset($_GET['id'])) {
     $idProdutoAtual = intval($_GET['id']); 
@@ -18,6 +18,10 @@ if (isset($_GET['id'])) {
 $idUsuarioLogado = isset($_SESSION['idUsuario']) ? intval($_SESSION['idUsuario']) : 1;
 $sqlSelect = "SELECT idProduto FROM historicoclique WHERE idUsuario = $idUsuarioLogado ORDER BY dataClique DESC LIMIT 5";
 $resSelect = mysqli_query($conexao, $sqlSelect);
+
+$sqlLojas = "SELECT nomeLoja, logoLoja,linkLoja FROM loja ORDER BY nomeLoja";
+$resultLojas = mysqli_query($conexao, $sqlLojas);
+
 
 $idsHistorico = [];
 while ($row = mysqli_fetch_assoc($resSelect)) {
@@ -111,109 +115,19 @@ if (count($recomendacoes) < 5) {
     }
 }
 // ==========================================
-// 🚨 FIM DA ADIÇÃO
+
 // ==========================================
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Achados - Página Inicial</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
-    <style>
-        .link-produto-vitrine { text-decoration: none; color: inherit; display: block; }
-        .link-produto-vitrine:hover h6 { color: #0d6efd; }
-    </style>
-</head>
+<?php $titulo="Top Achados - Página Inicial";
+require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
     <main>
-   
- 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.comht@100;200;300;400;500;600;700;800;900&amp;display=swap">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-  <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
- 
- 
- 
-<nav class="navbar navbar-expand-lg navbar-dark  menuPrincipal">
- 
-    <div class="container-fluid">
- 
-        <a class="navbar-brand logoA" href="/achadin/">
-    <img src="/achadin/assets/IMG/Catavento.png" class="imgLogo" alt="LOGO">
- 
-    <div class="logoTexto">
-        <span class="logo">Top</span>
-        <span class="logo">Achados</span>
-    </div>
-</a>
- 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
- 
-        <div class="collapse navbar-collapse" id="navbarColor03">
- 
-            <form class="d-flex mx-auto w-50 form formularioBusca" action="/achadin/pesquisarProduto.php" role="search">
- 
-    <div class="position-relative flex-grow-1 me-2">
-        <span class="material-symbols-outlined position-absolute top-50 end-0 translate-middle-y me-3 text-secondary">
-            search
-        </span>
- 
-        <input class="form-control pe-5" type="search" name="pesquisa" placeholder="Busca por palavra-chave..." aria-label="Busca">
- 
-           
-    </div>
- 
-    <button class="btn btn-primary" type="submit">
-        Buscar
-    </button>
- 
-</form>
- 
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0" id="menuPrincipalLinks">
-                <li class="nav-item">
-                    <a class="active nav-link link-light" href="/achadin/admin/categoria/gerenciarCategoria.php">Categorias</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/admin/produto/produtos.php">Produtos</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/admin/loja/gerenciarLoja.php">Lojas</a>
-                </li>
- 
-                <li class="nav-item">
-                    <a class="nav-link link-light" href="/achadin/comoFunciona.php">Como Funciona</a>
-                </li>
-           
- 
- 
-                  <li class="favoritosIcon">
-    <a href="/achadin/admin/usuario/loginUsuario.php" class="btn active" role="button" data-bs-toggle="button" aria-pressed="true">
-       <span class="material-symbols-outlined">
-login
-</span>
- 
-        <span>Login</span>
-    </a>
-  </li>
-            </ul>
- 
-        </div>
-    </div>
-</nav>
-   <header class="bannerIndex ">
+
+<?php require_once ROOT_PATH . '/includes/header.php'; ?>
+
+<header class="bannerIndex ">
  
  <div class="container banner">
  
@@ -280,9 +194,7 @@ login
  
                     
                     <div class="col-12 col-md-5">
-                        <img src="<?= BASE_URL ?>/assets/IMG/Sacola.png"
-                            class="img-fluid banner-img"
-                            alt="Sacola Banner">
+                        <img id="sacola" src="<?= BASE_URL ?>assets/IMG/Sacola.png" class="img-fluid banner-img" alt="Sacola Banner" >
                     </div>
  
                     <div class="col-12 col-md-7">
@@ -329,31 +241,46 @@ login
                 <h6>Lojas em destaque</h6>
  
  
-                <a href="#">Ver todas</a>
+                <a href="<?= BASE_URL ?>admin/loja/lojas.php">Ver todas</a>
  
  
             </div>
  
-            <div class="row g-2">
+ 
+            <div class="row g-1">
+    <?php 
+    if ($resultLojas && mysqli_num_rows($resultLojas) > 0):
+        while ($loja = mysqli_fetch_assoc($resultLojas)): 
+    ?>
+        <div class="col-md-3">
+            <div class="card text-center h-100 overflow-hidden" style="min-height: 100px;">
+                
+                <a href="<?php echo htmlspecialchars($loja['linkLoja']); ?>" target="_blank" class="d-flex align-items-center justify-content-center h-100 bg-light text-decoration-none">
+                    
+                    <?php if (!empty($loja['logoLoja'])): ?>
+                        <img src="<?= BASE_URL ?>assets/UPLOAD/<?php echo $loja['logoLoja']; ?>" 
+                            alt="<?php echo htmlspecialchars($loja['nomeLoja']); ?>" 
+                            class="w-100 h-100" 
+                            style="max-height: 150px; object-fit: contain;">
+                    <?php else: ?>
+                        <div class="bg-light h-100 d-flex align-items-center justify-content-center p-3" style="min-height: 100px;">
+                            <span class="text-dark fw-bold"><?php echo htmlspecialchars($loja['nomeLoja']); ?></span>
+                        </div>
+                    <?php endif; ?>
 
-                <?php
-                $sql = "SELECT idLoja, nomeLoja FROM loja ORDER BY nomeLoja LIMIT 4";
-                $resultado = mysqli_query($conexao, $sql);
-
-                while ($dados = mysqli_fetch_assoc($resultado)) {
-                ?>
-                    <div class="col-md-3">
-                        <a href="loja.php?id=<?= $dados['idLoja'] ?>" class="text-decoration-none">
-                            <div class="card p-3 text-center h-100">
-                                <?= htmlspecialchars($dados['nomeLoja']) ?>
-                            </div>
-                        </a>
-                    </div>
-                <?php
-                }
-                ?>
+                </a>
 
             </div>
+        </div>
+    <?php 
+        endwhile; 
+    else:
+    ?>
+        <div class="col-12 text-center text-muted">
+            Nenhuma loja cadastrada.
+        </div>
+    <?php endif; ?>
+</div>
  
  
         </div>
@@ -364,36 +291,7 @@ login
  
 </div>
  
-<div class="container my-4">
- 
- 
-    <div class="d-flex flex-wrap gap-3">
- 
-        <button class="btn btn-light border">
-            Todos os filtros
-        </button>
- 
- 
-        <select class="form-select w-auto">
-            <option>Preços</option>
-        </select>
- 
- 
-        <select class="form-select w-auto">
-            <option>Modelos</option>
-        </select>
- 
-        <select name="categoriaProduto" id="categoriaProduto" class="form-select w-auto">
-            <option value="" disabled="" selected="">Categorias</option><option value="2">
-                    Cosméticos</option><option value="1">
-                    Produto de Limpeza</option><option value="3">
-                    Tecnologia</option><option value="4">
-                    Uso Cotidiano</option>        </select>
- 
-    </div>
- 
- 
-</div>
+
  
 <style>
   .card {
@@ -453,114 +351,6 @@ login
 </div>
  
 </main>
- 
- 
- 
-    <meta charset="UTF-8">
- 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
-    <title>Top Achados - Footer</title>
- 
- 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
- 
- 
-    <link rel="stylesheet" href="/achadin/assets/CSS/style.css">
- 
- 
- 
- 
- 
- 
- 
-    <footer class="footer py-4">
- 
-        <div class="container">
- 
-            <div class="row align-items-start g-4">
- 
- 
-                <div class="col-12 col-md-6 col-lg-6">
- 
- 
-                    <a class="navbar-brand logoA d-flex align-items-center gap-2" href="/achadin/index.php">
- 
- 
-                        <img src="/achadin/assets/IMG/Catavento.png" class="imgLogo" alt="Logo Top Achados">
- 
- 
-                        <div class="logoTexto">
- 
-                            <span class="logo">
-                                Top
-                            </span>
- 
-                            <span class="logo">
-                                Achados
-                            </span>
- 
-                        </div>
- 
-                    </a>
- 
- 
-                    <p class="footer-slogan mt-3 mb-0">
- 
-                        O que você busca está aqui!
- 
-                    </p>
- 
-                </div>
- 
- 
-                <div class="col-12 col-md-3 col-lg-3 footer-column">
- 
- 
-                    <h3 class="h6 text-uppercase fw-bold mb-3">
- 
-                        FrontEnd
- 
-                    </h3>
- 
- 
-                    <p class="mb-0">
- 
-                        Nomes dos responsáveis
- 
-                    </p>
- 
-                </div>
- 
- 
-                <div class="col-12 col-md-3 col-lg-3 footer-column">
- 
- 
-                    <h3 class="h6 text-uppercase fw-bold mb-3">
- 
-                        BackEnd
- 
-                    </h3>
- 
- 
-                    <p class="mb-0">
- 
-                        Nomes dos responsáveis
- 
-                    </p>
- 
-                </div>
- 
- 
-            </div>
- 
-        </div>
- 
-    </footer>
- 
- 
- 
- 
- 
- 
-</body></html>
+<?php require_once ROOT_PATH . '/includes/footer.php'; ?>
+</body>
+</html>
