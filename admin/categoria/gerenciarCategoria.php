@@ -3,6 +3,7 @@
 
 require_once ROOT_PATH . '/includes/conexao.php';
 exigirLogin();
+exigirAdmin();
 
 $pesquisaCategoria = trim($_GET['pesquisaCategoria'] ?? '');
 

@@ -19,7 +19,7 @@ if ($idProduto <= 0) {
     exit;
 }
 
-$sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto, linkAfiliado, descricaoProduto FROM produto WHERE idProduto = ?";
+$sqlProduto = "SELECT idProduto, nomeProduto, idCategoria, idLoja, fotoProduto, linkAfiliado, descricaoProduto, idUsuario FROM produto WHERE idProduto = ?";
 $stmt = mysqli_prepare($conexao, $sqlProduto);
 mysqli_stmt_bind_param($stmt, "i", $idProduto);
 mysqli_stmt_execute($stmt);
@@ -33,6 +33,8 @@ if ($resultProduto && mysqli_num_rows($resultProduto) > 0) {
     exit;
 }
 mysqli_stmt_close($stmt);
+
+exigirDonoOuAdmin((int) $dados['idUsuario']);
 ?>
 
 <!DOCTYPE html>

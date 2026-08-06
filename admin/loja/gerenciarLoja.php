@@ -2,6 +2,7 @@
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
  exigirLogin();
+ exigirAdmin();
 
 $pesquisaLoja = trim($_GET['pesquisaLoja'] ?? '');
  
@@ -168,11 +169,12 @@ require_once ROOT_PATH . '/includes/head.php';
 </td>
  
                             <td>
-<img
-                                    src="<?= BASE_URL ?>/assets/UPLOAD/<?php echo $dados['logoLoja']; ?>"
-                                    alt="Logo da Loja"
-                                    class="img-fluid rounded"
-                                    style="max-width:100px; max-height:60px;">
+    <div class="logo-preview">
+        <img
+            src="<?= BASE_URL ?>assets/UPLOAD/<?= htmlspecialchars($dados['logoLoja']) ?>"
+            alt="Logo da Loja"
+            class="logo-preview-img">
+    </div>
 </td>
  
                             <td width="120">

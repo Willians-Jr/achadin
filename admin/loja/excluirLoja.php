@@ -2,6 +2,7 @@
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 exigirLogin();
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirAdmin();
 
 $idLoja = isset($_GET['idLoja']) ? (int) $_GET['idLoja'] : 0;
 

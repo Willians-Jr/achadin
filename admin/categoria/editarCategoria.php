@@ -1,16 +1,20 @@
 <?php
+require_once dirname(__DIR__, 2) . '/includes/config.php';
+require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
+exigirAdmin();
 
-
-
-$idCategoria = isset($_GET['idCategoria']) ? (int) $_GET['idCategoria'] : 0;
+$idCategoria = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 if ($idCategoria <= 0) {
     die("ID da categoria inválido.");
 }
 
-$sql = "SELECT * FROM categoria WHERE idCategoria = $idCategoria";
-
-$resultado = mysqli_query($conexao, $sql);
+$sql = "SELECT * FROM categoria WHERE idCategoria = ?";
+$stmt = mysqli_prepare($conexao, $sql);
+mysqli_stmt_bind_param($stmt, "i", $idCategoria);
+mysqli_stmt_execute($stmt);
+$resultado = mysqli_stmt_get_result($stmt);
 
 if (!$resultado) {
     die("Erro na consulta: " . mysqli_error($conexao));

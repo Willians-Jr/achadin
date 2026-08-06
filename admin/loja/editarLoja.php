@@ -1,6 +1,8 @@
 <?php
 require_once dirname(__DIR__, 2) . '/includes/config.php';
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
+exigirAdmin();
 
 // 1. Pega o ID da URL. Se não existir, define como null
 $idLoja = $_GET['id'] ?? null;

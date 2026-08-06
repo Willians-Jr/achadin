@@ -8,7 +8,7 @@ def buscar_produtos_do_banco():
         host="localhost",
         user="root",
         password="",
-        database="achadin",
+        database="topachados",
         charset="utf8mb4"
     )
     query = "SELECT idProduto AS ID, nomeProduto AS Nome, descricaoProduto AS Descricao, linkAfiliado AS Link_Afiliado FROM produto"

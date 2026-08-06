@@ -2,6 +2,8 @@
  require_once dirname(__DIR__, 2) . '/includes/config.php';
 
 require_once ROOT_PATH . '/includes/conexao.php';
+exigirLogin();
+exigirAdmin();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try{
@@ -75,7 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (mysqli_stmt_execute($stmt)) {
         $_SESSION['mensagem'] = "Loja cadastrada com sucesso!!";
         $_SESSION['tipoMensagem'] = "success";
-        header("Location: lojas.php");
+        header("Location: gerenciarLoja.php");
+        exit;
 
     } else {
 
@@ -86,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $_SESSION['mensagem'] = "Erro ao cadastrar a loja. Erro: " . $e->getMessage();
     $_SESSION['tipoMensagem'] = "danger";
-    header("Location: gerenciarLojas.php");
+    header("Location: gerenciarLoja.php");
     exit;
 }
 

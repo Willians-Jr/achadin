@@ -636,7 +636,11 @@ li {
 }
 
 .loja-card .card-body {
-  min-height: 260px;
+  min-height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -648,38 +652,21 @@ li {
 
 .logo-container {
   width: 100%;
-  height: 90px;
+  height: 160px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-
-  margin-bottom: 1.5rem;
 }
 
 .logo-loja {
-  max-width: 140px;
-  max-height: 70px;
-  width: auto;
-  height: auto;
+  max-width: 220px;
+  max-height: 140px;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: contain;
-}
-
-.loja-card h6 {
-  min-height: 48px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.loja-card .btn {
-  border-radius: 30px;
-  padding: 0.45rem 1.3rem;
-  font-weight: 600;
 }
 
 @media (max-width: 768px) {
@@ -704,3 +691,67 @@ li {
 }
 
 /* LOJAS FIM */
+.logo-preview {
+  width: 120px;
+  height: 70px;
+
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+
+  padding: 8px;
+}
+
+.logo-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.foto-preview {
+  width: 90px;
+  height: 90px;
+
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #fff;
+
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+
+  padding: 6px;
+}
+
+.foto-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+}
+.btn {
+  text-decoration: none;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:visited {
+  color: inherit;
+}
+
+.btn.bg-dark-subtle,
+.btn.bg-info-subtle,
+.btn.bg-warning-subtle,
+.btn.bg-danger-subtle {
+  color: #212529;
+}

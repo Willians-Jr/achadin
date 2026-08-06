@@ -38,11 +38,42 @@ if (isset($_FILES['imgUsuario']) && $_FILES['imgUsuario']['error'] == 0) {
 
     $arquivo = $_FILES['imgUsuario'];
 
-    $nomeImagem = time() . "_" . basename($arquivo['name']);
+    // Limite de tamanho (2MB)
+    $tamanhoMaximo = 2 * 1024 * 1024;
+    if ($arquivo['size'] > $tamanhoMaximo) {
+        $_SESSION['mensagemPerfil'] = "Imagem muito grande. Máximo de 2MB.";
+        header("Location: perfilUsuario.php");
+        exit;
+    }
+
+    // Verifica o tipo REAL do arquivo (não confia na extensão nem no header do navegador)
+    $mimesPermitidos = [
+        'image/jpeg' => 'jpg',
+        'image/png'  => 'png',
+        'image/webp' => 'webp',
+    ];
+
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeReal = finfo_file($finfo, $arquivo['tmp_name']);
+    finfo_close($finfo);
+
+    if (!array_key_exists($mimeReal, $mimesPermitidos)) {
+        $_SESSION['mensagemPerfil'] = "Formato de imagem inválido.";
+        header("Location: perfilUsuario.php");
+        exit;
+    }
+
+    // Extensão derivada do MIME real verificado, não do nome enviado pelo usuário
+    $extensao = $mimesPermitidos[$mimeReal];
+    $nomeImagem = uniqid('perfil_', true) . "." . $extensao;
 
     $caminho = ROOT_PATH . "/assets/UPLOAD/" . $nomeImagem;
 
-    move_uploaded_file($arquivo['tmp_name'], $caminho);
+    if (!move_uploaded_file($arquivo['tmp_name'], $caminho)) {
+        $_SESSION['mensagemPerfil'] = "Erro ao enviar a imagem.";
+        header("Location: perfilUsuario.php");
+        exit;
+    }
 }
 
   if ($novoNome === '' || $novoemail === '') {

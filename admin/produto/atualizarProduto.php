@@ -14,8 +14,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("Todos os campos obrigatórios precisam ser preenchidos.");
     }
 
+    // Só o dono do produto ou um administrador pode editar
+    $stmtDono = mysqli_prepare($conexao, "SELECT idUsuario FROM produto WHERE idProduto = ?");
+    mysqli_stmt_bind_param($stmtDono, "i", $idProduto);
+    mysqli_stmt_execute($stmtDono);
+    $resultadoDono = mysqli_stmt_get_result($stmtDono);
+    $produtoAtual = mysqli_fetch_assoc($resultadoDono);
+    mysqli_stmt_close($stmtDono);
+
+    if (!$produtoAtual) {
+        die("Produto não encontrado.");
+    }
+
+    exigirDonoOuAdmin((int) $produtoAtual['idUsuario']);
+
     if (isset($_FILES['fotoProduto']) && $_FILES['fotoProduto']['error'] == 0) {
-        $pastaDestino = "../../assets/UPLOAD/";
+        $pastaDestino = ROOT_PATH . "/assets/UPLOAD/";
 
         if (!is_dir($pastaDestino)) {
             mkdir($pastaDestino, 0777, true);
@@ -76,4 +90,6 @@ if ($result && mysqli_num_rows($result) > 0) {
     mysqli_stmt_close($stmt);
     die("Produto não encontrado.");
 }
+
+exigirDonoOuAdmin((int) $dados['idUsuario']);
 ?>
