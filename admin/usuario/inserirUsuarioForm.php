@@ -7,6 +7,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 <!doctype html>
 <html lang="pt-br">
 <?php $titulo = "TopAchados - Cadastro de Usuário";
+$cssPagina = 'assets/CSS/admin.css';
 require_once ROOT_PATH . '/includes/head.php'; ?>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
      
@@ -111,7 +112,8 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                 name="imgUsuario"
                 class="d-none"
                 accept="image/*"
-                onchange="mostrarNomeArquivo()">
+                onchange="mostrarNomeArquivo()"
+                data-recortar>
 
             <label for="imgUsuario" class="btn btn-outline-primary rounded-pill px-4">
                 <i class="bi bi-upload"></i>

@@ -1,0 +1,15 @@
+/* =========================================
+   RESPONSIVIDADE GLOBAL
+   Ajustes de telas pequenas que não
+   pertencem a um componente específico
+   (os responsivos de cada página ficam
+   dentro do próprio CSS daquela página).
+========================================= */
+@media screen and (max-width: 992px) {
+  .formularioBusca {
+    width: 100% !important;
+  }
+  #menuPrincipalLinks {
+    align-items: flex-start !important;
+  }
+}

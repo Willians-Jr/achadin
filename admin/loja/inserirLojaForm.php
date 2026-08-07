@@ -9,6 +9,7 @@ exigirAdmin();
 <!DOCTYPE html>
 <html lang="pt-BR">
 <?php $titulo = "TopAchados - Cadastro de Loja";
+$cssPagina = 'assets/CSS/admin.css';
 require_once ROOT_PATH . '/includes/head.php'; ?>
 
  
@@ -57,7 +58,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
  
                  <div class="mb-3">
                    <label class="form-label" for="logoLoja">Logo da Loja:</label>
-        <input class="form-control" type="file" name="logoLoja" id="logoLoja" accept="image/*" required>
+        <input class="form-control" type="file" name="logoLoja" id="logoLoja" accept="image/*" data-recortar required>
                 </div>
  
                 <div class="text-center">

@@ -208,11 +208,9 @@ require_once ROOT_PATH . '/includes/head.php';
  <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
  <?php if (isset($_SESSION['mensagem'])): ?>
 
+<script src="<?= BASE_URL ?>assets/JS/modal.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = new bootstrap.Modal(document.getElementById("modalMensagem"));
-    modal.show();
-});
+mostrarModalMensagem("modalMensagem");
 </script>
 
 <?php

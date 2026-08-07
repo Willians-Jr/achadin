@@ -23,7 +23,9 @@ if (isset($_SESSION['idUsuario'])) {
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<?php $titulo="Meu Perfil - Painel"; require_once ROOT_PATH . '/includes/head.php'; ?>
+<?php $titulo="Meu Perfil - Painel";
+$cssPagina = 'assets/CSS/admin.css';
+require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
 <main>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>

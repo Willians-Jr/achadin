@@ -1,0 +1,84 @@
+/* =========================================
+   PAINEL ADMINISTRATIVO (sidebar, formulários)
+========================================= */
+.ladoEsquerdoAdmin {
+  background-color: var(--azul-principal) !important;
+}
+
+/* =========================================
+   CARDS DO PAINEL (logadoUsuario.php)
+========================================= */
+.painel-card {
+  border: none;
+  border-radius: 18px;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.painel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0.8rem 1.6rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.painel-icone {
+  font-size: 60px;
+  color: var(--azul-principal);
+}
+
+body.dark-mode .painel-card {
+  background: #1f1f1f;
+  border: 1px solid #333;
+}
+
+body.dark-mode .painel-card h5 {
+  color: #fff;
+}
+
+body.dark-mode .painel-card p {
+  color: #cfcfcf !important;
+}
+
+body.dark-mode .painel-icone {
+  color: #6ea8fe;
+}
+
+/* =========================================
+   PREVIEW DE IMAGENS (loja / produto)
+========================================= */
+.logo-preview {
+  width: 120px;
+  height: 70px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 8px;
+}
+
+.logo-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.foto-preview {
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.foto-preview-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

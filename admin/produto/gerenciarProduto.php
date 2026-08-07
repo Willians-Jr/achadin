@@ -50,6 +50,7 @@ if (!$resultado) {
 
 <?php
 $titulo = "Gerenciar Produtos";
+$cssPagina = 'assets/CSS/admin.css';
 require_once ROOT_PATH . '/includes/head.php';
 ?>
 

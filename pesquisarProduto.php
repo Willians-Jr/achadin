@@ -78,6 +78,7 @@ if (isset($_GET['id']) && isset($_SESSION['idUsuario'])) {
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php $titulo = "Resultado da Pesquisa - TopAchados";
+$cssPagina = 'assets/CSS/produtos.css';
 require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
 <main>
@@ -291,13 +292,7 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
 </main>
 <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 
-<script>
-function atualizarOrdenacao(valor) {
-    const params = new URLSearchParams(window.location.search);
-    params.set('ordenar', valor);
-    window.location.search = params.toString();
-}
-</script>
+<script src="<?= BASE_URL ?>assets/JS/pesquisa.js"></script>
 
 </body>
 </html>

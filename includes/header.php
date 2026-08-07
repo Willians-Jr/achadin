@@ -219,6 +219,9 @@ $_SESSION['nivel'] = $dado['nivel'];
 const BASE_URL = "<?= BASE_URL ?>";
 </script>
 
-<script src="<?= BASE_URL ?>assets/JS/atualizarTema.js"></script>
+<script src="<?= BASE_URL ?>assets/JS/tema.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<?= BASE_URL ?>assets/JS/imagem.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+<script src="<?= BASE_URL ?>assets/JS/editarimg.js"></script>

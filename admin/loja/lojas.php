@@ -15,6 +15,7 @@ if (!$resultado) {
 
 <?php
 $titulo = "TopAchados - Lojas";
+$cssPagina = 'assets/CSS/lojas.css';
 require_once ROOT_PATH . '/includes/head.php';
 ?>
 

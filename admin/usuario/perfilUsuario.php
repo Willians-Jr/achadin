@@ -181,7 +181,8 @@ mysqli_stmt_bind_param(
         class="form-control"
         id="imgUsuario"
         name="imgUsuario"
-        accept="image/*">
+        accept="image/*"
+        data-recortar>
 </div>
 
               <button type="submit" class="btn btn-primary">Salvar alterações</button>

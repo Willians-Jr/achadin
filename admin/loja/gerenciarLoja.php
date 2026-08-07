@@ -29,6 +29,7 @@ if (!$resultado) {
  
 <?php
 $titulo = "Gerenciar Loja";
+$cssPagina = 'assets/CSS/admin.css';
 require_once ROOT_PATH . '/includes/head.php';
 ?>
  
@@ -103,7 +104,7 @@ require_once ROOT_PATH . '/includes/head.php';
  
     <div class="d-flex justify-content-between align-items-center mb-4">
  
-        <a href="<?= BASE_URL ?>" class="btn bg-dark-subtle">
+        <a href="<?= BASE_URL ?>" class="btn">
             Menu Principal
 </a>
  
@@ -111,7 +112,7 @@ require_once ROOT_PATH . '/includes/head.php';
             Lojas
 </h1>
  
-        <a href="inserirLojaForm.php" class="btn bg-dark-subtle">
+        <a href="inserirLojaForm.php" class="btn">
             Inserir Loja
 </a>
  
@@ -220,11 +221,9 @@ require_once ROOT_PATH . '/includes/head.php';
 <?php require_once ROOT_PATH . '/includes/footer.php'; ?>
 <?php if (isset($_SESSION['mensagem'])): ?>
 
+<script src="<?= BASE_URL ?>assets/JS/modal.js"></script>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const modal = new bootstrap.Modal(document.getElementById("modalMensagem"));
-    modal.show();
-});
+mostrarModalMensagem("modalMensagem");
 </script>
 
 <?php

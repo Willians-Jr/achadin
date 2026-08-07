@@ -25,40 +25,15 @@
     <!-- CSS Global -->
     
     <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/style.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>assets/CSS/responsivo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <!-- CSS específico da página (opcional) -->
     <?php if (isset($cssPagina)) : ?>
-        <link rel="stylesheet" href="<?= BASE_URL . $cssPagina ?>">
+        <?php foreach ((array) $cssPagina as $arquivoCss) : ?>
+            <link rel="stylesheet" href="<?= BASE_URL . $arquivoCss ?>">
+        <?php endforeach; ?>
     <?php endif; ?>
-
-    <style>
-        .link-produto-vitrine{
-            text-decoration:none;
-            color:inherit;
-            display:block;
-        }
-
-        .link-produto-vitrine:hover h6{
-            color:#0d6efd;
-        }
-
-        /* .card{
-            border-radius:18px;
-            overflow:hidden;
-        } */
-
-        .produto-img{
-            width:100%;
-            height:220px;
-            object-fit:contain;
-            padding:20px;
-        }
-
-        .card-body{
-            display:flex;
-            flex-direction:column;
-        }
-    </style>
 </head>

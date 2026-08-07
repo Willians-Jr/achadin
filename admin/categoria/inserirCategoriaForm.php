@@ -10,6 +10,7 @@ exigirAdmin();
 <html lang="pt-BR">
  
 <?php $titulo = "TopAchados - Cadastro de Categoria";
+$cssPagina = 'assets/CSS/admin.css';
 require_once ROOT_PATH . '/includes/head.php'; ?>
 
 

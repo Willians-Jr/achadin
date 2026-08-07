@@ -6,6 +6,7 @@ require_once __DIR__ . '/includes/config.php';
 <!DOCTYPE html>
 <html lang="pt-BR">
 <?php $titulo="TopAchados - Como Funciona";
+$cssPagina = 'assets/CSS/home.css';
  require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
   <main>

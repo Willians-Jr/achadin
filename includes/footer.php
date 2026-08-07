@@ -95,4 +95,36 @@
 
     </footer>
 
+    <!-- Modal genérico para ampliar qualquer imagem (ver assets/JS/imagem.js) -->
+    <div class="modal fade" id="modalImagemAmpliada" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-transparent border-0">
+                <button type="button" class="btn-close btn-close-white ms-auto m-2"
+                    data-bs-dismiss="modal" aria-label="Fechar"></button>
+                <img id="imagemAmpliadaConteudo" src="" alt="" class="img-fluid rounded mx-auto d-block">
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal genérico para recortar imagem antes do upload (ver assets/JS/editarimg.js) -->
+    <div class="modal fade" id="modalRecortarImagem" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recortar imagem</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div style="max-height: 60vh; overflow: hidden;">
+                        <img id="imagemParaRecortar" src="" alt="Imagem para recortar" style="max-width: 100%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btnConfirmarRecorte" class="btn btn-primary">Aplicar recorte</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 

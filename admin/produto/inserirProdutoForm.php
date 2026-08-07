@@ -8,6 +8,7 @@ require_once ROOT_PATH . '/includes/conexao.php';
 <html lang="pt-BR">
 
     <?php $titulo = "TopAchados - Cadastro de Produto";
+    $cssPagina = 'assets/CSS/admin.css';
     require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
 <?php require_once ROOT_PATH . '/includes/header.php'; ?>
@@ -153,7 +154,8 @@ require_once ROOT_PATH . '/includes/conexao.php';
                         class="form-control"
                         id="fotoProduto"
                         name="fotoProduto"
-                        accept=".jpg,.jpeg,.png,.gif,image/*">
+                        accept=".jpg,.jpeg,.png,.gif,image/*"
+                        data-recortar>
                 </div>
  
                 <div class="text-center">

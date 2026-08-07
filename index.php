@@ -121,6 +121,7 @@ if (count($recomendacoes) < 5) {
 <!DOCTYPE html>
 <html lang="pt-br">
 <?php $titulo="Top Achados - Página Inicial";
+$cssPagina = ['assets/CSS/home.css', 'assets/CSS/produtos.css'];
 require_once ROOT_PATH . '/includes/head.php'; ?>
 <body>
     <main>
@@ -292,21 +293,6 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
 </div>
  
 
- 
-<style>
-  .card {
-    border-radius: 15px;
-    overflow: hidden;
-}
- 
-.img-produto {
-    width: 100%;
-    height: 220px;
-    object-fit: contain;
-    background: #fff;
-    padding: 20px;
-}
-</style>
 
 <div class="container my-4">
     <h5 class="mb-3 text-secondary fw-semibold">Recomendados para você</h5>
@@ -320,14 +306,19 @@ require_once ROOT_PATH . '/includes/head.php'; ?>
                 $imagemFinal = !empty($produto['fotoProduto']) ? htmlspecialchars($produto['fotoProduto']) : 'sem-imagem.png';
                 ?>
                 <div class="col">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card produto-card h-100 shadow-sm">
                         
                         <a href="<?= htmlspecialchars($produto['linkAfiliado']) ?>" 
                            target="_blank" 
                            onclick="window.location.href='?id=<?= $produto['idProduto'] ?>';" 
                            class="link-produto-vitrine">
                            
-                            <img src="/topachados/<?= $imagemFinal ?>" class="card-img-top img-produto" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
+                            <div class="posicao-imagem-produto">
+                                <img src="/topachados/<?= $imagemFinal ?>" class="card-img-top img-produto" alt="<?= htmlspecialchars($produto['nomeProduto']) ?>">
+                                <button type="button" class="btn-ampliar-imagem" data-ampliar="/topachados/<?= $imagemFinal ?>" aria-label="Ampliar imagem" title="Ampliar imagem">
+                                    <span class="material-symbols-outlined">zoom_in</span>
+                                </button>
+                            </div>
          
                             <div class="card-body">
          
